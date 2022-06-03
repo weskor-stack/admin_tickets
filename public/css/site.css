@@ -1,0 +1,176 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.automatyco {
+    height: 80%;
+    width: 80%;
+}
+
+.title {
+    font-size: 33px;
+    align-content: center;
+    font-weight: bold;
+}
+
+.departamento {
+    font-size: 23px;
+    align-content: center;
+    font-weight: bold;
+}
+
+.table2 {
+    width: 100%;
+    height: 80px;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+/*/th, td {
+    border: 1px;
+    width: 100px;
+    word-wrap: break-word;
+}*/
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+canvas {
+    width: 100%;
+    height: 200px;
+    background-color: #e3dddc;
+}
+
+.center {
+    background-color: #fafafa;
+    margin: 0rem;
+    padding: 0rem;
+    border: 0px solid #ccc;
+    /* IMPORTANTE */
+    text-align: center;
+    align-items: center;
+}
+.sinborde {
+  border: 0;
+}
+
+.myButton {
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+  background:linear-gradient(to bottom, #333 5%, #333 100%);
+  background-color:#333;
+  border-radius:10px;
+  border:1px solid #333;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:19px;
+  padding:12px 37px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #283966;
+}
+.myButton:hover {
+  background:linear-gradient(to bottom, #212a35 5%, #212a35 100%);
+  background-color:#212a35;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+.css-input {
+  padding: 10px;
+  font-size: 12px;
+  border-width: 1px;
+  border-color: #CCCCCC;
+  background-color: #FFFFFF;
+  color: #000000;
+  border-style: solid;
+  border-radius: 0px;
+  box-shadow: 0px 0px 5px rgba(66,66,66,.75);
+  text-shadow: 0px 0px 5px rgba(66,66,66,.75);
+}
+.css-input:focus {
+  outline:none;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+}    .select select {
+      font-family: 'Arial';
+      display: inline-block;
+      width: 100%;
+      cursor: pointer;
+      padding: 10px 15px;
+      outline: 0;
+      border: 0px solid #000000;
+      border-radius: 0px;
+      background: #e6e6e6;
+      color: #7b7b7b;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  }
+      .select select::-ms-expand {
+          display: none;
+      }
+      .select select:hover,
+      .select select:focus {
+          color: #000000;
+          background: #cccccc;
+      }
+      .select select:disabled {
+          opacity: 0.5;
+          pointer-events: none;
+      }
+.select_arrow {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0px 5px;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+  border-top-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+  border-top-color: #cccccc;
+}
+
+textarea {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	width: 100%;
+}
+
+div{
+  width: 100%;
+}
