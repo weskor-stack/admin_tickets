@@ -33,9 +33,6 @@
             <script>
                 $('.select2').select2();
             </script>
-        </div>
-
-        <div class="form-group">
             {{ Form::label('Priority') }}
             {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => 'Priority']) }}
             {!! $errors->first('service_order_id', '<div class="invalid-feedback">:message</div>') !!}
