@@ -15,14 +15,24 @@
         
         
         <div class="form-group">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label('Customer') }}
-            {{ Form::select('customer_id', $customer, $ticket->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer']) }}
+            {{ Form::select('customer_id', $customer, $ticket->customer_id, ['class' => 'form-select select2' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer']) }}
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
+            <script>
+                $('.select2').select2();
+            </script>
         </div>
         <div class="form-group">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label('Contact') }}
-            {{ Form::select('contact_id', $contact, $ticket->contact_id, ['class' => 'form-select' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => 'Contact']) }}
+            {{ Form::select('contact_id', $contact, $ticket->contact_id, ['class' => 'form-select select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => 'Contact']) }}
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
+            <script>
+                $('.select2').select2();
+            </script>
         </div>
 
         <div class="form-group">
