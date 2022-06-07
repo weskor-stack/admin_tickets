@@ -124,7 +124,7 @@ class ServiceOrderController extends Controller
 
         $supervisors = SupervisorEmployee::all();
 
-        
+        //return response()->json($materialAssigneds);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport','tickets','materialAssigneds_2','materials','tools','supervisors'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());

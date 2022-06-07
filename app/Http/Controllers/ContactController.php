@@ -35,8 +35,8 @@ class ContactController extends Controller
     {
         $contact = new Contact();
         $status = Status::pluck('name','status_id');
-        $customer = Customer::pluck('name','customer_id');
-        return view('contact.create', compact('contact','status','customer'));
+        $customers = Customer::pluck('name','customer_id');
+        return view('contact.create', compact('contact','status','customers'));
     }
 
     /**
@@ -51,7 +51,7 @@ class ContactController extends Controller
 
         $contact = Contact::create($request->all());
 
-        return redirect()->route('contacts.index')
+        return redirect()->route('tickets.create')
             ->with('success', 'Contact created successfully.');
     }
 

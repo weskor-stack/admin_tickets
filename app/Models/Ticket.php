@@ -37,6 +37,7 @@ class Ticket extends Model
 		'customer_id' => 'required',
 		'contact_id' => 'required',
 		'user_id' => 'required',
+        'priority_id' => 'required',
     ];
 
     protected $perPage = 20;

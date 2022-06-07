@@ -49,7 +49,7 @@ class CustomerController extends Controller
 
         $customer = Customer::create($request->all());
 
-        return redirect()->route('customers.index')
+        return redirect()->route('tickets.create')
             ->with('success', 'Customer created successfully.');
     }
 

@@ -19,17 +19,17 @@
         </div>
         <div class="form-group">
             {{ Form::label('Phone:') }}
-            {{ Form::text('phone', $contact->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => 'Phone', 'maxlength' => 20]) }}
+            {{ Form::text('phone', $contact->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => 'Phone', 'maxlength' => 10]) }}
             {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('Customer:') }}
-            {{ Form::select('customer_id', $customer, $contact->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer Id']) }}
+            {{ Form::select('customer_id', $customers, $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => '-- Select customer --']) }}
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('Status:') }}
-            {{ Form::select('status_id', $status, $contact->status_id, ['class' => 'form-control' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => 'Status Id']) }}
+            {{ Form::select('status_id', $status, $contact->status_id, ['class' => 'form-select' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => '-- Select status --']) }}
             {!! $errors->first('status_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
@@ -41,7 +41,7 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg">Acept</button>
-        <a class="btn btn-danger btn-lg" href="{{ route('contacts.index') }}"> Cancel</a>
+        <button type="submit" class="btn btn-primary btn-lg">Accept</button>
+        <!--<a class="btn btn-danger btn-lg" href="{{ route('contacts.index') }}"> Cancel</a>-->
     </div>
 </div>

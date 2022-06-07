@@ -68,8 +68,43 @@ class MaterialAssignedController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $reports2);
 
-        //return response()->json($reports2);
-        MaterialAssigned::insert($dataMaterial);
+        $material = Material::select('unit_measure')
+        ->where('material_id', '=', $dataMaterial['material_id'])->get();
+        
+        $material = explode('"',$material);
+        //$material = preg_replace('/[^0-9]/', '', $material);
+        $dataMaterial ['unit_measure'] = $material[3];
+        
+        $material_stock = Material::select('stock')
+        ->where('material_id', '=', $dataMaterial['material_id'])->get();
+
+        $dataMaterial['quantity'] = (int)$dataMaterial['quantity'];
+        
+        $material_stock = preg_replace('/[^0-9]/', '', $material_stock);
+        
+        $material_stock = (int)$material_stock;
+        
+        $result = $material_stock - $dataMaterial['quantity'];
+
+        if ($result >= 0) {
+            //return response()->json($result);
+            
+            MaterialAssigned::insert($dataMaterial);
+
+            $data = Material::find($dataMaterial['material_id']);
+            $data->stock=$result;
+            $data->save();
+
+            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'Material assigned created successfully.');
+            
+        }else {
+            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'Insufficient material.');
+        }
+
+        //return response()->json("No entra al if");
+        
 
         //$materialAssigned = MaterialAssigned::create($request->all());
 
@@ -133,12 +168,32 @@ class MaterialAssignedController extends Controller
     {
         $serviceOrder = ServiceOrder::find($id);
         
+        //$materialAssigned = MaterialAssigned::find($id)->delete();
+        $materialAssigned = MaterialAssigned::find($id);
+
+        $material_stock = Material::select('stock')
+        ->where('material_id', '=', $materialAssigned['material_id'])->get();
+
+        $materialAssigned['quantity'] = (int)$materialAssigned['quantity'];
+        
+        $material_stock = preg_replace('/[^0-9]/', '', $material_stock);
+        
+        $material_stock = (int)$material_stock;
+        
+        $result = $material_stock + $materialAssigned['quantity'];
+
+        $data = Material::find($materialAssigned['material_id']);
+        $data->stock=$result;
+        $data->save();
+
+        //return response()->json($result);
+
         $materialAssigned = MaterialAssigned::find($id)->delete();
 
         $serviceOrder = ServiceOrder::select('service_order_id')->get();
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
-        //return response()->json($reports2);
+        
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', 'Material assigned deleted successfully');
     }

@@ -3,12 +3,12 @@
         
         <div class="form-group">
             {{ Form::label('customer_id') }}
-            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer Id']) }}
+            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer Id', 'maxlength' => 10]) }}
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('key') }}
-            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => 'Key']) }}
+            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => 'Key', 'maxlength' => 5]) }}
             {!! $errors->first('key', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -28,12 +28,12 @@
         </div>
         <div class="form-group">
             {{ Form::label('phone') }}
-            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => 'Phone']) }}
+            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => 'Phone','maxlength' => 10]) }}
             {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('status_id') }}
-            {{ Form::select('status_id',  $status, $customer->status_id, ['class' => 'form-select' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => 'Status Id']) }}
+            {{ Form::select('status_id',  $status, $customer->status_id, ['class' => 'form-select' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => '-- Select status --']) }}
             {!! $errors->first('status_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
@@ -41,10 +41,11 @@
             {{ Form::text('user_id', 0, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-       
+       <br>
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary btn-lg">Accept</button>
+        <!--<a class="btn btn-danger btn-lg" href="{{ route('customers.index') }}"> Cancel</a>-->
     </div>
 </div>

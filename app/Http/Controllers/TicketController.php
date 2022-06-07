@@ -10,6 +10,7 @@ use App\Models\ServiceOrder;
 use App\Models\TypeService;
 use App\Models\TypeMaintenance;
 use App\Models\Priority;
+use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -48,19 +49,21 @@ class TicketController extends Controller
     public function create()
     {
         $ticket = new Ticket();
-        $status = TicketStatus::pluck('name','status_ticket_id');
-        $customer = Customer::pluck('name','customer_id');
+        $status = Status::pluck('name','status_id');
+        $customers = Customer::pluck('name','customer_id');
         $customer2 = 0000000002;//Customer::pluck('customer_id');
         //$contact2 = "SELECT 'name' FROM contact WHERE customer_id = '$customer'";
         //$contact = Contact::where('customer_id', $customer2)->pluck('name','contact_id'); //
-        $contact = Contact::pluck('name','contact_id');
+        $contacts = Contact::pluck('name','contact_id');
         $priority = Priority::pluck('name','priority_id');
         
-        $customers = Customer::all();
-        $contacts = Contact::all();
+        $customer = new Customer();
+        $contact = new Contact();
+        //$contact = Contact::all();
         return view('ticket.create', compact('ticket','status','customer','contact','priority','customers','contacts'));
     }
 
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -114,7 +117,11 @@ class TicketController extends Controller
         $customer = Customer::pluck('name','customer_id');
         //$contact2 = "SELECT 'name' FROM contact WHERE customer_id = '$customer'";
         $contact = Contact::pluck('name','contact_id');
-        return view('ticket.edit', compact('ticket','status','customer','contact'));
+        
+        $contacts = new Contact();
+        $status = Status::pluck('name','status_id');
+
+        return view('ticket.edit', compact('ticket','status','customer','contact','contacts','status'));
     }
 
     /**

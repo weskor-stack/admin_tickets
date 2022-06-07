@@ -42,14 +42,14 @@
                                     <tr style="text-align: center">
                                         <th>No</th>
                                         
-										<th>Subject</th>
-										<th>Problem</th>
-										<th>Ticket's date</th>
-										<th>Ticket's status</th>
-										<th>Customer</th>
-										<th>Contact</th>
-                                        <th>Priority</th>
-										<th>Actions</th>
+										<th style="width: 14%;">Subject</th>
+										<th style="width: 18%;">Problem</th>
+										<th style="width: 5%;">Ticket's date</th>
+										<th style="width: 10%;">Ticket's status</th>
+										<th style="width: 15%;">Customer</th>
+										<th style="width: 10%;">Contact</th>
+                                        <th style="width: 10%;">Priority</th>
+										<th style="width: 10%;">Actions</th>
 
                                         <th></th>
                                     </tr>
@@ -57,17 +57,17 @@
                                 <tbody>
                                     @foreach ($tickets as $ticket)
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td>{{ ++$i }}</td>
+                                            <td style="width: 4%;">{{ ++$i }}</td>
                                             
-											<td style="width: 50x;">{{ $ticket->subject }}</td>
-											<td style="width: 250px;">{{ $ticket->problem }}</td>
-											<td>{{ $ticket->date_ticket }}</td>
-											<td>{{ $ticket->ticketStatus->name }}</td>
-											<td>{{ $ticket->customer->name }}</td>
-											<td>{{ $ticket->contact->name }}</td>
-                                            <td>{{ $ticket->priority->name }}</td>
+											<td style="width: 14%;">{{ $ticket->subject }}</td>
+											<td style="width: 18%;">{{ $ticket->problem }}</td>
+											<td style="width: 5%;">{{ $ticket->date_ticket }}</td>
+											<td style="width: 10%;">{{ $ticket->ticketStatus->name }}</td>
+											<td style="width: 15%;">{{ $ticket->customer->name }}</td>
+											<td style="width: 10%;">{{ $ticket->contact->name }}</td>
+                                            <td style="width: 10%;">{{ $ticket->priority->name }}</td>
 
-                                            <td>
+                                            <td style="width: 10%;">
                                                 <form action="{{ route('tickets.destroy',$ticket->ticket_id) }}" method="POST">
                                                     
                                                     <!--<a class="btn btn-outline-success" href="{{ route('tickets.edit',$ticket->ticket_id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
@@ -79,7 +79,7 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo1">Create order</button>
                                                     @else
-                                                        <a class="btn btn-outline-primary" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> Show service order</a>
+                                                        <a class="btn btn-outline-primary" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> Show order</a>
                                                     @endif
                                                    
 

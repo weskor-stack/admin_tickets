@@ -283,7 +283,7 @@
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
                                                                     {{$materialAssigneds_2}}
-                                                                        <form method="POST" action="{{ url('material-assigneds.update', $materialAssigned->material_id) }}"  role="form" enctype="multipart/form-data">
+                                                                        <form method="POST" action="{{ route('material-assigneds.update', $materialAssigned->material_assigned_id) }}"  role="form" enctype="multipart/form-data">
                                                                             {{ method_field('PATCH') }}
                                                                             @csrf
                                                                             @include('material-assigned.form')
@@ -455,7 +455,7 @@
                                             <td style="width:15%">{{ $materialAssigned->material->name }}</td>
 											<td style="width:15%">{{ $materialAssigned->material->key }}</td>
 											<td style="width:15%">{{ $materialAssigned->quantity }}</td>
-                                            <td style="width:15%">{{ $materialAssigned->material->stock }} - {{ $materialAssigned->quantity }}</td>
+                                            <td style="width:15%">{{ $materialAssigned->material->stock }}</td>
 											<td style="width:15%">{{ $materialAssigned->material->unit_measure }}</td>
 											
 
