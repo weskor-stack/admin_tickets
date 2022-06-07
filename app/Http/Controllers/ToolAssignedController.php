@@ -60,8 +60,7 @@ class ToolAssignedController extends Controller
         //echo($results['id']);
         $dataTool['service_order_id']=$results['order'];*/
 
-        //return response()->json($dataTool);
-        ToolAssigned::insert($dataTool);
+        //ToolAssigned::insert($dataTool);
 
         //$toolAssigned = ToolAssigned::create($request->all());
 
@@ -69,6 +68,43 @@ class ToolAssignedController extends Controller
         ->where('service_order_id', '=', $dataTool['service_order_id'])->get();
 
         $reports2 = preg_replace('/[^0-9]/', '', $reports2);
+
+        $tool = Tool::select('unit_measure')
+        ->where('tool_id', '=', $dataTool['tool_id'])->get();
+
+        $tool = explode('"',$tool);
+
+        $dataTool ['unit_measure'] = $tool[3];
+
+        $tool_stock = Tool::select('stock')
+        ->where('tool_id', '=', $dataTool['tool_id'])->get();
+
+        $dataTool['quantity'] = (int)$dataTool['quantity'];
+        
+        $tool_stock = preg_replace('/[^0-9]/', '', $tool_stock);
+        
+        $tool_stock = (int)$tool_stock;
+        
+        $result = $tool_stock - $dataTool['quantity'];
+
+        if ($result >= 0) {
+            //return response()->json($result);
+            
+            ToolAssigned::insert($dataTool);
+
+            $data = Tool::find($dataTool['tool_id']);
+            $data->stock=$result;
+            $data->save();
+
+            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'Tool assigned created successfully ');
+            
+        }else {
+            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'Insufficient tools. Stock = '.$tool_stock);
+        }
+
+        //return response()->json($result);
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', 'ToolAssigned created successfully.');
@@ -128,7 +164,28 @@ class ToolAssignedController extends Controller
     {
         $serviceOrder = ServiceOrder::find($id);
 
+        //$toolAssigned = ToolAssigned::find($id)->delete();
+        $toolAssigned = ToolAssigned::find($id);
+
+        //return response()->json($toolAssigned);
+
+        $tool_stock = Tool::select('stock')
+        ->where('tool_id', '=', $toolAssigned['tool_id'])->get();
+
+        $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
+        
+        $tool_stock = preg_replace('/[^0-9]/', '', $tool_stock);
+        
+        $tool_stock = (int)$tool_stock;
+        
+        $result = $tool_stock + $toolAssigned['quantity'];
+
+        $data = Tool::find($toolAssigned['tool_id']);
+        $data->stock=$result;
+        $data->save();
+
         $toolAssigned = ToolAssigned::find($id)->delete();
+        //return response()->json($result);
 
         $serviceOrder = ServiceOrder::select('service_order_id')->get();
 

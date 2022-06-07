@@ -170,6 +170,7 @@ class MaterialAssignedController extends Controller
         
         //$materialAssigned = MaterialAssigned::find($id)->delete();
         $materialAssigned = MaterialAssigned::find($id);
+        //return response()->json($materialAssigned);
 
         $material_stock = Material::select('stock')
         ->where('material_id', '=', $materialAssigned['material_id'])->get();

@@ -29,7 +29,8 @@
                                         <b>Customer's phone:</b> {{ $serviceOrder->ticket->customer->phone }}<br><br>
 
                                         <b>Service Address:</b> {{ $serviceOrder->ticket->customer->address }}<br>
-                                        <b>Date:</b> {{ $serviceOrder->date_order }}
+                                        <b>Date:</b> {{\Carbon\Carbon::parse($serviceOrder->date_order)->format('d/m/Y')}}
+                                        
                                     </td>
                                     <td>
                                         <b>Ticket:</b> {{ $serviceOrder->ticket->ticket_id }}<br>
@@ -283,8 +284,7 @@
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
                                                                     {{$materialAssigneds_2}}
-                                                                        <form method="POST" action="{{ route('material-assigneds.update', $materialAssigned->material_assigned_id) }}"  role="form" enctype="multipart/form-data">
-                                                                            {{ method_field('PATCH') }}
+                                                                        <form method="POST" action="{{ url('material-assigneds.update', $materialAssigned->material_id) }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
                                                                             @include('material-assigned.form')
                                                                         </form>
@@ -470,7 +470,8 @@
                                                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" href="{{ route('material-assigneds.edit',$materialAssigned->material_id) }}" hidden>Edit</button>
                                                         
                                                         @method('GET')
-                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" href="{{ route('material-assigneds.edit',$materialAssigned->material_id) }}">Edit</button>
+                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>
+                                                        <a class="btn btn-outline-success" href="{{ route('material-assigneds.edit',$materialAssigned->material_id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -532,7 +533,7 @@
                                                 @else
                                                     <form action="{{ route('tool-assigneds.destroy',$toolAssigned->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
-                                                        <a class="btn btn-outline-success" ><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -551,6 +552,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                         <td style="text-align: center; width:15%">
                                             @if($serviceOrder->status_order_id=='3')
                                                 
@@ -561,37 +563,43 @@
                                         </td>
                                     </tr>
                                     <tr style="text-align: center">
-                                        <th style="width:20%">No</th>
+                                        <th style="width:15%">No</th>
                                         
-                                        <th style="width:20%">Order</th>
+                                        <th style="width:15%" hidden>Order</th>
                                         <th style="width:20%">Employee</th>
-                                        <th style="width:20%">Department</th>
-                                        <th style="width:10%"></th>
+                                        <th style="width:15%">Department</th>
+                                        <th style="width:15%">Supervisor</th>
+                                        <th style="width:15%">Status</th>
+                                        <th style="width:15%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($employeeOrders as $employeeOrder)
-                                    
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td style="width:20%">{{ $employeeOrder->employee->employee_id }}</td>
-                                            
-                                            <td style="width:20%">{{ $employeeOrder->service_order_id }}</td>
-                                            <td style="width:20%">{{ $employeeOrder->employee->name }}</td>
-                                            <td style="width:20%">{{ $employeeOrder->employee_id }}</td>
-                                           
+                                            <td style="width:15%">{{ $employeeOrder->employee->employee_id }}</td>
+                                            <td style="width:15%" hidden>{{ $employeeOrder->service_order_id }}</td>
+                                            <td style="width:15%">{{ $employeeOrder->employee->name }} {{ $employeeOrder->employee->last_name }}</td>
+                                            @foreach($supervisors as $supervisor)
+                                                @if($supervisor->employee_id == $employeeOrder->employee_id)
+                                                    <td style="width:15%">{{$supervisor->department->name}}</td>
+                                                    <td style="width:15%">{{$supervisor->employee2->name}} {{$supervisor->employee2->last_name}}</td>
+                                                @endif
+                                            @endforeach
+                                            <th style="width:15%">{{ $employeeOrder->employee->status->name }}</th>
                                             <td style="width:10%">
                                                 @if($serviceOrder->status_order_id=='3')
                                                 
                                                 @else
                                                     <form action="{{ route('employee-orders.destroy',$employeeOrder->employee_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('employee-orders.show',$employeeOrder->employee_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
-                                                        <a class="btn btn-outline-success" ><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete employee?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                     </form>
                                                 @endif
                                             </td>
+                                            
                                         </tr>
                                     @endforeach
                                 </tbody>

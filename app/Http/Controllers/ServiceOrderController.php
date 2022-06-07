@@ -96,6 +96,9 @@ class ServiceOrderController extends Controller
         $employeeOrders = EmployeeOrder::select('service_order_id', 'employee_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder_all[0])->get();
 
+        $employeeOrders2 = EmployeeOrder::select('employee_id')
+        ->where('service_order_id', '=', $serviceOrder_all[0])->get();
+
         $reports2 = ServiceOrder::select('service_order_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('ticket_id', '=', $datas)->get();
 
@@ -119,14 +122,18 @@ class ServiceOrderController extends Controller
         $materialAssigneds_2 = preg_replace('/[^0-9]/', '', $materialAssigneds_2);
 
         $materialAssigneds_3 = MaterialAssigned::all();
-        //return response()->json($materialAssigneds_3);
-        //return response()->json($serviceOrder[0]);
-
-        $supervisors = SupervisorEmployee::all();
-
         //return response()->json($materialAssigneds);
         
-        return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport','tickets','materialAssigneds_2','materials','tools','supervisors'))
+
+        //return response()->json($employeeOrders2);
+
+        $supervisors = SupervisorEmployee::all();
+        //$supervisors = SupervisorEmployee::pluck('supervisor_employee_id','department_id');
+
+        //return response()->json($supervisors);
+        
+        return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
+        'tickets','materialAssigneds_2','materials','tools','supervisors'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
     }
 

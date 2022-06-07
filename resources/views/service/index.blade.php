@@ -23,7 +23,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="width:40%"></td>
+                                    <td style="width:10%"></td>
                                     <td style="text-align: left">
                                         <b>Name:</b> {{ $service->serviceOrder->ticket->customer->name }}<br>
                                         <b>Contact:</b> {{ $service->serviceOrder->ticket->contact->name }}<br>
@@ -39,11 +39,11 @@
                                         <b>Order:</b> {{ $service->serviceOrder->service_order_id }}<br>
                                         <b>Report:</b>{{ $service->service_id }} <br>
                                         <b>Service Address:</b> {{ $service->serviceOrder->ticket->customer->address }}<br>
-                                        <b>Date:</b> {{ $service->date_service }}
+                                        <b>Date:</b> {{ \Carbon\Carbon::parse($service->data_service)->format('d/m/Y') }}
 
                                         <b></b> 
                                     </td>
-                                    
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -71,8 +71,9 @@
                     <div>
                         <!----------------------->
                         <table class="table table-striped table-hover">
-                            <tr>
-                                <td>
+                            <tr style="text-align: left">
+                                <td style="width:20%"></td>
+                                <td style="width:30%">
                                     <div class="form-group">
                                     <legend>Type of maintenance</legend>
                                         @if ($service->serviceOrder->type_maintenance_id=='1')
@@ -101,9 +102,9 @@
                                         {{ Form::label('Including') }}<br>
                                     </div>
                                 </td>
-                                <td>
+                                <td style="width:30%">
                                     <div class="form-group">
-                                        {{ Form::label('Type of service:') }}<br>
+                                    <legend>Type of service</legend><br>
                                         @if ($service->serviceOrder->type_service_id=='1')
                                             {{ Form::radio('type_service_id','1',true,array('disabled')) }}
                                         @else
@@ -356,10 +357,11 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:20%">Key</th>
-										<th style="width:20%">Quantity</th>
-										<th style="width:20%">Unit of measure</th>
-										<th style="width:20%">Usage</th>
+										<th style="width:10%">Key</th>
+                                        <th style="width:15%">Name</th>
+										<th style="width:15%">Quantity</th>
+										<th style="width:15%">Unit of measure</th>
+										<th style="width:15%">Stock</th>
 
                                         <th style="width:10%"></th>
                                     </tr>
@@ -371,10 +373,11 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
                                             
-											<td style="width:20%">{{ $materialAssigned->material->key }}</td>
-											<td style="width:20%">{{ $materialAssigned->quantity }}</td>
-											<td style="width:20%">{{ $materialAssigned->unit_measure }}</td>
-											<td style="width:20%">{{ $materialAssigned->usage }}</td>
+											<td style="width:10%">{{ $materialAssigned->material->key }}</td>
+                                            <td style="width:15%">{{ $materialAssigned->material->name }}</td>
+											<td style="width:15%">{{ $materialAssigned->quantity }}</td>
+											<td style="width:15%">{{ $materialAssigned->unit_measure }}</td>
+											<td style="width:15%">{{ $materialAssigned->material->stock }}</td>
                                             <td style="width:10%">
                                                 @method('GET')
                                                 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo2">Edit</button>
@@ -390,10 +393,11 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:20%">Key</th>
-										<th style="width:20%">Quantity</th>
-										<th style="width:20%">Unit of measure</th>
-										<th style="width:20%">Usage</th>
+										<th style="width:10%">Key</th>
+                                        <th style="width:15%">Name</th>
+										<th style="width:15%">Quantity</th>
+										<th style="width:15%">Unit of measure</th>
+										<th style="width:15%">Stock</th>
 
                                         <th style="width:10%"></th>
                                     </tr>
@@ -405,10 +409,11 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
                                             
-											<td style="width:20%">{{ $toolAssigned->tool->key }}</td>
-											<td style="width:20%">{{ $toolAssigned->quantity }}</td>
-											<td style="width:20%">{{ $toolAssigned->unit_measure }}</td>
-											<td style="width:20%">{{ $toolAssigned->usage }}</td>
+											<td style="width:10%">{{ $toolAssigned->tool->key }}</td>
+                                            <td style="width:15%">{{ $toolAssigned->tool->name }}</td>
+											<td style="width:15%">{{ $toolAssigned->quantity }}</td>
+											<td style="width:15%">{{ $toolAssigned->unit_measure }}</td>
+											<td style="width:15%">{{ $toolAssigned->tool->stock }}</td>
                                             <td style="width:10%">
                                                 @method('GET')
                                                 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo3">Edit</button>
