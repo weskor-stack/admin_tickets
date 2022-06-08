@@ -8,19 +8,19 @@
         </div>
         
         <div class="form-group">
-            <legend>Activities implemented</legend>
-            {{ Form::textarea('description_activity', $activity->description_activity, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio']) }}
+            <legend>{{ __('Activities implemented') }}</legend>
+            {{ Form::textarea('description_activity', $activity->description_activity, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => __('Descripction')]) }}
             {!! $errors->first('description_activity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div>
-        <legend>Evidence </legend>
+        <legend>{{ __('Evidence') }} </legend>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             
             <table class=table align="center">
                 <tr>
                     <td align="center">
-                        <h5>Before:</h5>
+                        <h5>{{ __('Before')}}:</h5>
 
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$activity->previous_evidence }}" id="blah" width="100" height="100" alt="">
@@ -29,7 +29,7 @@
                         </div>
                     </td>
                     <td align="center">
-                        <h5>After:</h5>
+                        <h5>{{ __('After') }}:</h5>
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$activity->subsequent_evidence }}" id="blah2" width="100" height="100" alt="">
                             <input type="file" id="subsequent_evidence" name="subsequent_evidence" multiple><br><br>
@@ -44,7 +44,7 @@
         </div>
         <div class="form-group">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <legend>Signature</legend>
+            <legend>{{ __('Signature') }}</legend>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />     
             <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
             <style>
@@ -70,7 +70,7 @@
                                         <br/>
                                         <div id="sig"></div>
                                         <br><br>
-                                        <button id="clear" class="btn btn-warning btn-sm">Clear</button>
+                                        <button id="clear" class="btn btn-warning btn-sm">{{ __('Clear')}}</button>
                                         
                                         <textarea id="signature" name="signed" style="display: none"></textarea>
                                         {!! $errors->first('signature', '<div class="invalid-feedback">:message</div>') !!}
@@ -103,7 +103,7 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg" id="btnEnviar">Accept</button>
+        <button type="submit" class="btn btn-primary btn-lg" id="btnEnviar">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
     </div>
 </div>

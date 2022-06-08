@@ -2,20 +2,20 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('Key') }}
+            <strong>{{__('Key')}}</strong>
             <!--{{ Form::select('material_id', $material, $materialAssigned->material_id, ['class' => 'form-select' . ($errors->has('material_id') ? ' is-invalid' : ''), 'placeholder' => 'Material Id']) }}
             {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
             
             <select class="form-select" id="material_id" name="material_id" required>
-                <option value="">--Select material--</option>
+                <option value="">--{{ __('Select material')}}--</option>
                 @foreach ($materials as $item)
                     <option value="{{$item->material_id}}">{{$item->key}} - {{$item->name}}</option>
                 @endforeach
             </select>
         </div>
         <div class="form-group">
-            {{ Form::label('Quantity') }}
-            {{ Form::text('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity']) }}
+            <strong>{{ __('Quantity')}}</strong>
+            {{ Form::text('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity')]) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
@@ -45,7 +45,7 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg">Accept</button>
+        <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('material-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

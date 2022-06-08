@@ -15,7 +15,7 @@
                             <thead class="thead">
                                 <tr style="text-align: center">
                                     <td></td>
-                                    <td style="text-align: left"><legend>Customer</legend></td>
+                                    <td style="text-align: left"><legend>{{ __('Customer')}}</legend></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -23,18 +23,18 @@
                                 <tr>
                                     <td style="width:10%"></td>
                                     <td style="text-align: left">
-                                        <b>Name:</b> {{ $serviceOrder->ticket->customer->name }}<br>
-                                        <b>Contact:</b> {{ $serviceOrder->ticket->contact->name }}<br>
-                                        <b>Contact's phone:</b> {{ $serviceOrder->ticket->contact->phone }}<br>
-                                        <b>Customer's phone:</b> {{ $serviceOrder->ticket->customer->phone }}<br><br>
+                                        <b>{{ __('Name')}}:</b> {{ $serviceOrder->ticket->customer->name }}<br>
+                                        <b>{{ __('Contact')}}:</b> {{ $serviceOrder->ticket->contact->name }}<br>
+                                        <b>{{ __('Contacts phone')}}:</b> {{ $serviceOrder->ticket->contact->phone }}<br>
+                                        <b>{{ __('Customers phone')}}:</b> {{ $serviceOrder->ticket->customer->phone }}<br><br>
 
-                                        <b>Service Address:</b> {{ $serviceOrder->ticket->customer->address }}<br>
-                                        <b>Date:</b> {{\Carbon\Carbon::parse($serviceOrder->date_order)->format('d/m/Y')}}
+                                        <b>{{ __('Service Address')}}:</b> {{ $serviceOrder->ticket->customer->address }}<br>
+                                        <b>{{ __('Date')}}:</b> {{\Carbon\Carbon::parse($serviceOrder->date_order)->format('d/m/Y')}}
                                         
                                     </td>
                                     <td>
-                                        <b>Ticket:</b> {{ $serviceOrder->ticket->ticket_id }}<br>
-                                        <b>Order:</b> {{ $serviceOrder->service_order_id }}<br>
+                                        <b>{{ __('Ticket')}}:</b> {{ $serviceOrder->ticket->ticket_id }}<br>
+                                        <b>{{ __('Order')}}:</b> {{ $serviceOrder->service_order_id }}<br>
                                         <b></b> <br>
                                         <b></b><br><br>
 
@@ -76,7 +76,7 @@
                                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
                                             @else
                                                 <a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left" hidden>{{ __('Create report') }}</a>
-                                                <a type="submit" class="btn btn-outline-info" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> Show reports</a>
+                                                <a type="submit" class="btn btn-outline-info" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Show reports')}}</a>
                                             @endif                    
                                                                             
                                             <div>                                                                                
@@ -86,7 +86,7 @@
                                                         <div class="modal-content">
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Add material</h4>
+                                                                    <h4 class="modal-title">{{ __('Add material')}}</h4>
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -104,7 +104,7 @@
 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
 
                                                         </div>
@@ -120,7 +120,7 @@
 
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Add material</h4>
+                                                                    <h4 class="modal-title">{{ __('Add material')}}</h4>
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -147,7 +147,7 @@
 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -163,7 +163,7 @@
 
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Add tool</h4>
+                                                                    <h4 class="modal-title">{{ __('Add tool')}}</h4>
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
@@ -177,7 +177,7 @@
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -248,12 +248,12 @@
                                                         <div class="modal-content">
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Create report</h4>                
+                                                                    <h4 class="modal-title">{{ __('Create report')}}</h4>                
                                                                 </div>
 
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">
-                                                                    <p style="text-align:center">Do you want create a report?</p>
+                                                                    <p style="text-align:center">{{ __('Do you want create a report?')}}</p>
                                                                     <div class="card-body">
                                                                         <form method="POST" action="{{ route('services.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
@@ -264,7 +264,7 @@
                                                             
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -278,7 +278,7 @@
                                                         <div class="modal-content">
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Edit</h4>
+                                                                    <h4 class="modal-title">{{ __('Edit')}}</h4>
                                                                 </div>
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">
@@ -334,61 +334,61 @@
                                     <td style="width:30%"></td>
                                     <td style="width:30%">
                                         <div class="form-group">
-                                        <legend>Type of maintenance</legend>
+                                        <legend>{{ __('Type of maintenance')}}</legend>
                                         @if ($serviceOrder->type_maintenance_id=='1')
                                         {{ Form::radio('type_maintenance_id','1',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','1',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Preventive') }}<br>
+                                        {{ Form::label(__('Preventive')) }}<br>
                                         @if ($serviceOrder->type_maintenance_id=='2')
                                         {{ Form::radio('type_maintenance_id','2',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','2',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Corrective') }}<br>
+                                        {{ Form::label( __('Corrective')) }}<br>
                                         @if ($serviceOrder->type_maintenance_id=='3')
                                         {{ Form::radio('type_maintenance_id','3',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','3',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Predictive') }}<br>
+                                        {{ Form::label( __('Predictive')) }}<br>
                                         @if ($serviceOrder->type_maintenance_id=='4')
                                         {{ Form::radio('type_maintenance_id','4',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','4',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Including') }}<br>
+                                        {{ Form::label( __('Including')) }}<br>
                                         </div>
                                     </td>
                                     <td style="width:30%">
                                         <div class="form-group">
-                                        <legend>Type of service</legend>
+                                        <legend>{{ __('Type of service')}}</legend>
                                             
                                             @if ($serviceOrder->type_service_id=='1')
                                             {{ Form::radio('type_service_id','1',true,array('disabled')) }}
                                             @else
                                             {{ Form::radio('type_service_id','1',false,array('disabled')) }}
                                             @endif
-                                            {{ Form::label('Software') }}<br>
+                                            {{ Form::label( __('Software')) }}<br>
                                             @if ($serviceOrder->type_service_id=='2')
                                             {{ Form::radio('type_service_id','2',true,array('disabled')) }}
                                             @else
                                             {{ Form::radio('type_service_id','2',false,array('disabled')) }}
                                             @endif
-                                            {{ Form::label('Mechanic') }}<br>
+                                            {{ Form::label( __('Mechanic')) }}<br>
                                             @if ($serviceOrder->type_service_id=='3')
                                             {{ Form::radio('type_service_id','3',true,array('disabled')) }}
                                             @else
                                             {{ Form::radio('type_service_id','3',false,array('disabled')) }}
                                             @endif
-                                            {{ Form::label('Electronic') }}<br>
+                                            {{ Form::label( __('Electronic')) }}<br>
                                             @if ($serviceOrder->type_service_id=='4')
                                             {{ Form::radio('type_service_id','4',true,array('disabled')) }}
                                             @else
                                             {{ Form::radio('type_service_id','4',false,array('disabled')) }}
                                             @endif
-                                            {{ Form::label('Electric') }}<br>
+                                            {{ Form::label( __('Electric')) }}<br>
                                             <!--{{ Form::select('type_service_id', $service, $serviceOrder->type_service_id, ['class' => 'form-control' . ($errors->has('type_service_id') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de servicio']) }}
                                             {!! $errors->first('type_service_id', '<div class="invalid-feedback">:message</div>') !!}-->
                                         </div>
@@ -401,7 +401,7 @@
 
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo4" >Edit</button>
+                                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -413,17 +413,17 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
-                                        <td><legend>Materials</legend></td>
+                                        <td><legend>{{ __('Materials')}}</legend></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td style="text-align: center; width:15%">
                                         @if($serviceOrder->status_order_id=='3')    
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1" hidden>Add material</button>
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1">Add material</button>
+                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
                                         @endif    
                                         
                                         </td>
@@ -431,11 +431,11 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-                                        <th style="width:15%">Name</th>
-										<th style="width:15%">Key</th>
-										<th style="width:15%">Quantity</th>
-                                        <th style="width:15%">Stock</th>
-										<th style="width:15%">Unit of measure</th>
+                                        <th style="width:15%">{{ __('Name')}}</th>
+										<th style="width:15%">{{ __('Key')}}</th>
+										<th style="width:15%">{{ __('Quantity')}}</th>
+                                        <th style="width:15%">{{ __('Stock')}}</th>
+										<th style="width:15%">{{ __('Unit of measure')}}</th>
 										
 
                                         <th style="width:10%"></th>
@@ -486,7 +486,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">      
                                     <tr style="text-align: left">
-                                        <td><legend>Tools</legend></td>
+                                        <td><legend>{{ __('Tools')}}</legend></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -496,7 +496,7 @@
                                                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2">Add tool</button>
+                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
                                             @endif
                                             
                                         </td>
@@ -504,11 +504,11 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:15%">Name</th>
-                                        <th style="width:15%">Key</th>
-										<th style="width:15%">Quantity</th>
-                                        <th style="width:15%">Stock</th>
-										<th style="width:15%">Unit of measure</th>
+										<th style="width:15%">{{ __('Name')}}</th>
+										<th style="width:15%">{{ __('Key')}}</th>
+										<th style="width:15%">{{ __('Quantity')}}</th>
+                                        <th style="width:15%">{{ __('Stock')}}</th>
+										<th style="width:15%">{{ __('Unit of measure')}}</th>
 
                                         <th style="width:10%"></th>
                                     </tr>
@@ -536,7 +536,7 @@
                                                         <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -549,7 +549,7 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
-                                        <td><legend>Employees</legend></td>
+                                        <td><legend>{{ __('Employees')}}</legend></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -559,18 +559,18 @@
                                                 
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3">Add employee</button>
+                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
                                             @endif
                                         </td>
                                     </tr>
                                     <tr style="text-align: center">
                                         <th style="width:15%">No</th>
                                         
-                                        <th style="width:15%" hidden>Order</th>
-                                        <th style="width:20%">Employee</th>
-                                        <th style="width:15%">Department</th>
-                                        <th style="width:15%">Supervisor</th>
-                                        <th style="width:15%">Status</th>
+                                        <th style="width:15%" hidden>{{ __('Order')}}</th>
+                                        <th style="width:20%">{{ __('Employees')}}</th>
+                                        <th style="width:15%">{{ __('Department')}}</th>
+                                        <th style="width:15%">{{ __('Supervisor')}}</th>
+                                        <th style="width:15%">{{ __('Status')}}</th>
                                         <th style="width:15%"></th>
                                     </tr>
                                 </thead>
@@ -593,10 +593,10 @@
                                                 @else
                                                     <form action="{{ route('employee-orders.destroy',$employeeOrder->employee_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('employee-orders.show',$employeeOrder->employee_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
-                                                        <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> {{ __('Edit')}}</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete employee?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete employee?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>

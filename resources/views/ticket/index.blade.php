@@ -42,14 +42,14 @@
                                     <tr style="text-align: center">
                                         <th>No</th>
                                         
-										<th style="width: 14%;">Subject</th>
-										<th style="width: 18%;">Problem</th>
-										<th style="width: 5%;">Ticket's date</th>
-										<th style="width: 10%;">Ticket's status</th>
-										<th style="width: 15%;">Customer</th>
-										<th style="width: 10%;">Contact</th>
-                                        <th style="width: 10%;">Priority</th>
-										<th style="width: 10%;">Actions</th>
+										<th style="width: 14%;">{{ __('Subject') }}</th>
+										<th style="width: 18%;">{{ __('Problem') }}</th>
+										<th style="width: 5%;">{{ __('Tickets date') }}</th>
+										<th style="width: 10%;">{{ __('Tickets status') }}</th>
+										<th style="width: 15%;">{{ __('Customer') }}</th>
+										<th style="width: 10%;">{{ __('Contact') }}</th>
+                                        <th style="width: 10%;">{{ __('Priority') }}</th>
+										<th style="width: 10%;">{{ __('Actions') }}</th>
 
                                         <th></th>
                                     </tr>
@@ -77,9 +77,9 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
-                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo1">Create order</button>
+                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
                                                     @else
-                                                        <a class="btn btn-outline-primary" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> Show order</a>
+                                                        <a class="btn btn-outline-primary" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show order') }}</a>
                                                     @endif
                                                    
 
@@ -124,7 +124,7 @@
                                                         
                                                             <!-- cabecera del diálogo -->
                                                             <div class="modal-header">
-                                                                <h4 class="modal-title">Generate Order</h4>
+                                                                <h4 class="modal-title">{{ __('Generate Order')}}</h4>
                                                             </div>
                                                         
                                                             <!-- cuerpo del diálogo -->
@@ -142,7 +142,7 @@
                                                         
                                                             <!-- pie del diálogo -->
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                             </div>
                                                         
                                                             </div>

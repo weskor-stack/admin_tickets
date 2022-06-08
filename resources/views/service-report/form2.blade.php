@@ -6,14 +6,14 @@
                 <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                     <td align="center" hidden><b>Día</b></td>
                     
-                    <td><b>Entry</b></td>
-                    <td><b>Completion</b></td>
-                    <td><b>Lunch time</b></td>
-                    <td><b>Service hours</b></td>
-                    <td><b>Service extras</b></td>
-                    <td><b>Duration travel</b></td>
-                    <td>Date service</td>
-                    <td>Employee</td>
+                    <td><b>{{ __('Entry')}}</b></td>
+                    <td><b>{{ __('Completion')}}</b></td>
+                    <td><b>{{ __('Lunchtime')}}</b></td>
+                    <td><b>{{ __('Service hour')}}</b></td>
+                    <td><b>{{ __('Service extra')}}</b></td>
+                    <td><b>{{ __('Duration travel')}}</b></td>
+                    <td>{{ __('Date service')}}</td>
+                    <td>{{ __('Employee')}}</td>
                 </tr>
                 <tr style="text-align: center">
                     <td hidden>
@@ -43,19 +43,19 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            {{ Form::text('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => 'Horas de servicio']) }}
+                            {{ Form::text('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => __('Service hour')]) }}
                             {!! $errors->first('service_hours', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
                     <td>
                          <div class="form-group">
-                            {{ Form::text('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' => 'Horas Extras']) }}
+                            {{ Form::text('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' =>  __('Service extra')]) }}
                             {!! $errors->first('service_extras', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
-                            {{ Form::text('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' => 'Duración del Viaje']) }}
+                            {{ Form::text('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' =>  __('Duration travel')]) }}
                             {!! $errors->first('duration_travel', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
@@ -68,7 +68,7 @@
                     
                     <td>
                         <div class="form-group">
-                            {{ Form::select('employee_id', $employee, $serviceReport->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => 'Empleado']) }}
+                            {{ Form::select('employee_id', $employee, $serviceReport->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
                             {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
@@ -84,7 +84,7 @@
         <br>
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg" href="{{ route('services.index') }}">Accept</button>
+        <button type="submit" class="btn btn-primary btn-lg" href="{{ route('services.index') }}">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
     </div>
 </div>

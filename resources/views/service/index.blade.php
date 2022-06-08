@@ -16,7 +16,7 @@
                             <thead class="thead">
                                 <tr style="text-align: center">
                                     <td></td>
-                                    <td style="text-align: left"><legend>Customer</legend></td>
+                                    <td style="text-align: left"><legend>{{ __('Customer')}}</legend></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -25,21 +25,21 @@
                                 <tr>
                                     <td style="width:10%"></td>
                                     <td style="text-align: left">
-                                        <b>Name:</b> {{ $service->serviceOrder->ticket->customer->name }}<br>
-                                        <b>Contact:</b> {{ $service->serviceOrder->ticket->contact->name }}<br>
-                                        <b>Contact's phone:</b> {{ $service->serviceOrder->ticket->contact->phone }}<br>
-                                        <b>Customer's phone:</b> {{ $service->serviceOrder->ticket->customer->phone }}<br><br>
+                                        <b>{{ __('Name') }}:</b> {{ $service->serviceOrder->ticket->customer->name }}<br>
+                                        <b>{{ __('Contact') }}:</b> {{ $service->serviceOrder->ticket->contact->name }}<br>
+                                        <b>{{ __('Contacts phone') }}:</b> {{ $service->serviceOrder->ticket->contact->phone }}<br>
+                                        <b>{{ __('Customers phone') }}:</b> {{ $service->serviceOrder->ticket->customer->phone }}<br><br>
 
                                         
                                         <b></b> <br>
                                         <b></b> 
                                     </td>
                                     <td>
-                                        <b>Ticket:</b> {{ $service->serviceOrder->ticket->ticket_id }}<br>
-                                        <b>Order:</b> {{ $service->serviceOrder->service_order_id }}<br>
-                                        <b>Report:</b>{{ $service->service_id }} <br>
-                                        <b>Service Address:</b> {{ $service->serviceOrder->ticket->customer->address }}<br>
-                                        <b>Date:</b> {{ \Carbon\Carbon::parse($service->data_service)->format('d/m/Y') }}
+                                        <b>{{ __('Ticket') }}:</b> {{ $service->serviceOrder->ticket->ticket_id }}<br>
+                                        <b>{{ __('Order') }}:</b> {{ $service->serviceOrder->service_order_id }}<br>
+                                        <b>{{ __('Report') }}:</b>{{ $service->service_id }} <br>
+                                        <b>{{ __('Service Address') }}:</b> {{ $service->serviceOrder->ticket->customer->address }}<br>
+                                        <b>{{ __('Date') }}:</b> {{ \Carbon\Carbon::parse($service->data_service)->format('d/m/Y') }}
 
                                         <b></b> 
                                     </td>
@@ -81,25 +81,25 @@
                                         @else
                                         {{ Form::radio('type_maintenance_id','1',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Preventive') }}<br>
+                                        {{ Form::label(__('Preventive')) }}<br>
                                         @if ($service->serviceOrder->type_maintenance_id=='2')
                                         {{ Form::radio('type_maintenance_id','2',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','2',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Corrective') }}<br>
+                                        {{ Form::label( __('Corrective')) }}<br>
                                         @if ($service->serviceOrder->type_maintenance_id=='3')
                                         {{ Form::radio('type_maintenance_id','3',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','3',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Predictive') }}<br>
+                                        {{ Form::label( __('Predictive')) }}<br>
                                         @if ($service->serviceOrder->type_maintenance_id=='4')
                                         {{ Form::radio('type_maintenance_id','4',true,array('disabled')) }}
                                         @else
                                         {{ Form::radio('type_maintenance_id','4',false,array('disabled')) }}
                                         @endif
-                                        {{ Form::label('Including') }}<br>
+                                        {{ Form::label( __('Including')) }}<br>
                                     </div>
                                 </td>
                                 <td style="width:30%">
@@ -110,25 +110,25 @@
                                         @else
                                             {{ Form::radio('type_service_id','1',false,array('disabled')) }}
                                         @endif
-                                            {{ Form::label('Software') }}<br>
+                                            {{ Form::label( __('Software')) }}<br>
                                         @if ($service->serviceOrder->type_service_id=='2')
                                             {{ Form::radio('type_service_id','2',true,array('disabled')) }}
                                         @else
                                             {{ Form::radio('type_service_id','2',false,array('disabled')) }}
                                         @endif
-                                            {{ Form::label('Mechanic') }}<br>
+                                            {{ Form::label( __('Mechanic')) }}<br>
                                         @if ($service->serviceOrder->type_service_id=='3')
                                             {{ Form::radio('type_service_id','3',true,array('disabled')) }}
                                         @else
                                             {{ Form::radio('type_service_id','3',false,array('disabled')) }}
                                         @endif
-                                            {{ Form::label('Electronic') }}<br>
+                                            {{ Form::label( __('Electronic')) }}<br>
                                         @if ($service->serviceOrder->type_service_id=='4')
                                             {{ Form::radio('type_service_id','4',true,array('disabled')) }}
                                         @else
                                             {{ Form::radio('type_service_id','4',false,array('disabled')) }}
                                         @endif
-                                            {{ Form::label('Electric') }}<br>
+                                            {{ Form::label( __('Electric')) }}<br>
                                     </div>
                                 </td>
                             </tr>
@@ -151,7 +151,7 @@
                                                         
                                 <!-- cabecera del diálogo -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Generate Order</h4>
+                                        <h4 class="modal-title">{{ __('Generate Order')}}</h4>
                                     </div>
                                                             
                                 <!-- cuerpo del diálogo -->
@@ -178,7 +178,7 @@
                                                         
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Add</h4>
+                                            <h4 class="modal-title">{{ __('Add')}}</h4>
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
@@ -198,7 +198,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -277,7 +277,7 @@
                                 <tr style="text-align: center">
                                 <tr>
                                     <td>
-                                    <legend>Schedule</legend>
+                                    <legend>{{ __('Schedule')}}</legend>
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -294,22 +294,22 @@
                                             @method('GET')
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dialogo1">Add</button>
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
                                         @endif
                                     </td>
                                 </tr>
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th>Time entry</th>
-										<th>Time completion</th>
-										<th>Time lunchtime</th>
-										<th>Service hours</th>
-										<th>Service extra</th>
-										<th>Duration travel</th>
-										<th>Date service</th>
-										<th>Service report</th>
-										<th>Employee</th>
+										<th>{{ __('Time entry')}}</th>
+										<th>{{ __('Completion')}}</th>
+										<th>{{ __('Lunchtime')}}</th>
+										<th>{{ __('Service hour')}}</th>
+										<th>{{ __('Service extra')}}</th>
+										<th>{{ __('Duration travel')}}</th>
+										<th>{{ __('Date service')}}</th>
+										<th>{{ __('Service report')}}</th>
+										<th>{{ __('Employee')}}</th>
 										<th></th>
 
                                         
@@ -340,7 +340,7 @@
                                                     <a class="btn btn-sm btn-outline-success" href="{{ route('service-reports.edit',$serviceReport->service_report_id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>-->
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Do you want to delete service?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Do you want to delete service?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                 </form>
                                             @endif
                                             </td>
@@ -351,17 +351,17 @@
                         <!----------------------->
 
                         <div>
-                        <legend>Materials</legend>
+                        <legend>{{ __('Materials')}}</legend>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:10%">Key</th>
-                                        <th style="width:15%">Name</th>
-										<th style="width:15%">Quantity</th>
-										<th style="width:15%">Unit of measure</th>
-										<th style="width:15%">Stock</th>
+										<th style="width:10%">{{ __('Key')}}</th>
+                                        <th style="width:15%">{{ __('Name')}}</th>
+										<th style="width:15%">{{ __('Quantity')}}</th>
+										<th style="width:15%">{{ __('Unit of measure')}}</th>
+										<th style="width:15%">{{ __('Stock')}}</th>
 
                                         <th style="width:10%"></th>
                                     </tr>
@@ -387,17 +387,17 @@
                                 </tbody>
                             </table>
 
-                            <legend>Tools</legend>
+                            <legend>{{ __('Tools')}}</legend>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:10%">Key</th>
-                                        <th style="width:15%">Name</th>
-										<th style="width:15%">Quantity</th>
-										<th style="width:15%">Unit of measure</th>
-										<th style="width:15%">Stock</th>
+										<th style="width:10%">{{ __('Key')}}</th>
+                                        <th style="width:15%">{{ __('Name')}}</th>
+										<th style="width:15%">{{ __('Quantity')}}</th>
+										<th style="width:15%">{{ __('Unit of measure')}}</th>
+										<th style="width:15%">{{ __('Stock')}}</th>
 
                                         <th style="width:10%"></th>
                                     </tr>
@@ -441,23 +441,23 @@
                                 <div class="box box-info padding-1">
                                     <div class="box-body">
                                         <div class="form-group">
-                                            <legend>Activities implemented</legend>
+                                            <legend>{{ __('Activities implemented')}}</legend>
                                            
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $activity->description_activity }}</textarea>
                                         </div>
                                         <div>
-                                            <legend>Evidence </legend>
+                                            <legend>{{ __('Evidence') }} </legend>
                                                 <table class=table align="center">
                                                     <tr>
                                                         <td align="center">
-                                                            <h5>Before:</h5>
+                                                            <h5>{{ __('Before')}}:</h5>
 
                                                             <div class="form-group">
                                                                 <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
                                                             </div>
                                                         </td>
                                                         <td align="center">
-                                                            <h5>After:</h5>
+                                                            <h5>{{ __('After') }}:</h5>
                                                             <div class="form-group">
                                                                 <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
                                                             </div>
@@ -467,7 +467,7 @@
                                                 </table>
                                         </div>
                                         <div>
-                                            <legend>Signature Evidence:</legend><br>
+                                            <legend>{{ __('Signature') }}:</legend><br>
                                             <img src="{{  $activity->signature_evidence }}" width="100%" height="300" alt="">
                                         </div>
                                         <div>
@@ -475,14 +475,14 @@
                                                 <tr>
                                                     <td>
                                                         <div class="form-group">
-                                                            <legend style="text-align:center">Executor</legend>
+                                                            <legend style="text-align:center">{{ __('Executor')}}</legend>
                                                             {{ Form::text('executor', $activity->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center']) }}
                                                             {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
-                                                            <legend style="text-align:center">Customer</legend>
+                                                            <legend style="text-align:center">{{ __('Customer')}}</legend>
                                                             {{ Form::text('customer', $activity->customer, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center']) }}
                                                             {!! $errors->first('customer', '<div class="invalid-feedback">:message</div>') !!}
                                                         </div>

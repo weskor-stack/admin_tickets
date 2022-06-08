@@ -13,7 +13,7 @@
                         <div class="card-body">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <strong>{{ __('Tool') }}:</strong>
+                                <strong>{{ __('Tools') }}:</strong>
                                 <input type="text" class="form-control" widht="100%" placeholder="{{ $toolAssigned->tool->name }}" disabled>
                                 {{ Form::text('tool_id', $toolAssigned->tool_id, ['class' => 'form-control' . ($errors->has('tool_id') ? ' is-invalid' : ''), 'placeholder' => 'Tool Id','hidden']) }}
                                 {!! $errors->first('tool_id', '<div class="invalid-feedback">:message</div>') !!}
