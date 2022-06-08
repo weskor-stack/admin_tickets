@@ -149,7 +149,50 @@ class ToolAssignedController extends Controller
     {
         request()->validate(ToolAssigned::$rules);
 
+        $tool_stock = Tool::select('stock')
+        ->where('tool_id', '=', $toolAssigned['tool_id'])->get();
+
+        $tool_stock = preg_replace('/[^0-9]/', '', $tool_stock);
+        
+        $tool_stock = (int)$tool_stock;
+
+        $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
+
+        $data_toolAssigned = $toolAssigned['quantity'];
+
+        $result = $tool_stock + $data_toolAssigned;
+
         $toolAssigned->update($request->all());
+
+        $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
+
+        $result2 = $result - $toolAssigned['quantity'];
+
+        //return response()->json($result2);
+
+        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
+
+        if ($result2 >= 0) {
+            
+            $data = Tool::find($toolAssigned['tool_id']);
+            $data->stock=$result2;
+            $data->save();
+
+            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return redirect()->back()
+            ->with('success', 'Tool assigned updated successfully.');
+            
+        }else {
+            $toolAssigned->quantity=$data_toolAssigned;
+        
+            $toolAssigned->save();
+            //return response()->json($materialAssigned);
+            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return redirect()->back()
+            ->with('success', 'Insufficient tools.');
+        }
 
         return redirect()->route('tool-assigneds.index')
             ->with('success', 'ToolAssigned updated successfully');

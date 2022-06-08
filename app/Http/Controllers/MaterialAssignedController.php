@@ -153,9 +153,51 @@ class MaterialAssignedController extends Controller
     {
         request()->validate(MaterialAssigned::$rules);
 
+        $material_stock = Material::select('stock')
+        ->where('material_id', '=', $materialAssigned['material_id'])->get();
+
+        $material_stock = preg_replace('/[^0-9]/', '', $material_stock);
+        
+        $material_stock = (int)$material_stock;
+
+        $materialAssigned['quantity'] = (int)$materialAssigned['quantity'];
+
+        $data_materialAssigned = $materialAssigned['quantity'];
+
+        $result = $material_stock + $data_materialAssigned;
+
         $materialAssigned->update($request->all());
 
-        return redirect()->route('material-assigneds.index')
+        $materialAssigned['quantity'] = (int)$materialAssigned['quantity'];
+
+        $result2 = $result - $materialAssigned['quantity'];
+        
+        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
+
+        if ($result2 >= 0) {
+            
+            //return response()->json($materialAssigned['material_id']);
+            $data = Material::find($materialAssigned['material_id']);
+            $data->stock=$result2;
+            $data->save();
+
+            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return redirect()->back()
+            ->with('success', 'Material assigned updated successfully.');
+            
+        }else {
+            $materialAssigned->quantity=$data_materialAssigned;
+        
+            $materialAssigned->save();
+            //return response()->json($materialAssigned);
+            //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return redirect()->back()
+            ->with('success', 'Insufficient material.');
+        }
+
+        return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', 'MaterialAssigned updated successfully');
     }
 

@@ -379,9 +379,9 @@
 											<td style="width:15%">{{ $materialAssigned->unit_measure }}</td>
 											<td style="width:15%">{{ $materialAssigned->material->stock }}</td>
                                             <td style="width:10%">
-                                                @method('GET')
-                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo2">Edit</button>
+                                                <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
                                             </td>
+                                            @include('service-order.modal.edit')
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -415,9 +415,9 @@
 											<td style="width:15%">{{ $toolAssigned->unit_measure }}</td>
 											<td style="width:15%">{{ $toolAssigned->tool->stock }}</td>
                                             <td style="width:10%">
-                                                @method('GET')
-                                                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo3">Edit</button>
+                                                <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
                                             </td>
+                                            @include('service-order.modal.tool_edit')
                                         </tr>
                                     @endforeach
                                 </tbody>

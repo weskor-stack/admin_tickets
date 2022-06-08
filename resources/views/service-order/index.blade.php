@@ -283,11 +283,7 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
-                                                                    {{$materialAssigneds_2}}
-                                                                        <form method="POST" action="{{ url('material-assigneds.update', $materialAssigned->material_id) }}"  role="form" enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            @include('material-assigned.form')
-                                                                        </form>
+
                                                                     </div>                                                           
                                                                 </div>
                                                                 
@@ -469,15 +465,18 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" href="{{ route('material-assigneds.edit',$materialAssigned->material_id) }}" hidden>Edit</button>
                                                         
-                                                        @method('GET')
-                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>
-                                                        <a class="btn btn-outline-success" href="{{ route('material-assigneds.edit',$materialAssigned->material_id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                       
+                                                        <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
+                                                        
+                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
+                                                        
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                     </form>
                                                 @endif
                                             </td>
+                                            @include('service-order.modal.edit')
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -534,12 +533,14 @@
                                                     <form action="{{ route('tool-assigneds.destroy',$toolAssigned->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                     </form>
                                                 @endif
                                             </td>
+                                            @include('service-order.modal.tool_edit')
                                         </tr>
                                     @endforeach
                                 </tbody>
