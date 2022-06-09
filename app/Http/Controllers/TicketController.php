@@ -59,8 +59,10 @@ class TicketController extends Controller
         
         $customer = new Customer();
         $contact = new Contact();
-        //$contact = Contact::all();
-        return view('ticket.create', compact('ticket','status','customer','contact','priority','customers','contacts'));
+        $contacts2 = Contact::all();
+        $customers2 = Customer::all();
+        return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact'));
+        //return view('ticket.create', compact('ticket','status','priority','customers','contacts'));
     }
 
     
@@ -88,7 +90,7 @@ class TicketController extends Controller
         //$ticket = Ticket::create($request->all());
 
         return redirect()->route('tickets.index')
-            ->with('success', 'Ticket '.$data['ticket_id'].' created successfully.');
+            ->with('success', 'Ticket '.$data['ticket_id'].' '.__('created successfully'));
     }
 
     /**
@@ -138,7 +140,7 @@ class TicketController extends Controller
         $ticket->update($request->all());
 
         return redirect()->route('tickets.index')
-            ->with('success', 'Ticket updated successfully');
+            ->with('success', 'Ticket'.' '.__('updated successfully'));
     }
 
     /**
@@ -151,6 +153,6 @@ class TicketController extends Controller
         $ticket = Ticket::find($id)->delete();
 
         return redirect()->route('tickets.index')
-            ->with('success', 'Ticket deleted successfully');
+            ->with('success', 'Ticket'.' '.__('deleted successfully'));
     }
 }

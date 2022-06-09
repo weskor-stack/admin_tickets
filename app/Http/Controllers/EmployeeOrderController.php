@@ -73,7 +73,7 @@ class EmployeeOrderController extends Controller
         $reports2 = preg_replace('/[^0-9]/', '', $reports2);
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Employee created successfully.');
+            ->with('success', __('Employee created successfully'));
     }
 
     /**
@@ -117,7 +117,7 @@ class EmployeeOrderController extends Controller
         $employeeOrder->update($request->all());
 
         return redirect()->route('employee-orders.index')
-            ->with('success', 'EmployeeOrder updated successfully');
+            ->with('success', __('EmployeeOrder updated successfully'));
     }
 
     /**
@@ -136,6 +136,6 @@ class EmployeeOrderController extends Controller
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Employee deleted successfully');
+            ->with('success', __('Employee deleted successfully'));
     }
 }

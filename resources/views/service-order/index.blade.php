@@ -187,12 +187,12 @@
                                                 </div>
 
                                                 <div class="modal fade" id="dialogo3">
-                                                    <div class="modal-dialog modal-sm">
+                                                    <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
-                                                                    <h4 class="modal-title">Add employee</h4>            
+                                                                    <h4 class="modal-title">{{ __('Add employee')}}</h4>            
                                                                 </div>
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">                
@@ -205,7 +205,7 @@
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -264,7 +264,7 @@
                                                             
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>

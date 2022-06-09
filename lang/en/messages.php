@@ -3,5 +3,5 @@
 return [
 
     
-    "name" => "Nombre",
+    "created successfully" => "created successfully",
 ];

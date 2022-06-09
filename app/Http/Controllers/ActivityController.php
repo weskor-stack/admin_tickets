@@ -139,7 +139,7 @@ class ActivityController extends Controller
         //return response()->json($data2);
 
         return redirect()->route('services.index','id_ticket='. $dataActivity['service_id'])
-        ->with('success', 'Evidence created successfully.');
+        ->with('success', __('Report completed successfully'));
         
         /*request()->validate(Activity::$rules);
 
@@ -213,7 +213,7 @@ class ActivityController extends Controller
         //return response()->json($dataActivity);
 
         return redirect()->route('activities.index')
-            ->with('success', 'Activity updated successfully');
+            ->with('success', __('Activity updated successfully'));
         /*request()->validate(Activity::$rules);
 
         $activity->update($request->all());
@@ -244,7 +244,7 @@ class ActivityController extends Controller
         }
 
         return redirect()->route('activities.index')
-            ->with('success', 'Activity deleted successfully');
+            ->with('success', __('Activity deleted successfully'));
     }
 
     public function save(Request $request)

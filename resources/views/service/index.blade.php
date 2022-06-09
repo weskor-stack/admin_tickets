@@ -379,7 +379,11 @@
 											<td style="width:15%">{{ $materialAssigned->unit_measure }}</td>
 											<td style="width:15%">{{ $materialAssigned->material->stock }}</td>
                                             <td style="width:10%">
+                                            @if($service->status_report_id=='3')
+
+                                            @else
                                                 <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
+                                            @endif
                                             </td>
                                             @include('service-order.modal.edit')
                                         </tr>
@@ -415,7 +419,11 @@
 											<td style="width:15%">{{ $toolAssigned->unit_measure }}</td>
 											<td style="width:15%">{{ $toolAssigned->tool->stock }}</td>
                                             <td style="width:10%">
+                                            @if($service->status_report_id=='3')
+
+                                            @else
                                                 <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
+                                            @endif
                                             </td>
                                             @include('service-order.modal.tool_edit')
                                         </tr>

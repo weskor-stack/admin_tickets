@@ -190,7 +190,7 @@ class ServiceOrderController extends Controller
         //$serviceOrder = ServiceOrder::create($request->all());
 
         return redirect()->route('service-orders.index','id_ticket='. $serviceOrder['ticket_id'])
-            ->with('success', 'ServiceOrder created successfully.');
+            ->with('success', __('Service Order') .' '.__('created successfully'));
     }
 
     /**
@@ -281,7 +281,7 @@ class ServiceOrderController extends Controller
         $serviceOrder->update($request->all());
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'ServiceOrder updated successfully');
+            ->with('success', __('Service Order') .' '.__('updated successfully'));
     }
 
     /**
@@ -294,6 +294,6 @@ class ServiceOrderController extends Controller
         $serviceOrder = ServiceOrder::find($id)->delete();
 
         return redirect()->route('service-orders.index')
-            ->with('success', 'ServiceOrder deleted successfully');
+            ->with('success', __('Service Order') .' '.__('deleted successfully'));
     }
 }

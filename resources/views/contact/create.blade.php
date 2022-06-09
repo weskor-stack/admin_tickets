@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Contact</span>
+                        <span class="card-title">{{ __('Add contact')}}</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('contacts.store') }}"  role="form" enctype="multipart/form-data">

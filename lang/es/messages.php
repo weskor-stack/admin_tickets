@@ -2,5 +2,5 @@
 
 return [
 
-    "name" => "Name",
+    "created successfully" => "Se creó satisfactoriamente",
 ];

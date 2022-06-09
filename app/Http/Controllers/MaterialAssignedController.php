@@ -96,11 +96,11 @@ class MaterialAssignedController extends Controller
             $data->save();
 
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Material assigned created successfully.');
+            ->with('success', __('Material created successfully'));
             
         }else {
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Insufficient material.');
+            ->with('success', __('Insufficient').' '.'material.');
         }
 
         //return response()->json("No entra al if");
@@ -109,7 +109,7 @@ class MaterialAssignedController extends Controller
         //$materialAssigned = MaterialAssigned::create($request->all());
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Material assigned created successfully.');
+            ->with('success', 'Material'.' '.__('created successfully'));
     }
 
     /**
@@ -185,7 +185,7 @@ class MaterialAssignedController extends Controller
 
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', 'Material assigned updated successfully.');
+            ->with('success', __('The material') .' '.__('updated successfully'));
             
         }else {
             $materialAssigned->quantity=$data_materialAssigned;
@@ -194,7 +194,7 @@ class MaterialAssignedController extends Controller
             //return response()->json($materialAssigned);
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', 'Insufficient material.');
+            ->with('success', __('Insufficient').' '.'material.');
         }
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
@@ -238,6 +238,6 @@ class MaterialAssignedController extends Controller
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
         
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Material assigned deleted successfully');
+            ->with('success', __('The material') .' '.__('deleted successfully'));
     }
 }

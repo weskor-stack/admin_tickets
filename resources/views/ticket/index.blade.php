@@ -61,7 +61,7 @@
                                             
 											<td style="width: 14%;">{{ $ticket->subject }}</td>
 											<td style="width: 18%;">{{ $ticket->problem }}</td>
-											<td style="width: 5%;">{{ $ticket->date_ticket }}</td>
+											<td style="width: 5%;">{{\Carbon\Carbon::parse($ticket->date_ticket)->format('d/m/Y')}}</td>
 											<td style="width: 10%;">{{ $ticket->ticketStatus->name }}</td>
 											<td style="width: 15%;">{{ $ticket->customer->name }}</td>
 											<td style="width: 10%;">{{ $ticket->contact->name }}</td>

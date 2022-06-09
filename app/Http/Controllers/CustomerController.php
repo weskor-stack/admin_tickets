@@ -50,7 +50,7 @@ class CustomerController extends Controller
         $customer = Customer::create($request->all());
 
         return redirect()->route('tickets.create')
-            ->with('success', 'Customer created successfully.');
+            ->with('success', __('Customer created successfully'));
     }
 
     /**
@@ -93,7 +93,7 @@ class CustomerController extends Controller
         $customer->update($request->all());
 
         return redirect()->route('customers.index')
-            ->with('success', 'Customer updated successfully');
+            ->with('success', __('Customer updated successfully'));
     }
 
     /**
@@ -106,6 +106,6 @@ class CustomerController extends Controller
         $customer = Customer::find($id)->delete();
 
         return redirect()->route('customers.index')
-            ->with('success', 'Customer deleted successfully');
+            ->with('success', __('Customer deleted successfully'));
     }
 }

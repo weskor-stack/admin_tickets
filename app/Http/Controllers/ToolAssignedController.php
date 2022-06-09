@@ -97,11 +97,11 @@ class ToolAssignedController extends Controller
             $data->save();
 
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Tool assigned created successfully ');
+            ->with('success', __('Tool created successfully'));
             
         }else {
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Insufficient tools. Stock = '.$tool_stock);
+            ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);
         }
 
         //return response()->json($result);
@@ -182,7 +182,7 @@ class ToolAssignedController extends Controller
 
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', 'Tool assigned updated successfully.');
+            ->with('success', __('The tool').' '.__('updated successfully'));
             
         }else {
             $toolAssigned->quantity=$data_toolAssigned;
@@ -191,7 +191,7 @@ class ToolAssignedController extends Controller
             //return response()->json($materialAssigned);
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', 'Insufficient tools.');
+            ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);
         }
 
         return redirect()->route('tool-assigneds.index')
@@ -235,6 +235,6 @@ class ToolAssignedController extends Controller
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
 
         return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Tool assigned deleted successfully');
+            ->with('success', __('The tool').' '.__('deleted successfully'));
     }
 }

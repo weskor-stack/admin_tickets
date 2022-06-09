@@ -46,6 +46,6 @@
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
-        <!--<a class="btn btn-danger btn-lg" href="{{ route('customers.index') }}"> Cancel</a>-->
+        <a class="btn btn-danger btn-lg" href="{{ route('tickets.create') }}"> {{ __('Cancel')}}</a>
     </div>
 </div>

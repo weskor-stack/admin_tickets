@@ -19,25 +19,28 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Customer')) }} <br>
             {{ Form::select('customer_id', $customers, $ticket->customer_id, ['class' => 'form-select, select2' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
-            
-            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</button> <br>
+            <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
+            <!--<a href="{{ route('customers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
             </script>
         </div>
+        
         <br>
         <div class="form-group">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Contact')) }} <br>
             {{ Form::select('contact_id', $contacts, $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
-            <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</button> <br>
+            <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</a> <br>
+            <!--<a href="{{ route('contacts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
             </script>
         </div>
+        
         <br>
         <div>
             {{ Form::label( __('Priority')) }} 
@@ -59,70 +62,3 @@
         <a class="btn btn-danger btn-lg" href="{{ route('tickets.index') }}"> {{ __('Cancel')}}</a>
     </div>
 </div>
-
-    <div class="modal fade" id="dialogo1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- cabecera del diálogo -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">{{ __('Add customer')}}</h4>
-                    </div>
-
-                <!-- cuerpo del diálogo -->
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('customers.store') }}"  role="form" enctype="multipart/form-data">
-                                @csrf
-
-                                @include('customer.form')
-
-                            </form>
-                        </div>                                                            
-                    </div>
-
-                <!-- pie del diálogo -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
-                    </div>
-            </div>
-        </div>
-                                                        
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </div>
-
-    <div class="modal fade" id="dialogo2">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-                <!-- cabecera del diálogo -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">{{ __('Add contact')}}</h4>
-                    </div>
-
-                <!-- cuerpo del diálogo -->
-                    <div class="modal-body">
-                        <div class="card-body">
-                            
-                            <form method="POST" action="{{ route('contacts.store') }}"  role="form" enctype="multipart/form-data">
-                                @csrf
-
-                                @include('contact.form')
-
-                            </form>
-                        </div>                                                            
-                    </div>
-
-                <!-- pie del diálogo -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
-                    </div>
-            </div>
-        </div>
-                                                        
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </div>

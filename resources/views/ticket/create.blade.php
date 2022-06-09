@@ -15,6 +15,11 @@
                     <div class="card-header">
                         <span class="card-title">{{ __('Create Ticket')}}</span>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('tickets.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
@@ -22,6 +27,9 @@
                             @include('ticket.form')
 
                         </form>
+
+                        @include('ticket.modal.contact')
+                        @include('ticket.modal.customer')
                     </div>
                 </div>
             </div>

@@ -8,8 +8,8 @@
         </div>
         
         <div class="form-group">
-            {{ Form::label('Employee:') }}
-            {{ Form::select('employee_id', $employee, $employeeOrder->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => 'Employee']) }}
+            {{ Form::label( __('Employee')) }}
+            {{ Form::select('employee_id', $employee, $employeeOrder->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
             {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
@@ -20,8 +20,8 @@
         <br>
 
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg">Accept</button>
+    <div class="box-footer mt20" style="text-align:center;">
+        <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('service-orders.index') }}"> Cancel</a>-->
     </div>
 </div>

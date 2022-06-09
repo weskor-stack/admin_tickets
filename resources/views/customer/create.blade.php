@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Customer</span>
+                        <span class="card-title">{{ __('Add customer')}}</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('customers.store') }}"  role="form" enctype="multipart/form-data">
