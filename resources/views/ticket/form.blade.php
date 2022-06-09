@@ -3,13 +3,13 @@
         
         
         <div class="form-group">
-            {{ Form::label('Subject') }}
-            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''), 'placeholder' => 'Subject']) }}
+            {{ Form::label( __('Subject')) }}
+            {{ Form::text('subject', $ticket->subject, ['class' => 'form-control' . ($errors->has('subject') ? ' is-invalid' : ''), 'placeholder' =>  __('Subject')]) }}
             {!! $errors->first('subject', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Problem') }}
-            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'placeholder' => 'Problem']) }}
+            {{ Form::label( __('Problem')) }}
+            {{ Form::text('problem', $ticket->problem, ['class' => 'form-control' . ($errors->has('problem') ? ' is-invalid' : ''), 'placeholder' => __('Problem')]) }}
             {!! $errors->first('problem', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
@@ -17,8 +17,8 @@
         <div class="form-group">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-            {{ Form::label('Customer') }} <br>
-            {{ Form::select('customer_id', $customers, $ticket->customer_id, ['class' => 'form-select, select2' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => 'Customer']) }}
+            {{ Form::label( __('Customer')) }} <br>
+            {{ Form::select('customer_id', $customers, $ticket->customer_id, ['class' => 'form-select, select2' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
             
             <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</button> <br>
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
@@ -30,8 +30,8 @@
         <div class="form-group">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-            {{ Form::label('Contact') }} <br>
-            {{ Form::select('contact_id', $contacts, $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => 'Contact']) }}
+            {{ Form::label( __('Contact')) }} <br>
+            {{ Form::select('contact_id', $contacts, $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
             <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</button> <br>
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
@@ -40,8 +40,8 @@
         </div>
         <br>
         <div>
-            {{ Form::label('Priority') }} 
-            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => 'Priority']) }}
+            {{ Form::label( __('Priority')) }} 
+            {{ Form::select('priority_id', $priority, $ticket->priority_id, ['class' => 'form-select' . ($errors->has('priority_id') ? ' is-invalid' : ''), 'placeholder' => __('Priority')]) }}
             {!! $errors->first('priority_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
@@ -55,8 +55,8 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg">Accept</button>
-        <a class="btn btn-danger btn-lg" href="{{ route('tickets.index') }}"> Cancel</a>
+        <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
+        <a class="btn btn-danger btn-lg" href="{{ route('tickets.index') }}"> {{ __('Cancel')}}</a>
     </div>
 </div>
 
@@ -66,7 +66,7 @@
 
                 <!-- cabecera del diálogo -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Add customer</h4>
+                        <h4 class="modal-title">{{ __('Add customer')}}</h4>
                     </div>
 
                 <!-- cuerpo del diálogo -->
@@ -83,7 +83,7 @@
 
                 <!-- pie del diálogo -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                     </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
 
                 <!-- cabecera del diálogo -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Add contact</h4>
+                        <h4 class="modal-title">{{ __('Add contact')}}</h4>
                     </div>
 
                 <!-- cuerpo del diálogo -->
@@ -117,7 +117,7 @@
 
                 <!-- pie del diálogo -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
                     </div>
             </div>
         </div>

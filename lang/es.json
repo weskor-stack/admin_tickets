@@ -815,5 +815,14 @@
     "Signature": "Firmas",
     "Clear": "Limpiar",
     "Executor": "Ejecutor",
-    "Description": "Descripción del servicio"
+    "Description": "Descripción del servicio",
+    "Menu": "Menú",
+    "Create Ticket" : "Crear Ticket",
+    "Add customer": "Agregar cliente",
+    "customer_id": "ID del cliente",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "status_id": "Estado",
+    "Add contact": "Añadir contacto",
+    "Last name": "Apellido"
 }
