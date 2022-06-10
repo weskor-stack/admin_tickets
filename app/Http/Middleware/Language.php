@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class Language
 {
@@ -16,35 +18,18 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
-        // get the subdomain if exists
-        $urlArray = explode('.', parse_url($request->url(), PHP_URL_HOST));
-        if (count($urlArray) < 3){
-            return $next($request);
+        // 
+        if(session('applocale')){
+            $configLanguage = config('languages')[session('applocale')];
+            setlocale(LC_TIME, $configLanguage[1] . '.utf8');
+            Carbon::setLocale(session('applocale'));
+            App::setLocale(session('applocale'));
+        }else{
+            session()->put('applocale', config('app.fallback_locale'));
+            setlocale(LC_TIME, 'es_ES.utf8');
+            Carbon::setLocale(session('applocale'));
+            App::setLocale(session('applocale'));
         }
-        $subdomain = $urlArray[0];
-    
-    
-    
-        // if it's the default language: redirect to URL without subdomain
-        if ($subdomain == 'en'){
-    
-            $baseUrl = str_replace('//en.', '//', $request->url());
-            return redirect()->to($baseUrl);
-    
-        }
-    
-    
-    
-        // if it's a valid language, set as locale and set time zone
-        if ( array_key_exists($subdomain, config()->get('app.locales')) ){
-    
-            \App::setLocale($subdomain);
-            
-            setlocale(LC_TIME, $subdomain);
-            
-        }
-    
-    
         return $next($request);
     }
 }

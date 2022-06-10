@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignatureController;
 use App\Http\Livewire\Customercontactdropdown;
+use App\Http\Controllers\LocalizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,7 @@ Route::get('customercontactdropdown', Customercontactdropdown::class);
 Route::resource('supervisor-employees', App\Http\Controllers\SupervisorEmployeeController::class);
 
 Route::resource('classified-materials', App\Http\Controllers\ClassifiedMaterialController::class);
+
+//Route::get('/set_language/{lang}', [App\Http\Controllers\Controller::class, 'set_language'])->name('set_language');
+
+Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class, 'index']);
