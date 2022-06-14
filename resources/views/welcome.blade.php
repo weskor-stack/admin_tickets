@@ -17,8 +17,8 @@
     <div class="wrapper">
       <ul>
         <li><a href="{{ route('tickets.index') }}">Ticket</a></li>
-        <li><a href="{{ route('service-orders.index') }}">Order</a></li>
-        <li><a href="{{ route('services.index') }}">Report</a></li>
+        <li><a href="#">Order</a></li>
+        <li><a href="#">Report</a></li>
         <li><a href="{{ route('employees.index') }}">Employee</a></li>
       </ul>
     </div>
