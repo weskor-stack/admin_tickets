@@ -73,7 +73,7 @@
                                             @if($serviceOrder->status_order_id=='1')
                                                 <!--<a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left">{{ __('Create report') }}</a>-->
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
                                             @else
                                                 <a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left" hidden>{{ __('Create report') }}</a>
                                                 <a type="submit" class="btn btn-outline-info" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Show reports')}}</a>
@@ -416,7 +416,7 @@
                                         <td><legend>{{ __('Materials')}}</legend></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        <td hidden></td>
                                         <td></td>
                                         <td style="text-align: center; width:15%">
                                         @if($serviceOrder->status_order_id=='3')    
@@ -431,14 +431,14 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-                                        <th style="width:15%">{{ __('Name')}}</th>
-										<th style="width:15%">{{ __('Key')}}</th>
-										<th style="width:15%">{{ __('Quantity')}}</th>
-                                        <th style="width:15%">{{ __('Stock')}}</th>
-										<th style="width:15%">{{ __('Unit of measure')}}</th>
+                                        <th style="width:20%">{{ __('Name')}}</th>
+										<th style="width:20%">{{ __('Key')}}</th>
+										<th style="width:20%">{{ __('Quantity')}}</th>
+                                        <th style="width:20%" hidden>{{ __('Stock')}}</th>
+										<th style="width:20%">{{ __('Unit of measure')}}</th>
 										
 
-                                        <th style="width:10%"></th>
+                                        <th style="width:20%"></th>
                                     </tr>
                                 </thead>
 
@@ -448,14 +448,14 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
                                             
-                                            <td style="width:15%">{{ $materialAssigned->material->name }}</td>
-											<td style="width:15%">{{ $materialAssigned->material->key }}</td>
-											<td style="width:15%">{{ $materialAssigned->quantity }}</td>
-                                            <td style="width:15%">{{ $materialAssigned->material->stock }}</td>
-											<td style="width:15%">{{ $materialAssigned->material->unit_measure }}</td>
+                                            <td style="width:20%">{{ $materialAssigned->material->name }}</td>
+											<td style="width:20%">{{ $materialAssigned->material->key }}</td>
+											<td style="width:20%">{{ $materialAssigned->quantity }}</td>
+                                            <td style="width:20%" hidden>{{ $materialAssigned->material->stock }}</td>
+											<td style="width:20%">{{ $materialAssigned->material->unit_measure }}</td>
 											
 
-                                            <td style="width:10%">
+                                            <td style="width:20%">
                                                 @if($serviceOrder->status_order_id=='3')
                                                     <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')" hidden><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 @else    
@@ -487,7 +487,7 @@
                                 <thead class="thead">      
                                     <tr style="text-align: left">
                                         <td><legend>{{ __('Tools')}}</legend></td>
-                                        <td></td>
+                                        <td hidden></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -504,13 +504,13 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:15%">{{ __('Name')}}</th>
-										<th style="width:15%">{{ __('Key')}}</th>
-										<th style="width:15%">{{ __('Quantity')}}</th>
-                                        <th style="width:15%">{{ __('Stock')}}</th>
-										<th style="width:15%">{{ __('Unit of measure')}}</th>
+										<th style="width:20%">{{ __('Name')}}</th>
+										<th style="width:20%">{{ __('Key')}}</th>
+										<th style="width:20%">{{ __('Quantity')}}</th>
+                                        <th style="width:20%" hidden>{{ __('Stock')}}</th>
+										<th style="width:20%">{{ __('Unit of measure')}}</th>
 
-                                        <th style="width:10%"></th>
+                                        <th style="width:20%"></th>
                                     </tr>
                                 </thead>
 
@@ -520,13 +520,13 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
 
-                                            <td style="width:15%">{{ $toolAssigned->tool->name }}</td>
-											<td style="width:15%">{{ $toolAssigned->tool->key }}</td>
-											<td style="width:15%">{{ $toolAssigned->quantity }}</td>
-											<td style="width:15%">{{ $toolAssigned->tool->stock }}</td>
-											<td style="width:15%">{{ $toolAssigned->tool->unit_measure }}</td>
+                                            <td style="width:20%">{{ $toolAssigned->tool->name }}</td>
+											<td style="width:20%">{{ $toolAssigned->tool->key }}</td>
+											<td style="width:20%">{{ $toolAssigned->quantity }}</td>
+											<td style="width:20%" hidden>{{ $toolAssigned->tool->stock }}</td>
+											<td style="width:20%">{{ $toolAssigned->tool->unit_measure }}</td>
 
-                                            <td style="width:10%">
+                                            <td style="width:20%">
                                                 @if($serviceOrder->status_order_id=='3')
                                                     <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')" hidden><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 @else
@@ -551,7 +551,7 @@
                                     <tr style="text-align: left">
                                         <td><legend>{{ __('Employees')}}</legend></td>
                                         <td></td>
-                                        <td></td>
+                                        <td hidden></td>
                                         <td></td>
                                         <td></td>
                                         <td style="text-align: center; width:15%">
@@ -564,30 +564,30 @@
                                         </td>
                                     </tr>
                                     <tr style="text-align: center">
-                                        <th style="width:15%">No</th>
+                                        <th style="width:15%" hidden>No</th>
                                         
                                         <th style="width:15%" hidden>{{ __('Order')}}</th>
                                         <th style="width:20%">{{ __('Employees')}}</th>
-                                        <th style="width:15%">{{ __('Department')}}</th>
-                                        <th style="width:15%">{{ __('Supervisor')}}</th>
-                                        <th style="width:15%">{{ __('Status')}}</th>
-                                        <th style="width:15%"></th>
+                                        <th style="width:20%">{{ __('Department')}}</th>
+                                        <th style="width:20%">{{ __('Supervisor')}}</th>
+                                        <th style="width:20%">{{ __('Status')}}</th>
+                                        <th style="width:20%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($employeeOrders as $employeeOrder)
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td style="width:15%">{{ $employeeOrder->employee->employee_id }}</td>
-                                            <td style="width:15%" hidden>{{ $employeeOrder->service_order_id }}</td>
-                                            <td style="width:15%">{{ $employeeOrder->employee->name }} {{ $employeeOrder->employee->last_name }}</td>
+                                            <td style="width:20%">{{ $employeeOrder->employee->employee_id }}</td>
+                                            <td style="width:20%" hidden>{{ $employeeOrder->service_order_id }}</td>
+                                            <td style="width:20%">{{ $employeeOrder->employee->name }} {{ $employeeOrder->employee->last_name }}</td>
                                             @foreach($supervisors as $supervisor)
                                                 @if($supervisor->employee_id == $employeeOrder->employee_id)
-                                                    <td style="width:15%">{{$supervisor->department->name}}</td>
-                                                    <td style="width:15%">{{$supervisor->employee2->name}} {{$supervisor->employee2->last_name}}</td>
+                                                    <td style="width:20%">{{$supervisor->department->name}}</td>
+                                                    <td style="width:20%">{{$supervisor->employee2->name}} {{$supervisor->employee2->last_name}}</td>
                                                 @endif
                                             @endforeach
-                                            <th style="width:15%">{{ $employeeOrder->employee->status->name }}</th>
-                                            <td style="width:10%">
+                                            <th style="width:20%">{{ $employeeOrder->employee->status->name }}</th>
+                                            <td style="width:20%">
                                                 @if($serviceOrder->status_order_id=='3')
                                                 
                                                 @else
