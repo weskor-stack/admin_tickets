@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App;
 use Illuminate\Http\RedirectResponse;
 
-class Localization extends Controller
+class LocalizationController extends Controller
 {
     //
     public function index($locale)
