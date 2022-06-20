@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignatureController;
 use App\Http\Livewire\Customercontactdropdown;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\DropdownController;
 
+Route::get('dropdown', [DropdownController::class, 'view'])->name('dropdownView');
+Route::get('get-states', [DropdownController::class, 'getStates'])->name('getStates');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

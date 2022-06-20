@@ -27,9 +27,12 @@
                             @include('ticket.form')
 
                         </form>
-
+                        
                         @include('ticket.modal.contact')
                         @include('ticket.modal.customer')
+                    </div>
+                    <div hidden>
+                    @include('dropdown')
                     </div>
                 </div>
             </div>

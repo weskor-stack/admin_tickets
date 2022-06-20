@@ -61,7 +61,11 @@ class TicketController extends Controller
         $contact = new Contact();
         $contacts2 = Contact::all();
         $customers2 = Customer::all();
-        return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact'));
+
+        $countries = \DB::table('customer')
+            ->get();
+
+        return view('ticket.create', compact('ticket','status','customers2','contacts2','priority','customers','contacts','customer','contact','countries'));
         //return view('ticket.create', compact('ticket','status','priority','customers','contacts'));
     }
 

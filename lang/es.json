@@ -854,5 +854,7 @@
     "Customer deleted successfully": "Cliente eliminado correctamente",
     "English": "Inglés",
     "Spanish": "Español",
-    "Choose a language": "Seleccionar idioma"
+    "Choose a language": "Seleccionar idioma",
+    "Select customer": "Seleccionar cliente",
+    "Select contact": "Seleccionar contacto"
 }

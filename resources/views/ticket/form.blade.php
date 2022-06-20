@@ -18,13 +18,21 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Customer')) }} <br>
-            {{ Form::select('customer_id', $customers, $ticket->customer_id, ['class' => 'form-select, select2' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
+            <!--{{ Form::text('customer_id', "", ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
             <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
-            <!--<a href="{{ route('customers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
+            <a href="{{ route('customers.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
+            <input type="text" id="customer_id" name="customer_id" class="form-control.<?php echo ($errors->has('customer_id') ? ' is-invalid' : ''); ?>" require hidden>
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
             </script>
+            <select class="form-select, " id="customer" require>
+                <option selected disabled>{{ __('Select customer')}}</option>
+                @foreach ($countries as $country)
+                <option value="{{ $country->customer_id }}">{{ $country->name }}</option>
+                @endforeach
+            </select>
+            <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
         </div>
         
         <br>
@@ -32,12 +40,26 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Contact')) }} <br>
-            {{ Form::select('contact_id', $contacts, $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
+            <!--{{ Form::text('contact_id', $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
             <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</a> <br>
-            <!--<a href="{{ route('contacts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
+            <a href="{{ route('contacts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
+            <input type="text" id="contact_id" name="contact_id" class="form-control.<?php echo ($errors->has('contact_id') ? ' is-invalid' : ''); ?>" require hidden>
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
+            </script>
+            <select class="form-select," data-control="select2" id="contact" require></select>
+            <a type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
+
+            <script>
+                
+                $('#customer').on('change', function () {
+                    var customer = $(this).val();
+                    
+                    document.getElementById('ejemplo').value= customer;
+                    document.getElementByName('customer_id2')[0].value= customer;
+                    alert(document.getElementByName('customer_id2')[0].value);                    
+                });
             </script>
         </div>
         

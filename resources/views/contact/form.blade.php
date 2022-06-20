@@ -24,25 +24,20 @@
         </div>
         <br>
         <div class="form-group">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+            
             {{ Form::label( __('Customer')) }} <br>
-            {{ Form::select('customer_id', $customers, $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
-            {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
-            <script>
-                $('#mySelect2').select2();
-            </script>
+            <!--{{ Form::text('customer_id', $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
+            {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}-->
+
+            <input type="text" name="customer_id2" id="customer_id" value=""/>
+            <input type="text" name="ejemplo" id="ejemplo" value=""/>
         </div>
         <br>
-        <div class="form-group">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+        <div class="form-group" hidden>
             {{ Form::label( __('Status')) }} <br>
-            {{ Form::select('status_id', $status, $contact->status_id, ['class' => 'form-select' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => __('Status')]) }}
+            {{ Form::text('status_id', "1", ['class' => 'form-select' . ($errors->has('status_id') ? ' is-invalid' : ''), 'placeholder' => __('Status')]) }}
             {!! $errors->first('status_id', '<div class="invalid-feedback">:message</div>') !!}
-            <script>
-                $('.select2').select2();
-            </script>
+            
         </div>
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
@@ -53,7 +48,7 @@
     </div>
     <br>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
+        <button type="submit" id="boton1" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('tickets.create') }}"> {{ __('Cancel')}}</a>-->
     </div>
 </div>

@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <strong>{{ __('Quantity')}}</strong>
-            {{ Form::text('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity')]) }}
+            {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'data-decimals'=>'2']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>
