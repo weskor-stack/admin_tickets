@@ -357,13 +357,13 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:10%">{{ __('Key')}}</th>
-                                        <th style="width:15%">{{ __('Name')}}</th>
-										<th style="width:15%">{{ __('Quantity')}}</th>
-										<th style="width:15%">{{ __('Unit of measure')}}</th>
-										<th style="width:15%">{{ __('Stock')}}</th>
+										<th style="width:20%">{{ __('Key')}}</th>
+                                        <th style="width:20%">{{ __('Name')}}</th>
+										<th style="width:20%">{{ __('Quantity')}}</th>
+										<th style="width:20%">{{ __('Unit of measure')}}</th>
+										<th style="width:20%" hidden>{{ __('Stock')}}</th>
 
-                                        <th style="width:10%"></th>
+                                        <th style="width:20%"></th>
                                     </tr>
                                 </thead>
 
@@ -373,12 +373,12 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
                                             
-											<td style="width:10%">{{ $materialAssigned->material->key }}</td>
-                                            <td style="width:15%">{{ $materialAssigned->material->name }}</td>
-											<td style="width:15%">{{ $materialAssigned->quantity }}</td>
-											<td style="width:15%">{{ $materialAssigned->unit_measure }}</td>
-											<td style="width:15%">{{ $materialAssigned->material->stock }}</td>
-                                            <td style="width:10%">
+											<td style="width:20%">{{ $materialAssigned->material->key }}</td>
+                                            <td style="width:20%">{{ $materialAssigned->material->name }}</td>
+											<td style="width:20%">{{ $materialAssigned->quantity }}</td>
+											<td style="width:20%">{{ $materialAssigned->unit_measure }}</td>
+											<td style="width:20%" hidden>{{ $materialAssigned->material->stock }}</td>
+                                            <td style="width:20%">
                                             @if($service->status_report_id=='3')
 
                                             @else
@@ -397,13 +397,13 @@
                                     <tr style="text-align: center">
                                         <th hidden>No</th>
                                         
-										<th style="width:10%">{{ __('Key')}}</th>
-                                        <th style="width:15%">{{ __('Name')}}</th>
-										<th style="width:15%">{{ __('Quantity')}}</th>
-										<th style="width:15%">{{ __('Unit of measure')}}</th>
-										<th style="width:15%">{{ __('Stock')}}</th>
+										<th style="width:20%">{{ __('Key')}}</th>
+                                        <th style="width:20%">{{ __('Name')}}</th>
+										<th style="width:20%">{{ __('Quantity')}}</th>
+										<th style="width:20%">{{ __('Unit of measure')}}</th>
+										<th style="width:20%" hidden>{{ __('Stock')}}</th>
 
-                                        <th style="width:10%"></th>
+                                        <th style="width:20%"></th>
                                     </tr>
                                 </thead>
 
@@ -413,12 +413,12 @@
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                                             <td hidden>{{ ++$i }}</td>
                                             
-											<td style="width:10%">{{ $toolAssigned->tool->key }}</td>
-                                            <td style="width:15%">{{ $toolAssigned->tool->name }}</td>
-											<td style="width:15%">{{ $toolAssigned->quantity }}</td>
-											<td style="width:15%">{{ $toolAssigned->unit_measure }}</td>
-											<td style="width:15%">{{ $toolAssigned->tool->stock }}</td>
-                                            <td style="width:10%">
+											<td style="width:20%">{{ $toolAssigned->tool->key }}</td>
+                                            <td style="width:20%">{{ $toolAssigned->tool->name }}</td>
+											<td style="width:20%">{{ $toolAssigned->quantity }}</td>
+											<td style="width:20%">{{ $toolAssigned->unit_measure }}</td>
+											<td style="width:20%" hidden>{{ $toolAssigned->tool->stock }}</td>
+                                            <td style="width:20%">
                                             @if($service->status_report_id=='3')
 
                                             @else

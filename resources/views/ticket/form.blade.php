@@ -15,7 +15,8 @@
         <br>
         
         <div class="form-group">
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="/path/to/select2.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
             {{ Form::label( __('Customer')) }} <br>
             <!--{{ Form::text('customer_id', "", ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
@@ -26,7 +27,7 @@
             <script>
                 $('.select2').select2();
             </script>
-            <select class="form-select, " id="customer" require>
+            <select class="form-select select2" id="customer" style="width:600px; height:100%;" require>
                 <option selected disabled>{{ __('Select customer')}}</option>
                 @foreach ($countries as $country)
                 <option value="{{ $country->customer_id }}">{{ $country->name }}</option>
@@ -34,7 +35,9 @@
             </select>
             <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
         </div>
-        
+        <script>
+                $('.select2').select2();
+            </script>
         <br>
         <div class="form-group">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
@@ -43,23 +46,51 @@
             <!--{{ Form::text('contact_id', $ticket->contact_id, ['class' => 'form-select, select2' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => __('Contact')]) }}
             <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo2">+</a> <br>
             <a href="{{ route('contacts.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">{{ __('+') }}</a>-->
-            <input type="text" id="contact_id" name="contact_id" class="form-control.<?php echo ($errors->has('contact_id') ? ' is-invalid' : ''); ?>" require hidden>
+            <input type="text" id="contact_id" name="contact_id" class="form-control.<?php echo ($errors->has('contact_id') ? ' is-invalid' : ''); ?>" require  hidden>
             {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
             <script>
                 $('.select2').select2();
             </script>
-            <select class="form-select," data-control="select2" id="contact" require></select>
+            <select class="form-select," data-control="select2" id="contact" style="width:600px; height:38px;" require></select>            
             <a type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
 
             <script>
-                
-                $('#customer').on('change', function () {
-                    var customer = $(this).val();
+                $('.select2').select2();
+                $("#customer").on("select2:select", function (e) {
+                        var countryId = $(this).val();
+                        document.getElementById('customer_id').value= countryId;
+                        document.getElementById('ejemplo').value= countryId;
+                        $('#contact').html('');
+                        $.ajax({
+                            url: "{{ route('getStates') }}?customer_id="+countryId,
+                            type: 'get',
+                            success: function (res) {
+                                $('#contact').html("<option value=''>{{ __('Select contact')}}</option>");
+                                $.each(res, function (key, value) {
+                                    $('#contact').append('<option value="' + value
+                                        .contact_id + '">' + value.name + ' ' + value.last_name +'</option>');
+                                });
+                            }
+                        });
                     
-                    document.getElementById('ejemplo').value= customer;
-                    document.getElementByName('customer_id2')[0].value= customer;
-                    alert(document.getElementByName('customer_id2')[0].value);                    
+
+                    $('#contact').on("change", function () {
+                        var contactId = this.value;
+                        document.getElementById('contact_id').value= contactId;
+                        
+                    });
                 });
+            </script>
+            <script>
+                $(document).ready(function () {
+                    $(document).on("click","#add", function () {
+                        var add = document.getElementById('ejemplo').value;
+
+                        document.getElementById('customer_id').value= add;
+                        
+                        //alert(add);
+                    })
+                })
             </script>
         </div>
         

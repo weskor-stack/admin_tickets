@@ -37,9 +37,9 @@ class EmployeeOrderController extends Controller
     public function create()
     {
         $employeeOrder = new EmployeeOrder();
-        $employee = Employee::pluck('name','employee_id');
+        $employees = Employee::pluck('name','employee_id');
         $serviceOrder = ServiceOrder::pluck('service_order_id','service_order_id');
-        return view('employee-order.create', compact('employeeOrder','employee','serviceOrder'));
+        return view('employee-order.create', compact('employeeOrder','employees','serviceOrder'));
     }
 
     /**

@@ -9,14 +9,14 @@
             <select class="form-select" id="tool_id" name="tool_id" required>
                 <option value="">--{{ __('Select tool')}}--</option>
                 @foreach ($tools as $item)
-                    <option value="{{$item->tool_id}}">{{$item->key}} - {{$item->name}}</option>
+                    <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unit_measure}}">{{$item->key}} - {{$item->name}}</option>
                 @endforeach
             </select>
         </div>
         
         <div class="form-group">
             <strong>{{ Form::label( __('Quantity')) }}</strong>
-            {{ Form::text('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity')]) }}
+            {{ Form::number('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'step'=>'0.01', 'min'=>'0','required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>

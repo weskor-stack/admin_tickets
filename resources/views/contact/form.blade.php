@@ -26,11 +26,14 @@
         <div class="form-group">
             
             {{ Form::label( __('Customer')) }} <br>
-            <!--{{ Form::text('customer_id', $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
+            <!--{{ Form::select('customer_id', $customers, $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}-->
+            {{ Form::select('customer_id', $customers, $contact->customer_id, ['class' => 'form-select' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer'), 'require']) }}
+            {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
+            <!--<input type="text" name="customer_id2" id="customer_id" value="{{$customers}}"/>-->
+            <input type="text" name="ejemplo" id="ejemplo" value="" hidden/>
 
-            <input type="text" name="customer_id2" id="customer_id" value=""/>
-            <input type="text" name="ejemplo" id="ejemplo" value=""/>
+            
         </div>
         <br>
         <div class="form-group" hidden>

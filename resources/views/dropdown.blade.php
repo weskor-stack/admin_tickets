@@ -31,7 +31,7 @@
         $(document).ready(function () {
             $('#customer').on('change', function () {
                 var countryId = $(this).val();
-                document.getElementById('customer_id').value= countryId;
+                //document.getElementById('customer_id').value= countryId;
                 $('#contact').html('');
                 $.ajax({
                     url: "{{ route('getStates') }}?customer_id="+countryId,

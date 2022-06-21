@@ -856,5 +856,8 @@
     "Spanish": "Español",
     "Choose a language": "Seleccionar idioma",
     "Select customer": "Seleccionar cliente",
-    "Select contact": "Seleccionar contacto"
+    "Select contact": "Seleccionar contacto",
+    "unit_measure": "Unidad de medida",
+    "Select employee": "Seleccionar empleado",
+    "ID Employees":"No. de empleado"
 }

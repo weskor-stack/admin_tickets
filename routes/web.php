@@ -8,6 +8,7 @@ use App\Http\Controllers\DropdownController;
 
 Route::get('dropdown', [DropdownController::class, 'view'])->name('dropdownView');
 Route::get('get-states', [DropdownController::class, 'getStates'])->name('getStates');
+Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

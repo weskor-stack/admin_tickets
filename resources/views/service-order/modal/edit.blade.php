@@ -11,6 +11,9 @@
                 <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="card-body">
+                            <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="{{$materialAssigned->material->stock + $materialAssigned->quantity}}" style="width:70px;" disabled> &nbsp;&nbsp; 
+                            <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="{{$materialAssigned->material->unit_measure}}" style="width:80px;" disabled><br> <br>
+                            
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>{{ __('Material') }}:</strong>
@@ -22,14 +25,14 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>{{ __('Quantity') }}:</strong>
-                                {{ Form::text('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity']) }}
+                                {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.01', 'min'=>'0', 'required']) }}
                                 {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
 
                         <br>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
                             <button type="submit" class="btn btn-primary btn-lg">{{ __('Edit') }}</button>
                         </div>
 
@@ -61,14 +64,12 @@
                                 {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
-                        
-                        
-
+                            
                         </div>                                                           
                     </div>
                                                                 
                 <!-- pie del diálogo -->
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="text-align:center;">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
                     </div>
                     

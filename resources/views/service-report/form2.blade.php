@@ -43,19 +43,19 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            {{ Form::text('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => __('Service hour')]) }}
+                            {{ Form::time('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => __('Service hour')]) }}
                             {!! $errors->first('service_hours', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
                     <td>
                          <div class="form-group">
-                            {{ Form::text('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' =>  __('Service extra')]) }}
+                            {{ Form::time('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' =>  __('Service extra')]) }}
                             {!! $errors->first('service_extras', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
-                            {{ Form::text('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' =>  __('Duration travel')]) }}
+                            {{ Form::time('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' =>  __('Duration travel')]) }}
                             {!! $errors->first('duration_travel', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
@@ -68,8 +68,14 @@
                     
                     <td>
                         <div class="form-group">
-                            {{ Form::select('employee_id', $employee, $serviceReport->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
-                            {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}
+                            <!--{{ Form::select('employee_id', $employeeOrders, $serviceReport->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
+                            {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}-->
+                            <select class="form-select" id="employee_id" name="employee_id" required>
+                                <option value="">--{{ __('Select employee')}}--</option>
+                                @foreach ($employeeOrders as $item)
+                                    <option value="{{$item->employee_id}}">{{$item->employee->name}} {{$item->employee->last_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </td>
                 </tr>

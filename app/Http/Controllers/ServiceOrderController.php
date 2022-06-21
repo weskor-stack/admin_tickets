@@ -69,6 +69,9 @@ class ServiceOrderController extends Controller
 
         $employeeOrder = new EmployeeOrder();
         $employee = Employee::pluck('name','employee_id');
+        $employees = Employee::select(DB::raw("CONCAT(employee.name, ' ', employee.last_name) as full_name"))
+        ->get()->pluck('full_name');
+        $employee2 = Employee::all();
         /*$serviceOrder = ServiceOrder::select('service_order_id')
         ->where('ticket_id', '=', $datas)->get();*/
 
@@ -133,7 +136,7 @@ class ServiceOrderController extends Controller
         //return response()->json($supervisors);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
-        'tickets','materialAssigneds_2','materials','tools','supervisors'))
+        'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
     }
 

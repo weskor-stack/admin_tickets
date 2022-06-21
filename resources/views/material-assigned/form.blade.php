@@ -9,13 +9,15 @@
             <select class="form-select" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
                 @foreach ($materials as $item)
-                    <option value="{{$item->material_id}}">{{$item->key}} - {{$item->name}}</option>
+                    <option value="{{$item->material_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unit_measure}}">{{$item->key}} - {{$item->name}}</option>
                 @endforeach
             </select>
+
+            <br>
         </div>
         <div class="form-group">
             <strong>{{ __('Quantity')}}</strong>
-            {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'data-decimals'=>'2']) }}
+            {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.01', 'min'=>'0', 'required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group" hidden>

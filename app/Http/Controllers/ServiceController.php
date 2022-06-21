@@ -9,6 +9,7 @@ use App\Models\ServiceOrder;
 use App\Models\Customer;
 use App\Models\Priority;
 use App\Models\Employee;
+use App\Models\EmployeeOrder;
 use App\Models\MaterialAssigned;
 use App\Models\ToolAssigned;
 use App\Models\Activity;
@@ -69,10 +70,13 @@ class ServiceController extends Controller
         $activity2 = Activity::select('service_id', 'description_activity', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'executor', 'customer','user_id', 'date_registration')
         ->where('service_id', '=', $datas)->get();
 
+        $employeeOrders = EmployeeOrder::all();
+
         //$activity = Activity::find($activity['service_id']);
         //return response()->json($activity);
 
-        return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds','serviceReports','activity','activity2'))
+        return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds',
+        'serviceReports','activity','activity2','employeeOrders'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
     }
 

@@ -93,8 +93,9 @@ class ServiceReportController extends Controller
         $typeservice = TypeService::pluck('name','type_service_id');
         $customer = Customer::pluck('name','customer_id');
 
+        $employeeOrders = EmployeeOrder::all();
         
-        return view('service-report.create', compact('serviceReport','service','employee'));
+        return view('service-report.create', compact('serviceReport','service','employee','employeeOrders'));
     }
 
     /**

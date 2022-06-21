@@ -36,5 +36,20 @@ class DropdownController extends Controller
         }
     }
 
-    
+    /**
+     * return states list.
+     *
+     * @return json
+     */
+    public function getStockes(Request $request)
+    {
+        $stocks = \DB::table('material')
+            ->where('material_id', $request->material_id)
+            ->get();
+        
+        if (count($stocks) > 0) {
+            return response()->json($stocks);
+        }
+    }
+
 }

@@ -9,8 +9,15 @@
         
         <div class="form-group">
             {{ Form::label( __('Employee')) }}
-            {{ Form::select('employee_id', $employee, $employeeOrder->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
-            {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}
+            <!--{{ Form::select('employee_id', $employee, $employeeOrder->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
+            {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}-->
+            <select class="form-select" id="employee_id" name="employee_id" required>
+                <option value="">--{{ __('Select employee')}}--</option>
+                @foreach ($employee2 as $item)
+                    <option value="{{$item->employee_id}}">{{$item->name}} {{$item->last_name}}</option>
+                @endforeach
+            </select>
+
         </div>
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}

@@ -126,22 +126,31 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
+                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="" style="width:80px;" disabled><br>
                                                                         <form method="POST" action="{{ route('material-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
 
                                                                             @include('material-assigned.form')
                                                                         </form>
-                                                                        <!--<script>
+                                                                        <br>
+
+                                                                        <script>
                                                                             var value_input;
                                                                             $('select').on('change', function() {
                                                                                 var data = this.value;
                                                                                 /*document.getElementById("text1").value = data;
                                                                                 const contenido = document.getElementById("text1").value;
                                                                                 //alert(contenido);*/
-                                                                                value_input = data;
-                                                                                alert( "Unit measure: " + data );
+                                                                                var countryId = $(this).find(':selected').data('stock');
+                                                                                var unity = $(this).find(':selected').data('unity');
+                                                                                $("#text1").val(data);
+                                                                                $("#text2").val(unity);
+                                                                                document.getElementById("text1").value = countryId;
+                                                                                document.getElementById("text2").value = unity;
+                                                                                //alert( "{{ __('unit_measure')}}: " + unity + "\n" + "{{ __('Stock')}}: " + countryId );
                                                                             });
-                                                                        </script>-->
+                                                                        </script>
                                                                     </div>                                                            
                                                                 </div>
 
@@ -169,10 +178,28 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">                    
                                                                     <div class="card-body">
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text3" name="text3" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
+                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text4" name="text4" value="" style="width:80px;" disabled><br>
                                                                         <form method="POST" action="{{ route('tool-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
                                                                             @include('tool-assigned.form')
                                                                         </form>
+                                                                        <script>
+                                                                            var value_input;
+                                                                            $('#tool_id').on('change', function() {
+                                                                                var data = this.value;
+                                                                                document.getElementById("text1").value = data;
+                                                                                const contenido = document.getElementById("text1").value;
+                                                                                //alert(contenido);*/
+                                                                                var countryId = $(this).find(':selected').data('stock');
+                                                                                var unity = $(this).find(':selected').data('unity');
+                                                                                $("#text3").val(data);
+                                                                                $("#text4").val(unity);
+                                                                                document.getElementById("text3").value = countryId;
+                                                                                document.getElementById("text4").value = unity;
+                                                                                //alert( "{{ __('unit_measure')}}: " + unity + "\n" + "{{ __('Stock')}}: " + countryId );
+                                                                            });
+                                                                        </script>
                                                                     </div>                                                            
                                                                 </div>
                                                             <!-- pie del diálogo -->
@@ -567,10 +594,11 @@
                                         <th style="width:15%" hidden>No</th>
                                         
                                         <th style="width:15%" hidden>{{ __('Order')}}</th>
-                                        <th style="width:20%">{{ __('Employees')}}</th>
+                                        <th style="width:20%">{{ __('ID Employees')}}</th>
+                                        <th style="width:20%">{{ __('Employee')}}</th>
                                         <th style="width:20%">{{ __('Department')}}</th>
                                         <th style="width:20%">{{ __('Supervisor')}}</th>
-                                        <th style="width:20%">{{ __('Status')}}</th>
+                                        <th style="width:20%" hidden>{{ __('Status')}}</th>
                                         <th style="width:20%"></th>
                                     </tr>
                                 </thead>
@@ -586,7 +614,7 @@
                                                     <td style="width:20%">{{$supervisor->employee2->name}} {{$supervisor->employee2->last_name}}</td>
                                                 @endif
                                             @endforeach
-                                            <th style="width:20%">{{ $employeeOrder->employee->status->name }}</th>
+                                            <th style="width:20%" hidden>{{ $employeeOrder->employee->status->name }}</th>
                                             <td style="width:20%">
                                                 @if($serviceOrder->status_order_id=='3')
                                                 
