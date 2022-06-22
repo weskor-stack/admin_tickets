@@ -46,8 +46,9 @@ class ActivityController extends Controller
         $activity = new Activity();
         $service = Service::pluck('service_id','service_id');
 
+        $employeeOrders = EmployeeOrder::all();
         
-        return view('activity.create', compact('activity','service'));
+        return view('activity.create', compact('activity','service','employeeOrders'));
     }
 
     /**

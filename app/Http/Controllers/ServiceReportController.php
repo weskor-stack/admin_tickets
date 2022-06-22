@@ -85,7 +85,7 @@ class ServiceReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $serviceReport = new ServiceReport();
         $service = Service::pluck('service_id','service_id');
@@ -94,7 +94,7 @@ class ServiceReportController extends Controller
         $customer = Customer::pluck('name','customer_id');
 
         $employeeOrders = EmployeeOrder::all();
-        
+        //return response()->json($service);
         return view('service-report.create', compact('serviceReport','service','employee','employeeOrders'));
     }
 
@@ -115,8 +115,27 @@ class ServiceReportController extends Controller
         parse_str($components['query'], $results);
         //echo($results['id']);
         $dataServiceReport['service_id']=$results['id'];*/
+        //$completion = date("g.i",strtotime($dataServiceReport['time_completion']));
+        //$entry = date("g.i",strtotime($dataServiceReport['time_entry']));
         
-        //return response()->json($dataServiceReport['service_id']);
+        $completion = (float) preg_replace('/^(\d+):(\d+).+/','\1.\2',$dataServiceReport['time_completion']);
+
+        $entry = (float) preg_replace('/^(\d+):(\d+).+/','\1.\2',$dataServiceReport['time_entry']);
+
+        $lunchtime = (float) preg_replace('/^(\d+):(\d+).+/','\1.\2',$dataServiceReport['lunchtime']);
+
+        $completion = number_format($completion, 2);
+
+        $entry = number_format($entry, 2);
+
+        $lunchtime = number_format($lunchtime, 2);
+
+        //$lunchtime = (1 + ($lunchtime/.60))
+
+        $dataServiceReport['service_hours'] = number_format($completion - $entry, 2);
+
+        //$dataServiceReport['service_hours'] = double($dataServiceReport['time_completion']) - double($dataServiceReport['time_entry']);*/
+        //return response()->json($dataServiceReport['service_hours']);
         ServiceReport::insert($dataServiceReport);
         
         $data = Service::find($dataServiceReport['service_id']);
@@ -126,7 +145,7 @@ class ServiceReportController extends Controller
         //$serviceReport = ServiceReport::create($request->all());
         
         return redirect()->route('services.index','id_ticket='.$dataServiceReport['service_id'])
-            ->with('success', 'Add created successfully.');
+            ->with('success', __('created successfully'));
     }
 
     /**
@@ -184,7 +203,11 @@ class ServiceReportController extends Controller
     {
         $serviceReport = ServiceReport::find($id)->delete();
 
-        return redirect()->route('services.index')
-            ->with('success', 'ServiceReport deleted successfully');
+        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
+
+        return redirect()->route('services.index', 'id_ticket='.$ServiceReport['service_id'])
+            ->with('success', __('ServiceReport deleted successfully'));
     }
 }

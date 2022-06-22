@@ -6,14 +6,14 @@
                 <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                     <td align="center" hidden><b>Día</b></td>
                     
-                    <td><b>{{ __('Entry')}}</b></td>
-                    <td><b>{{ __('Completion')}}</b></td>
-                    <td><b>{{ __('Lunchtime')}}</b></td>
-                    <td><b>{{ __('Service hour')}}</b></td>
-                    <td><b>{{ __('Service extra')}}</b></td>
-                    <td><b>{{ __('Duration travel')}}</b></td>
-                    <td>{{ __('Date service')}}</td>
-                    <td>{{ __('Employee')}}</td>
+                    <td style="width:5%"><b>{{ __('Entry')}}</b></td>
+                    <td style="width:5%"><b>{{ __('Completion')}}</b></td>
+                    <td style="width:5%"><b>{{ __('Lunchtime')}}</b></td>
+                    <td hidden><b>{{ __('Service hour')}}</b></td>
+                    <td style="width:5%"><b>{{ __('Service extra')}}</b></td>
+                    <td style="width:5%"><b>{{ __('Duration travel')}}</b></td>
+                    <td style="width:20%">{{ __('Date service')}}</td>
+                    <td style="width:20%">{{ __('Employee')}}</td>
                 </tr>
                 <tr style="text-align: center">
                     <td hidden>
@@ -23,59 +23,75 @@
                             {!! $errors->first('service_id', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
-                    <td>
+                    <td style="width:5%">
                         <div class="form-group">
-                            {{ Form::time('time_entry', $serviceReport->time_entry, ['class' => 'form-control' . ($errors->has('time_entry') ? ' is-invalid' : ''), 'placeholder' => 'Time Entry']) }}
+                            {{ Form::time('time_entry', $serviceReport->time_entry, ['class' => 'form-control' . ($errors->has('time_entry') ? ' is-invalid' : ''), 'placeholder' => 'Time Entry', 'min'=>'00:00', 'max'=>'18:00']) }}
                             {!! $errors->first('time_entry', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
-                    <td>
+                    <td style="width:5%">
                         <div class="form-group">
-                            {{ Form::time('time_completion', $serviceReport->time_completion, ['class' => 'form-control' . ($errors->has('time_completion') ? ' is-invalid' : ''), 'placeholder' => 'Time Completion']) }}
+                            {{ Form::time('time_completion', $serviceReport->time_completion, ['class' => 'form-control' . ($errors->has('time_completion') ? ' is-invalid' : ''), 'placeholder' => 'Time Completion', 'min'=>'07:00', 'max'=>'23:00']) }}
                             {!! $errors->first('time_completion', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
-                    <td>
+                    <td style="width:5%">
                         <div class="form-group">
                             {{ Form::time('lunchtime', $serviceReport->lunchtime, ['class' => 'form-control' . ($errors->has('lunchtime') ? ' is-invalid' : ''), 'placeholder' => 'Lunchtime']) }}
                             {!! $errors->first('lunchtime', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
-                    <td>
+                    <td hidden>
                         <div class="form-group">
-                            {{ Form::time('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => __('Service hour')]) }}
+                            {{ Form::text('service_hours', $serviceReport->service_hours, ['class' => 'form-control' . ($errors->has('service_hours') ? ' is-invalid' : ''), 'placeholder' => __('Service hour')]) }}
                             {!! $errors->first('service_hours', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
-                    <td>
+                    <td style="width:7%">
                          <div class="form-group">
-                            {{ Form::time('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' =>  __('Service extra')]) }}
-                            {!! $errors->first('service_extras', '<div class="invalid-feedback">:message</div>') !!}
+                            <!--{{ Form::text('service_extras', $serviceReport->service_extras, ['class' => 'form-control' . ($errors->has('service_extras') ? ' is-invalid' : ''), 'placeholder' =>  __('Service extra')]) }}
+                            {!! $errors->first('service_extras', '<div class="invalid-feedback">:message</div>') !!}-->
+
+                            <select class="form-select" id="service_extras" name="service_extras">
+                                <option value="0">0 hr.</option>
+                                <option value="1">1 hr.</option>
+                                <option value="2">2 hrs.</option>
+                                <option value="3">3 hrs.</option>
+                            </select>
                         </div>
                     </td>
-                    <td>
+                    <td style="width:5%">
                         <div class="form-group">
-                            {{ Form::time('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' =>  __('Duration travel')]) }}
-                            {!! $errors->first('duration_travel', '<div class="invalid-feedback">:message</div>') !!}
+                            <!--{{ Form::text('duration_travel', $serviceReport->duration_travel, ['class' => 'form-control' . ($errors->has('duration_travel') ? ' is-invalid' : ''), 'placeholder' =>  __('Duration travel')]) }}
+                            {!! $errors->first('duration_travel', '<div class="invalid-feedback">:message</div>') !!}-->
+
+                            <select class="form-select" id="duration_travel" name="duration_travel">
+                                <option value="0">0 hr.</option>
+                                <option value="1">1 hr.</option>
+                                <option value="2">2 hrs.</option>
+                                <option value="3">3 hrs.</option>
+                            </select>
                         </div>
                     </td>
-                    <td>
+                    <td style="width:20%">
                         <div class="form-group">
                             {{ Form::date('date_service', date('Y-m-d'), ['class' => 'form-control' . ($errors->has('date_service') ? ' is-invalid' : ''), 'placeholder' => 'Date Service']) }}
                             {!! $errors->first('date_service', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
                     
-                    <td>
+                    <td style="width:20%">
                         <div class="form-group">
                             <!--{{ Form::select('employee_id', $employeeOrders, $serviceReport->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
                             {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}-->
                             <select class="form-select" id="employee_id" name="employee_id" required>
                                 <option value="">--{{ __('Select employee')}}--</option>
                                 @foreach ($employeeOrders as $item)
+                                    @if($item->service_order_id == $service->service_order_id)
                                     <option value="{{$item->employee_id}}">{{$item->employee->name}} {{$item->employee->last_name}}</option>
+                                    @endif
                                 @endforeach
-                            </select>
+                            </select>                            
                         </div>
                     </td>
                 </tr>

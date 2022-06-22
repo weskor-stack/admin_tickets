@@ -859,5 +859,6 @@
     "Select contact": "Seleccionar contacto",
     "unit_measure": "Unidad de medida",
     "Select employee": "Seleccionar empleado",
-    "ID Employees":"No. de empleado"
+    "ID Employees":"No. de empleado",
+    "ServiceReport deleted successfully": "Eliminado correctamente"
 }

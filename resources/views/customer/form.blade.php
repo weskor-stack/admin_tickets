@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
             {{ Form::label( __('phone')) }}
-            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 10, 'pattern'=>'[0-9]{3}-[0-9]{2}-[0-9]{3}', 'Require']) }}
+            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 13, 'pattern'=>'[0-9]{3}-[0-9]{2}-[0-9]{3}', 'Require']) }}
             {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}
 
         </div>

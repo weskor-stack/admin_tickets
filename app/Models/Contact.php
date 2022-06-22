@@ -35,7 +35,7 @@ class Contact extends Model
 		'last_name' => 'required',
 		'email' => 'required',
 		'phone' => 'required',
-		'customer_id' => 'required',
+		//'customer_id' => 'required',
 		'status_id' => 'required',
 		'user_id' => 'required',
     ];

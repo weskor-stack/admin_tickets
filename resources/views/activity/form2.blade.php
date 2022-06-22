@@ -72,17 +72,25 @@
                                         <br><br>
                                         <table class="table table-striped table-hover">
                                             <tr>
-                                                <td>
+                                                <td style="text-align:center;">
                                                     <div class="form-group">
                                                         <legend style="text-align:center">{{ __('Executor')}}</legend>
-                                                        {{ Form::text('executor', $activity->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
-                                                        {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}
+                                                        <!--{{ Form::text('executor', $activity->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
+                                                        {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}-->
+                                                        <select class="form-select" id="executor" name="executor" style="width:600px; height:38px;" required>
+                                                            @foreach ($employeeOrders as $item)
+                                                                @if($item->service_order_id == $service->service_order_id)
+                                                                <option value="{{$item->employee->name}} {{$item->employee->last_name}}">{{$item->employee->name}} {{$item->employee->last_name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>      
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td style="text-align:center;">
                                                     <div class="form-group">
-                                                        <legend style="text-align:center">{{ __('Customer')}}</legend>
-                                                        {{ Form::text('customer', $service->serviceOrder->ticket->customer->name, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
+                                                        <legend style="text-align:center">{{ __('Contact')}}</legend>
+                                                        <!--{{ Form::text('customer', $service->serviceOrder->ticket->contact->name, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50, 'style'=>'width:600px; height:38px;']) }}-->
+                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="customer" id="customer" value="{{$service->serviceOrder->ticket->contact->name}} {{$service->serviceOrder->ticket->contact->last_name}}" maxlength="50" style="width:600px; height:38px;" require>
                                                         {!! $errors->first('customer', '<div class="invalid-feedback">:message</div>') !!}
                                                     </div>
                                                 </td>

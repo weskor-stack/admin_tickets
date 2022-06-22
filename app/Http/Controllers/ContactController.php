@@ -49,7 +49,25 @@ class ContactController extends Controller
     {
         request()->validate(Contact::$rules);
 
-        $contact = Contact::create($request->all());
+        $contacts = request()->except('_token');
+
+        $contact['name'] = $contacts['name'];
+
+        $contact['last_name'] = $contacts['last_name'];
+
+        $contact['email'] = $contacts['email'];
+
+        $contact['phone'] = $contacts['phone'];
+
+        $contact['customer_id'] = $contacts['ejemplo'];
+
+        $contact['status_id'] = $contacts['status_id'];
+
+        $contact['user_id'] = $contacts['user_id'];
+
+        //return response()->json( $contact);
+        Contact::insert($contact);
+        //$contact = Contact::create($request->all());
 
         //return redirect()->route('tickets.create')
         return redirect()->back()

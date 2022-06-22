@@ -35,7 +35,7 @@ class ServiceReport extends Model
 		'time_entry' => 'required',
 		'time_completion' => 'required',
 		'lunchtime' => 'required',
-		'service_hours' => 'required',
+		//'service_hours' => 'required',
 		'service_extras' => 'required',
 		'duration_travel' => 'required',
 		'date_service' => 'required',

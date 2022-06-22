@@ -81,17 +81,6 @@
                     });
                 });
             </script>
-            <script>
-                $(document).ready(function () {
-                    $(document).on("click","#add", function () {
-                        var add = document.getElementById('ejemplo').value;
-
-                        document.getElementById('customer_id').value= add;
-                        
-                        //alert(add);
-                    })
-                })
-            </script>
         </div>
         
         <br>

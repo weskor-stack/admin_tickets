@@ -184,8 +184,6 @@
                                     <!-- cuerpo del diálogo -->
                                         <div class="modal-body">
                                             
-                                            @foreach ($services as $service)
-                                            @endforeach
                                             <div class="card-body">
                                                 <form method="POST" action="{{ route('service-reports.store') }}"  role="form" enctype="multipart/form-data">
                                                     @csrf
@@ -299,7 +297,7 @@
                                     </td>
                                 </tr>
                                     <tr style="text-align: center">
-                                        <th hidden>No</th>
+                                        <th>No</th>
                                         
 										<th>{{ __('Time entry')}}</th>
 										<th>{{ __('Completion')}}</th>
@@ -308,7 +306,7 @@
 										<th>{{ __('Service extra')}}</th>
 										<th>{{ __('Duration travel')}}</th>
 										<th>{{ __('Date service')}}</th>
-										<th>{{ __('Service report')}}</th>
+										<th hidden>{{ __('Service report')}}</th>
 										<th>{{ __('Employee')}}</th>
 										<th></th>
 
@@ -319,17 +317,17 @@
                                     @foreach ($serviceReports as $serviceReport)
                                         
                                         <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td hidden>{{ ++$i }}</td>
+                                            <td>{{ ++$i }}</td>
                                             
 											<td>{{ $serviceReport->time_entry }}</td>
 											<td>{{ $serviceReport->time_completion }}</td>
 											<td>{{ $serviceReport->lunchtime }}</td>
-											<td>{{ $serviceReport->service_hours }}</td>
+											<td>{{ $serviceReport->service_hours }} horas</td>
 											<td>{{ $serviceReport->service_extras }}</td>
 											<td>{{ $serviceReport->duration_travel }}</td>
-											<td>{{ $serviceReport->date_service }}</td>
-											<td>{{ $serviceReport->service_report_id }}</td>
-											<td>{{ $serviceReport->employee->name }}</td>
+											<td>{{ \Carbon\Carbon::parse($serviceReport->date_service)->format('d/m/Y') }}</td> 
+											<td hidden>{{ $serviceReport->service_report_id }}</td>
+											<td >{{ $serviceReport->employee->name }} {{ $serviceReport->employee->last_name }}</td>
                                             
                                             <td>
                                             @if($service->status_report_id=='3')
