@@ -23,12 +23,13 @@
                     <td>
                         <div class="form-group">
                         {{ Form::label( __('Type of maintenance')) }}<br>
-                        @if ($serviceOrder->type_maintenance_id=='1')
+                        <input type="radio" name="type_maintenance_id" id="type_maintenance_id" value="1" checked> {{ __('Preventive') }} <br>
+                        <!--@if ($serviceOrder->type_maintenance_id=='1')
                         {{ Form::radio('type_maintenance_id','1',true) }}
                         @else
                         {{ Form::radio('type_maintenance_id','1') }}
                         @endif
-                        {{ Form::label( __('Preventive')) }}<br>
+                        {{ Form::label( __('Preventive')) }}<br>-->
                         @if ($serviceOrder->type_maintenance_id=='2')
                         {{ Form::radio('type_maintenance_id','2',true) }}
                         @else
@@ -52,12 +53,13 @@
                     <td>
                         <div class="form-group">
                             {{ Form::label( __('Type of service')) }}<br>
-                            @if ($serviceOrder->type_service_id=='1')
+                            <input type="radio" name="type_service_id" id="type_service_id" value="1" checked> {{ __('Software') }} <br>
+                            <!--@if ($serviceOrder->type_service_id=='1')
                             {{ Form::radio('type_service_id','1',true) }}
                             @else
                             {{ Form::radio('type_service_id','1') }}
                             @endif
-                            {{ Form::label( __('Software')) }}<br>
+                            {{ Form::label( __('Software')) }}<br>-->
                             @if ($serviceOrder->type_service_id=='2')
                             {{ Form::radio('type_service_id','2',true) }}
                             @else

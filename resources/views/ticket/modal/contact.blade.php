@@ -1,4 +1,4 @@
-    <div class="modal fade" id="dialogo2">
+    <div class="modal fade" id="dialogo2" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 

@@ -3,7 +3,8 @@
         
         <div class="form-group">
             {{ Form::label( __('customer_id')) }}
-            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 10, 'minlength'=>10, 'Require']) }}
+            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 10, 'minlength'=>10, 'required']) }}
+            <!--<input type="text" name="customer_id" id="customer_id" class="form-control" maxlength="10" minlength="10" placeholder="{{ __('customer_id') }}" required>-->
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -28,8 +29,9 @@
         </div>
         <div class="form-group">
             {{ Form::label( __('phone')) }}
-            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 13, 'pattern'=>'[0-9]{3}-[0-9]{2}-[0-9]{3}', 'Require']) }}
-            {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}
+            <input type="tel" class="form-control" name="phone" id="phone" require>
+            <!--{{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 13, 'pattern'=>'[0-9]{3}-[0-9]{2}-[0-9]{3}', 'Require']) }}
+            {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}-->
 
         </div>
         <div class="form-group" hidden>

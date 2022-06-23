@@ -275,15 +275,18 @@ class ServiceOrderController extends Controller
     {
         request()->validate(ServiceOrder::$rules);
 
-        $serviceOrders = ServiceOrder::select('service_order_id')->get();
+        $serviceOrders = ServiceOrder::select('service_order_id')
+        ->where('service_order_id', '=', $serviceOrder->ticket_id)->get();
+        
+        //return response()->json($serviceOrders);
 
-        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrders);
+        //$reports2 = preg_replace('/[^0-9]/', '', $serviceOrders);
 
         //return response()->json($reports2);
 
         $serviceOrder->update($request->all());
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder->ticket_id)
             ->with('success', __('Service Order') .' '.__('updated successfully'));
     }
 
