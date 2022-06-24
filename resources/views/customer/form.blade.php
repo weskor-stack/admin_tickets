@@ -9,29 +9,29 @@
         </div>
         <div class="form-group">
             {{ Form::label( __('key')) }}
-            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => __('key'), 'maxlength' => 5, 'minlength' => 5, 'Require']) }}
+            {{ Form::text('key', $customer->key, ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => __('key'), 'maxlength' => 5, 'minlength' => 5, 'required']) }}
             {!! $errors->first('key', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label( __('Name')) }}
-            {{ Form::text('name', $customer->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('Name'), 'maxlength' => 50,'Require']) }}
+            {{ Form::text('name', $customer->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('Name'), 'maxlength' => 50,'required']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label(__('address')) }}
-            {{ Form::text('address', $customer->address, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : ''), 'placeholder' => __('address'), 'maxlength' => 100,'Require']) }}
+            {{ Form::text('address', $customer->address, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : ''), 'placeholder' => __('address'), 'maxlength' => 100,'required']) }}
             {!! $errors->first('address', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('email') }}
-            {{ Form::text('email', $customer->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'maxlength' => 50,'Require']) }}
+            {{ Form::text('email', $customer->email, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => 'Email', 'maxlength' => 50,'required']) }}
             {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label( __('phone')) }}
-            <input type="tel" class="form-control" name="phone" id="phone" require>
-            <!--{{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 13, 'pattern'=>'[0-9]{3}-[0-9]{2}-[0-9]{3}', 'Require']) }}
-            {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}-->
+            <!--<input type="tel" class="form-control" name="phone" id="phone" placeholde="{{ __('123-456-78-90')}}" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" require>-->
+            {{ Form::text('phone', $customer->phone, ['class' => 'form-control' . ($errors->has('phone') ? ' is-invalid' : ''), 'placeholder' => __('123-456-78-90'),'maxlength' => 13, 'pattern'=>'[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}', 'required']) }}
+            {!! $errors->first('phone', '<div class="invalid-feedback">:message</div>') !!}
 
         </div>
         <div class="form-group" hidden>
