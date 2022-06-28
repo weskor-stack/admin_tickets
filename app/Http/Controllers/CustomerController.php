@@ -47,11 +47,31 @@ class CustomerController extends Controller
     {
         request()->validate(Customer::$rules);
 
-        $customer = Customer::create($request->all());
+       $customers = request()->except('_token');
 
-        //return redirect()->route('tickets.create')
-        return redirect()->back()
-            ->with('success', __('Customer created successfully'));
+       $customer = Customer::select('name')
+        ->where('name', '=', $customers['name'])->get();
+
+        //$customer = preg_replace('/[^0-9]/', '', $customer);
+       $customer = explode('"',$customer);
+
+        //return response()->json( $customer[3]);
+
+        //return response()->json( $customers['name']);
+        if ($customer[3] == $customers['name']) {
+            return redirect()->back()
+            ->with('success', __('Duplicate customer, please perform the process again.'));
+        }else{
+        //
+            //return response()->json( $customers);
+            Customer::insert($customers);
+
+            //$customer = Customer::create($request->all());
+
+            //return redirect()->route('tickets.create')
+            return redirect()->back()
+                ->with('success', __('Customer created successfully'));
+            }
     }
 
     /**

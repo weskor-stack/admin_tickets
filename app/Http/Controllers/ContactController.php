@@ -65,7 +65,7 @@ class ContactController extends Controller
 
         $contact['user_id'] = $contacts['user_id'];
 
-        //return response()->json( $contact);
+        //return response()->json( $contacts);
         Contact::insert($contact);
         //$contact = Contact::create($request->all());
 

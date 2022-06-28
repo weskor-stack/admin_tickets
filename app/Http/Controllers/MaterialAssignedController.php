@@ -56,6 +56,8 @@ class MaterialAssignedController extends Controller
 
         $dataMaterial = request()->except('_token');
 
+        //return response()->json($dataMaterial);
+
         /*$url = redirect()->getUrlGenerator()->previous();
         $components = parse_url($url);
         parse_str($components['query'], $results);
@@ -95,11 +97,13 @@ class MaterialAssignedController extends Controller
             $data->stock=$result;
             $data->save();
 
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return redirect()->route('service-orders.index','id_ticket='.$dataMaterial['service_order_id'])
             ->with('success', __('Material created successfully'));
             
         }else {
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
+
+            
+            return redirect()->route('service-orders.index','id_ticket='.$dataMaterial['service_order_id'])
             ->with('success', __('Insufficient').' '.'material.');
         }
 
@@ -108,7 +112,7 @@ class MaterialAssignedController extends Controller
 
         //$materialAssigned = MaterialAssigned::create($request->all());
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$dataMaterial->service_order_id)
             ->with('success', 'Material'.' '.__('created successfully'));
     }
 
@@ -152,6 +156,9 @@ class MaterialAssignedController extends Controller
     public function update(Request $request, MaterialAssigned $materialAssigned)
     {
         request()->validate(MaterialAssigned::$rules);
+
+        $materialAssigneds = request()->except('_token');
+        return response()->json($materialAssigneds);
 
         $material_stock = Material::select('stock')
         ->where('material_id', '=', $materialAssigned['material_id'])->get();
@@ -197,7 +204,7 @@ class MaterialAssignedController extends Controller
             ->with('success', __('Insufficient').' '.'material.');
         }
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$materialAssigneds->service_order_id)
             ->with('success', 'MaterialAssigned updated successfully');
     }
 
@@ -208,7 +215,7 @@ class MaterialAssignedController extends Controller
      */
     public function destroy($id)
     {
-        $serviceOrder = ServiceOrder::find($id);
+        //$serviceOrder = ServiceOrder::find($id);
         
         //$materialAssigned = MaterialAssigned::find($id)->delete();
         $materialAssigned = MaterialAssigned::find($id);
@@ -225,6 +232,10 @@ class MaterialAssignedController extends Controller
         
         $result = $material_stock + $materialAssigned['quantity'];
 
+        $serviceOrder = $materialAssigned->service_order_id;
+
+        //return response()->json($serviceOrder);
+
         $data = Material::find($materialAssigned['material_id']);
         $data->stock=$result;
         $data->save();
@@ -233,11 +244,11 @@ class MaterialAssignedController extends Controller
 
         $materialAssigned = MaterialAssigned::find($id)->delete();
 
-        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+        /*$serviceOrder = ServiceOrder::select('service_order_id')->get();
 
-        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
         
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder)
             ->with('success', __('The material') .' '.__('deleted successfully'));
     }
 }

@@ -223,6 +223,10 @@ class ToolAssignedController extends Controller
         
         $result = $tool_stock + $toolAssigned['quantity'];
 
+        $serviceOrder = $toolAssigned->service_order_id;
+
+        //return response()->json($serviceOrder);
+
         $data = Tool::find($toolAssigned['tool_id']);
         $data->stock=$result;
         $data->save();
@@ -230,11 +234,11 @@ class ToolAssignedController extends Controller
         $toolAssigned = ToolAssigned::find($id)->delete();
         //return response()->json($result);
 
-        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+        /*$serviceOrder = ServiceOrder::select('service_order_id')->get();
 
-        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder)
             ->with('success', __('The tool').' '.__('deleted successfully'));
     }
 }

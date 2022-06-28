@@ -114,7 +114,7 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                                 </div>
                                                 
-                                                <div class="modal fade" id="dialogo1">
+                                                <div class="modal fade" id="dialogo1" data-backdrop="static">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 
@@ -126,6 +126,7 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
+                                                                        <!--<input type="number" name="message" id="message"> <br>-->
                                                                         <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
                                                                         <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="" style="width:80px;" disabled><br>
                                                                         <form method="POST" action="{{ route('material-assigneds.store') }}"  role="form" enctype="multipart/form-data">
@@ -149,7 +150,22 @@
                                                                                 document.getElementById("text1").value = countryId;
                                                                                 document.getElementById("text2").value = unity;
                                                                                 //alert( "{{ __('unit_measure')}}: " + unity + "\n" + "{{ __('Stock')}}: " + countryId );
+                                                                                
+                                                                                //alert(quantity);
                                                                             });
+
+                                                                            /*$('#message').on("keyup", function(){
+                                                                                var x = $('#message').val();
+                                                                                var y = document.getElementById("text1").value;
+                                                                                if (x>y) {
+                                                                                    alert("No hay suficiente material");
+                                                                                }
+                                                                            });
+                                                                            /*function elementoCantidad(elemento){
+ 
+                                                                                alert("s");
+
+                                                                            }*/
                                                                         </script>
                                                                     </div>                                                            
                                                                 </div>
@@ -166,7 +182,7 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                                 </div>
                                                         
-                                                <div class="modal fade" id="dialogo2">
+                                                <div class="modal fade" id="dialogo2" data-backdrop="static">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 
@@ -213,7 +229,7 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                                 </div>
 
-                                                <div class="modal fade" id="dialogo3">
+                                                <div class="modal fade" id="dialogo3" data-backdrop="static">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
 

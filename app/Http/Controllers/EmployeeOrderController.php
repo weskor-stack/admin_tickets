@@ -129,13 +129,20 @@ class EmployeeOrderController extends Controller
     {
         $serviceOrder = ServiceOrder::find($id);
 
+        $employeeOrder = EmployeeOrder::find($id);
+        //$employeeOrder = EmployeeOrder::find($id)->delete();
+
+        $serviceOrder = $employeeOrder->service_order_id;
+
+        //return response()->json($serviceOrder);
+
         $employeeOrder = EmployeeOrder::find($id)->delete();
+        
+        /*$serviceOrder = ServiceOrder::select('service_order_id')->get();
 
-        $serviceOrder = ServiceOrder::select('service_order_id')->get();
+        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
 
-        $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
-
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
+        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder)
             ->with('success', __('Employee deleted successfully'));
     }
 }

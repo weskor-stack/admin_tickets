@@ -16,9 +16,12 @@
             <br>
         </div>
         <div class="form-group">
-            <strong>{{ __('Quantity')}}</strong>
-            {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.01', 'min'=>'0', 'required']) }}
+            <strong>{{ __('Quantity')}}</strong> <br>
+            <!--{{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'id'=>'quantity', 'name'=>'quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.1', 'min'=>'0', 'required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
+            <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="2" step="0.1" min="0" onkeydown="elementoCantidad(this)" value=" " required>-->
+
+            <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="2" step="0.1" min="0" required>            
         </div>
         <div class="form-group" hidden>
             {{ Form::label('Unit measure') }}
