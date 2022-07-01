@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Customer
  *
  * @property $customer_id
+ * @property $key
  * @property $name
  * @property $address
  * @property $email
@@ -30,7 +31,6 @@ class Customer extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     static $rules = [
-		'customer_id' => 'required',
 		'name' => 'required',
 		'address' => 'required',
 		'email' => 'required',
@@ -45,6 +45,7 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = ['customer_id','name','address','email','status_id','user_id','date_registration'];
+    //protected $fillable = ['customer_id','key','name','address','email','phone','status_id','user_id','date_registration'];
 
 
     /**

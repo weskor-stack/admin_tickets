@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class ToolAssigned
  *
+ * @property $tool_assigned_id
  * @property $tool_id
  * @property $quantity
- * @property $unit_measure
- * @property $usage
  * @property $service_order_id
  * @property $user_id
  * @property $date_registration
@@ -28,8 +27,12 @@ class ToolAssigned extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     static $rules = [
-        'tool_id' => 'required',
+		//'tool_assigned_id' => 'required',
+		'tool_id' => 'required',
 		'quantity' => 'required',
+		//'service_order_id' => 'required',
+		//'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -40,7 +43,7 @@ class ToolAssigned extends Model
      * @var array
      */
     protected $fillable = ['tool_id','quantity'];
-    //protected $fillable = ['quantity','unit_measure','usage','user_id'];
+    //protected $fillable = ['tool_assigned_id','tool_id','quantity','service_order_id','user_id','date_registration'];
 
 
     /**

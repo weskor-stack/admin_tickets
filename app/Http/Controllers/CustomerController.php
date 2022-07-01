@@ -46,6 +46,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         request()->validate(Customer::$rules);
+        $statement = DB::statement("SET @user_id = 9999");
 
        $customers = request()->except('_token');
 

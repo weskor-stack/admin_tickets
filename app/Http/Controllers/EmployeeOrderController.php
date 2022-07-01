@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EmployeeOrder;
 use App\Models\Employee;
 use App\Models\ServiceOrder;
+use DB;
 use Illuminate\Http\Request;
 
 /**
@@ -50,6 +51,7 @@ class EmployeeOrderController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(EmployeeOrder::$rules);
 
         $employeeOrder = request()->except('_token');
@@ -127,12 +129,18 @@ class EmployeeOrderController extends Controller
      */
     public function destroy($id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         $serviceOrder = ServiceOrder::find($id);
 
         $employeeOrder = EmployeeOrder::find($id);
         //$employeeOrder = EmployeeOrder::find($id)->delete();
 
         $serviceOrder = $employeeOrder->service_order_id;
+
+        $reports2 = ServiceOrder::select('ticket_id')
+        ->where('service_order_id', '=', $serviceOrder)->get();
+
+        $reports2 = preg_replace('/[^0-9]/', '', $reports2);
 
         //return response()->json($serviceOrder);
 
@@ -142,7 +150,7 @@ class EmployeeOrderController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
 
-        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder)
+        return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', __('Employee deleted successfully'));
     }
 }

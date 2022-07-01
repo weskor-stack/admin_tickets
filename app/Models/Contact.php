@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $date_registration
  *
  * @property Customer $customer
+ * @property ServiceTaskSpecific[] $serviceTaskSpecifics
  * @property Status $status
  * @property Ticket[] $tickets
  * @package App
@@ -47,7 +48,6 @@ class Contact extends Model
      *
      * @var array
      */
-    //protected $fillable = ['customer_id','name'];
     protected $fillable = ['name','last_name','email','phone','customer_id','status_id','user_id'];
 
 
@@ -57,6 +57,14 @@ class Contact extends Model
     public function customer()
     {
         return $this->hasOne('App\Models\Customer', 'customer_id', 'customer_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function serviceTaskSpecifics()
+    {
+        return $this->hasMany('App\Models\ServiceTaskSpecific', 'contact_id', 'contact_id');
     }
     
     /**

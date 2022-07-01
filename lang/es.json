@@ -861,5 +861,6 @@
     "Select employee": "Seleccionar empleado",
     "ID Employees":"No. de empleado",
     "ServiceReport deleted successfully": "Eliminado correctamente",
-    "Duplicate customer, please perform the process again.":"Cliente duplicado, favor de realizar nuevamente el proceso"
+    "Duplicate customer, please perform the process again.":"Cliente duplicado, favor de realizar nuevamente el proceso",
+    "Activity": "Actividad"
 }

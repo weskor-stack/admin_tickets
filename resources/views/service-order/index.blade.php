@@ -495,7 +495,7 @@
 											<td style="width:20%">{{ $materialAssigned->material->key }}</td>
 											<td style="width:20%">{{ $materialAssigned->quantity }}</td>
                                             <td style="width:20%" hidden>{{ $materialAssigned->material->stock }}</td>
-											<td style="width:20%">{{ $materialAssigned->material->unit_measure }}</td>
+											<td style="width:20%">{{ $materialAssigned->material->unitMeasure->name }}</td>
 											
 
                                             <td style="width:20%">
@@ -567,7 +567,7 @@
 											<td style="width:20%">{{ $toolAssigned->tool->key }}</td>
 											<td style="width:20%">{{ $toolAssigned->quantity }}</td>
 											<td style="width:20%" hidden>{{ $toolAssigned->tool->stock }}</td>
-											<td style="width:20%">{{ $toolAssigned->tool->unit_measure }}</td>
+											<td style="width:20%">{{ $toolAssigned->tool->unitMeasure->name }}</td>
 
                                             <td style="width:20%">
                                                 @if($serviceOrder->status_order_id=='3')

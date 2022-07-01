@@ -6,6 +6,7 @@ use App\Models\ToolAssigned;
 use App\Models\Tool;
 use App\Models\ServiceOrder;
 use Illuminate\Http\Request;
+use DB;
 
 /**
  * Class ToolAssignedController
@@ -50,6 +51,7 @@ class ToolAssignedController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(ToolAssigned::$rules);
 
         $dataTool = request()->except('_token');
@@ -69,12 +71,14 @@ class ToolAssignedController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $reports2);
 
-        $tool = Tool::select('unit_measure')
-        ->where('tool_id', '=', $dataTool['tool_id'])->get();
+        /*$tool = Tool::select('unit_measure_id')
+        ->where('tool_id', '=', $dataTool['tool_id'])->get();*/
 
-        $tool = explode('"',$tool);
+        //$tool = explode('"',$tool);
 
-        $dataTool ['unit_measure'] = $tool[3];
+        //$dataTool ['unit_measure_id'] = $tool[3];
+
+        //return response()->json($tool);
 
         $tool_stock = Tool::select('stock')
         ->where('tool_id', '=', $dataTool['tool_id'])->get();
@@ -92,9 +96,9 @@ class ToolAssignedController extends Controller
             
             ToolAssigned::insert($dataTool);
 
-            $data = Tool::find($dataTool['tool_id']);
+            /*$data = Tool::find($dataTool['tool_id']);
             $data->stock=$result;
-            $data->save();
+            $data->save();*/
 
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', __('Tool created successfully'));
@@ -147,7 +151,8 @@ class ToolAssignedController extends Controller
      */
     public function update(Request $request, ToolAssigned $toolAssigned)
     {
-        request()->validate(ToolAssigned::$rules);
+        $statement = DB::statement("SET @user_id = 9999");
+        $toolAssigneds = request()->validate(ToolAssigned::$rules);
 
         $tool_stock = Tool::select('stock')
         ->where('tool_id', '=', $toolAssigned['tool_id'])->get();
@@ -156,17 +161,17 @@ class ToolAssignedController extends Controller
         
         $tool_stock = (int)$tool_stock;
 
-        $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
+        $toolAssigneds['quantity'] = (int)$toolAssigneds['quantity'];
 
-        $data_toolAssigned = $toolAssigned['quantity'];
+        $data_toolAssigned = $toolAssigneds['quantity'];
 
         $result = $tool_stock + $data_toolAssigned;
 
-        $toolAssigned->update($request->all());
+        
 
         $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
 
-        $result2 = $result - $toolAssigned['quantity'];
+        $result2 = $tool_stock - $toolAssigneds['quantity'];
 
         //return response()->json($result2);
 
@@ -174,24 +179,25 @@ class ToolAssignedController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
 
-        if ($result2 >= 0) {
+        if ($result2 < 0) {
             
-            $data = Tool::find($toolAssigned['tool_id']);
+            /*$data = Tool::find($toolAssigned['tool_id']);
             $data->stock=$result2;
-            $data->save();
+            $data->save();*/
 
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', __('The tool').' '.__('updated successfully'));
+            ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);            
             
         }else {
-            $toolAssigned->quantity=$data_toolAssigned;
+            //$toolAssigned->quantity=$data_toolAssigned;
         
-            $toolAssigned->save();
+            //$toolAssigned->save();
+            $toolAssigned->update($request->all());
             //return response()->json($materialAssigned);
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
             return redirect()->back()
-            ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);
+            ->with('success', __('The tool').' '.__('updated successfully'));
         }
 
         return redirect()->route('tool-assigneds.index')
@@ -205,6 +211,7 @@ class ToolAssignedController extends Controller
      */
     public function destroy($id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         $serviceOrder = ServiceOrder::find($id);
 
         //$toolAssigned = ToolAssigned::find($id)->delete();
@@ -212,7 +219,7 @@ class ToolAssignedController extends Controller
 
         //return response()->json($toolAssigned);
 
-        $tool_stock = Tool::select('stock')
+        /*$tool_stock = Tool::select('stock')
         ->where('tool_id', '=', $toolAssigned['tool_id'])->get();
 
         $toolAssigned['quantity'] = (int)$toolAssigned['quantity'];
@@ -221,15 +228,22 @@ class ToolAssignedController extends Controller
         
         $tool_stock = (int)$tool_stock;
         
-        $result = $tool_stock + $toolAssigned['quantity'];
+        $result = $tool_stock + $toolAssigned['quantity'];*/
 
         $serviceOrder = $toolAssigned->service_order_id;
 
+        $reports2 = ServiceOrder::select('ticket_id')
+        ->where('service_order_id', '=', $serviceOrder)->get();
+
+        $reports2 = preg_replace('/[^0-9]/', '', $reports2);
+
+        //return response()->json($reports2);
+
         //return response()->json($serviceOrder);
 
-        $data = Tool::find($toolAssigned['tool_id']);
+        /*$data = Tool::find($toolAssigned['tool_id']);
         $data->stock=$result;
-        $data->save();
+        $data->save();*/
 
         $toolAssigned = ToolAssigned::find($id)->delete();
         //return response()->json($result);
@@ -238,7 +252,7 @@ class ToolAssignedController extends Controller
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);*/
 
-        return redirect()->route('service-orders.index','id_ticket='.$serviceOrder)
+        return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', __('The tool').' '.__('deleted successfully'));
     }
 }

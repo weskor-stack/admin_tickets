@@ -13,6 +13,7 @@ use App\Models\ReportStatus;
 use App\Models\Priority;
 use App\Models\Customer;
 use App\Models\Material;
+use App\Models\UnitMeasure;
 use App\Models\MaterialAssigned;
 use App\Models\ToolAssigned;
 use App\Models\Tool;
@@ -61,6 +62,7 @@ class ServiceOrderController extends Controller
         $material = Material::select(DB::raw("CONCAT(material.key, ' - ', material.name) as full_name"))
         ->get()->pluck('full_name');
         $materials = Material::all();
+        $unit_measure = UnitMeasure::all();
         //$material = Material::pluck('key','material_id');
 
         $toolAssigned = new ToolAssigned();
@@ -83,17 +85,24 @@ class ServiceOrderController extends Controller
 
         $serviceOrder_all = preg_replace('/[^0-9]/', '', $serviceOrder_all);
 
-        $serviceOrder = ServiceOrder::find($datas);
+        //return response()->json($serviceOrder_all);
+
+        $serviceOrder2 = ServiceOrder::select('service_order_id')
+        ->where('ticket_id', '=', $datas)->get();
+        
+        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+        
+        $serviceOrder = ServiceOrder::find($serviceOrder2);
 
         //return response()->json($serviceOrder);
 
         $serviceOrder2 = ServiceOrder::select('service_order_id')
         ->where('ticket_id', '=', $datas)->get();
 
-        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'unit_measure', 'usage', 'service_order_id', 'user_id', 'date_registration')
+        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder_all[0])->get();
 
-        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'unit_measure', 'usage', 'service_order_id', 'user_id', 'date_registration')
+        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder_all[0])->get();
 
         $employeeOrders = EmployeeOrder::select('service_order_id', 'employee_id', 'user_id', 'date_registration')
@@ -136,7 +145,7 @@ class ServiceOrderController extends Controller
         //return response()->json($supervisors);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
-        'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2'))
+        'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
     }
 
@@ -275,6 +284,7 @@ class ServiceOrderController extends Controller
     {
         request()->validate(ServiceOrder::$rules);
 
+        $statement = DB::statement("SET @user_id = 9999");
         $serviceOrders = ServiceOrder::select('service_order_id')
         ->where('service_order_id', '=', $serviceOrder->ticket_id)->get();
         

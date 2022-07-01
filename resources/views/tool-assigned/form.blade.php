@@ -9,7 +9,7 @@
             <select class="form-select" id="tool_id" name="tool_id" required>
                 <option value="">--{{ __('Select tool')}}--</option>
                 @foreach ($tools as $item)
-                    <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unit_measure}}">{{$item->key}} - {{$item->name}}</option>
+                    <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
                 @endforeach
             </select>
         </div>
@@ -19,17 +19,7 @@
             {{ Form::number('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'step'=>'0.01', 'min'=>'0','required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <div class="form-group" hidden>
-            {{ Form::label('Unit measure:') }}
-            {{ Form::text('unit_measure', "", ['class' => 'form-control' . ($errors->has('unit_measure') ? ' is-invalid' : ''), 'placeholder' => 'Unit Measure']) }}
-            {!! $errors->first('unit_measure', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group" hidden>
-            {{ Form::label('Usage:') }}
-            {{ Form::text('usage', "", ['class' => 'form-control' . ($errors->has('usage') ? ' is-invalid' : ''), 'placeholder' => 'Usage']) }}
-            {!! $errors->first('usage', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-
+        
         <div class="form-group" hidden>
             {{ Form::label('service order') }}
             {{ Form::text('service_order_id', $serviceOrder->service_order_id, ['class' => 'form-control' . ($errors->has('usage') ? ' is-invalid' : ''), 'placeholder' => 'service_order_id']) }}
@@ -38,7 +28,7 @@
         
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 0) }}
+            {{ Form::text('user_id', 9999) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>

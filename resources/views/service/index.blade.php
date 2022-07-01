@@ -435,10 +435,10 @@
                         <div>
                             <div class="card-body">
                             @if ($activity2->isEmpty())
-                                <form method="POST" action="{{ route('activities.store') }}"  role="form" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('service-task-specifics.store') }}"  role="form" enctype="multipart/form-data">
                                     @csrf
 
-                                    @include('activity.form2')
+                                    @include('service-task-specific.form')
 
                                 </form>
                             @else
@@ -459,13 +459,13 @@
                                                             <h5>{{ __('Before')}}:</h5>
 
                                                             <div class="form-group">
-                                                                <img src="{{ asset('app/public').'/'.$activity->previous_evidence }}" width="200" height="200" alt="">
+                                                                <img src="{{ asset('app/public').'/'.$serviceTaskSpecific->previous_evidence }}" width="200" height="200" alt="">
                                                             </div>
                                                         </td>
                                                         <td align="center">
                                                             <h5>{{ __('After') }}:</h5>
                                                             <div class="form-group">
-                                                                <img src="{{ asset('app/public').'/'.$activity->subsequent_evidence }}" width="200" height="200" alt="">
+                                                                <img src="{{ asset('app/public').'/'.$serviceTaskSpecific->subsequent_evidence }}" width="200" height="200" alt="">
                                                             </div>
                                                         </td>
                                                         <br>
@@ -474,7 +474,7 @@
                                         </div>
                                         <div>
                                             <legend>{{ __('Signature') }}:</legend><br>
-                                            <img src="{{  $activity->signature_evidence }}" width="100%" height="300" alt="">
+                                            <img src="{{  $serviceTaskSpecific->signature_evidence }}" width="100%" height="300" alt="">
                                         </div>
                                         <div>
                                             <table class="table table-striped table-hover">
@@ -482,15 +482,15 @@
                                                     <td>
                                                         <div class="form-group">
                                                             <legend style="text-align:center">{{ __('Executor')}}</legend>
-                                                            {{ Form::text('executor', $activity->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center']) }}
-                                                            {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}
+                                                            {{ Form::text('employee_id', $serviceTaskSpecific->executor, ['class' => 'form-control' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center','required']) }}
+                                                            {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <div class="form-group">
                                                             <legend style="text-align:center">{{ __('Customer')}}</legend>
-                                                            {{ Form::text('customer', $activity->customer, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center']) }}
-                                                            {!! $errors->first('customer', '<div class="invalid-feedback">:message</div>') !!}
+                                                            {{ Form::text('contact_id', $serviceTaskSpecific->customer, ['class' => 'form-control' . ($errors->has('contact_id') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50,'disabled', 'style'=>'text-align:center','required']) }}
+                                                            {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
                                                         </div>
                                                     </td>
                                                 </tr>

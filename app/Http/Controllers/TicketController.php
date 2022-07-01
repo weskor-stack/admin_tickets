@@ -79,6 +79,7 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         request()->validate(Ticket::$rules);
+        $statement = DB::statement("SET @user_id = 9999");
 
         $tickets = request()->except('_token');
 

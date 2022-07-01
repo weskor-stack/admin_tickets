@@ -1,9 +1,9 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         
-        <div class="form-group">
+        <div class="form-group" hidden>
             {{ Form::label( __('customer_id')) }}
-            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 10, 'minlength'=>10, 'required']) }}
+            {{ Form::text('customer_id', $customer->customer_id, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 10, 'minlength'=>10, 'hidden']) }}
             <!--<input type="text" name="customer_id" id="customer_id" class="form-control" maxlength="10" minlength="10" placeholder="{{ __('customer_id') }}" required>-->
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>

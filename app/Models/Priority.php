@@ -12,17 +12,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property $user_id
  * @property $date_registration
  *
- * @property Service[] $services
+ * @property Ticket[] $tickets
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Priority extends Model
 {
-    protected $table = 'priority';
-    protected $primaryKey = 'priority_id';
-    public $incrementing = false;
-    protected $keyType = 'string';
-    public $timestamps = false;
+  protected $table = 'priority';
+  protected $primaryKey = 'priority_id';
+  public $incrementing = false;
+  protected $keyType = 'string';
+  public $timestamps = false;
     static $rules = [
 		'name' => 'required',
 		'user_id' => 'required',
@@ -36,12 +36,13 @@ class Priority extends Model
      * @var array
      */
     protected $fillable = ['name','user_id'];
+    //protected $fillable = ['priority_id','name','user_id','date_registration'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function ticket()
+    public function tickets()
     {
         return $this->hasMany('App\Models\Ticket', 'priority_id', 'priority_id');
     }

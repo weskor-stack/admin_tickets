@@ -32,6 +32,7 @@ class ServiceReport extends Model
     public $incrementing = false;
     public $timestamps = false;
     static $rules = [
+		//'service_report_id' => 'required',
 		'time_entry' => 'required',
 		'time_completion' => 'required',
 		'lunchtime' => 'required',
@@ -39,8 +40,10 @@ class ServiceReport extends Model
 		'service_extras' => 'required',
 		'duration_travel' => 'required',
 		'date_service' => 'required',
+		//'service_id' => 'required',
 		'employee_id' => 'required',
 		'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -51,6 +54,7 @@ class ServiceReport extends Model
      * @var array
      */
     protected $fillable = ['time_entry','time_completion','lunchtime','service_hours','service_extras','duration_travel','date_service','employee_id','user_id'];
+    //protected $fillable = ['service_report_id','time_entry','time_completion','lunchtime','service_hours','service_extras','duration_travel','date_service','service_id','employee_id','user_id','date_registration'];
 
 
     /**

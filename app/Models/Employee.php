@@ -18,9 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property EmployeeOrder[] $employeeOrders
  * @property ServiceReport[] $serviceReports
+ * @property ServiceTaskSpecific[] $serviceTaskSpecifics
  * @property Status $status
- * @property SupervisorEmploye[] $supervisorEmployes
- * @property SupervisorEmploye[] $supervisorEmployes
+ * @property SupervisorEmployee[] $supervisorEmployees
+ * @property SupervisorEmployee[] $supervisorEmployees
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -32,14 +33,12 @@ class Employee extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     static $rules = [
-		'employee_id' => 'required',
 		'name' => 'required',
 		'last_name' => 'required',
 		'email' => 'required',
 		'picture' => 'required',
 		'status_id' => 'required',
 		'user_id' => 'required',
-		'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -49,7 +48,7 @@ class Employee extends Model
      *
      * @var array
      */
-    protected $fillable = ['employee_id','name','last_name','email','picture','status_id','user_id','date_registration'];
+    protected $fillable = ['name','last_name','email','picture','status_id','user_id'];
 
 
     /**
@@ -69,6 +68,14 @@ class Employee extends Model
     }
     
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function serviceTaskSpecifics()
+    {
+        return $this->hasMany('App\Models\ServiceTaskSpecific', 'employee_id', 'employee_id');
+    }
+    
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function status()
@@ -79,9 +86,17 @@ class Employee extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function supervisorEmployes()
+    public function supervisorEmployees()
     {
-        return $this->hasMany('App\Models\SupervisorEmploye', 'employee_employee_id', 'employee_id');
+        return $this->hasMany('App\Models\SupervisorEmployee', 'supervisor_employee_id', 'employee_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function supervisorEmployees2()
+    {
+        return $this->hasMany('App\Models\SupervisorEmployee', 'employee_id', 'employee_id');
     }
     
 

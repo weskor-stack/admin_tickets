@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Contact[] $contacts
  * @property Customer[] $customers
  * @property Employee[] $employees
+ * @property EmployeeOrder[] $employeeOrders
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -25,7 +26,10 @@ class Status extends Model
     public $incrementing = false;
     public $timestamps = false;
     static $rules = [
+		//'status_id' => 'required',
 		'name' => 'required',
+		//'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -36,6 +40,7 @@ class Status extends Model
      * @var array
      */
     protected $fillable = ['name','user_id'];
+    //protected $fillable = ['status_id','name','user_id','date_registration'];
 
 
     /**
@@ -60,6 +65,14 @@ class Status extends Model
     public function employees()
     {
         return $this->hasMany('App\Models\Employee', 'status_id', 'status_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function employeeOrders()
+    {
+        return $this->hasMany('App\Models\EmployeeOrder', 'status_id', 'status_id');
     }
     
 

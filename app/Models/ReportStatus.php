@@ -18,10 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ReportStatus extends Model
 {
-    protected $table = 'report_status';
-    protected $primaryKey = 'status_report_id';
-    public $incrementing = false;
-    public $timestamps = false;
+  protected $table = 'report_status';
+  protected $primaryKey = 'status_report_id';
+  public $incrementing = false;
+  public $timestamps = false;
     static $rules = [
 		'name' => 'required',
     ];
@@ -34,6 +34,7 @@ class ReportStatus extends Model
      * @var array
      */
     protected $fillable = ['name','user_id'];
+    //protected $fillable = ['status_report_id','name','user_id','date_registration'];
 
 
     /**

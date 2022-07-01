@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
  * Class SupervisorEmployee
  *
  * @property $supervisor_employee_id
- * @property $employee_employee_id
- * @property $department_department_id
+ * @property $employee_id
+ * @property $department_id
+ * @property $user_id
+ * @property $date_registration
  *
  * @property Department $department
+ * @property Employee $employee
  * @property Employee $employee
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -19,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 class SupervisorEmployee extends Model
 {
     protected $table = 'supervisor_employee';
-    protected $primaryKey = 'supervisor_employee_employee_id';
+    protected $primaryKey = 'supervisor_employee_id';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
@@ -27,6 +30,8 @@ class SupervisorEmployee extends Model
 		'supervisor_employee_id' => 'required',
 		'employee_id' => 'required',
 		'department_id' => 'required',
+		//'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,6 +42,7 @@ class SupervisorEmployee extends Model
      * @var array
      */
     protected $fillable = ['supervisor_employee_id','employee_id','department_id'];
+    //protected $fillable = ['supervisor_employee_id','employee_id','department_id','user_id','date_registration'];
 
 
     /**
@@ -52,11 +58,16 @@ class SupervisorEmployee extends Model
      */
     public function employee()
     {
+        return $this->hasOne('App\Models\Employee', 'employee_id', 'supervisor_employee_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function employee2()
+    {
         return $this->hasOne('App\Models\Employee', 'employee_id', 'employee_id');
     }
     
-    public function employee2()
-    {
-        return $this->hasOne('App\Models\Employee', 'employee_id', 'supervisor_employee_id');
-    }
+
 }

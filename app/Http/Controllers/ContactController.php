@@ -48,6 +48,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         request()->validate(Contact::$rules);
+        $statement = DB::statement("SET @user_id = 9999");
 
         $contacts = request()->except('_token');
 

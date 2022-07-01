@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class MaterialAssigned
  *
+ * @property $material_assigned_id
  * @property $material_id
  * @property $quantity
- * @property $unit_measure
- * @property $usage
  * @property $service_order_id
  * @property $user_id
  * @property $date_registration
@@ -28,7 +27,7 @@ class MaterialAssigned extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     static $rules = [
-        'material_id' => 'required',
+		'material_id' => 'required',
 		'quantity' => 'required',
     ];
 
@@ -40,8 +39,7 @@ class MaterialAssigned extends Model
      * @var array
      */
     protected $fillable = ['material_id','quantity'];
-    //protected $fillable = ['quantity','unit_measure','usage','user_id'];
-
+    //protected $fillable = ['material_id','quantity','service_order_id','user_id','date_registration'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

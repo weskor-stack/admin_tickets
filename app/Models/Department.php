@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $user_id
  * @property $date_registration
  *
- * @property Employee[] $employees
+ * @property SupervisorEmployee[] $supervisorEmployees
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -41,9 +41,9 @@ class Department extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function employees()
+    public function supervisorEmployees()
     {
-        return $this->hasMany('App\Models\Employee', 'department_id', 'department_id');
+        return $this->hasMany('App\Models\SupervisorEmployee', 'department_id', 'department_id');
     }
     
 

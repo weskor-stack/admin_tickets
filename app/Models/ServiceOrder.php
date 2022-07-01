@@ -33,12 +33,15 @@ class ServiceOrder extends Model
     protected $primaryKey = 'service_order_id';
     public $incrementing = false;
     public $timestamps = false;
-    
     static $rules = [
+		//'service_order_id' => 'required',
 		'date_order' => 'required',
+		//'ticket_id' => 'required',
 		'type_maintenance_id' => 'required',
 		'type_service_id' => 'required',
+		//'status_order_id' => 'required',
 		'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -49,6 +52,7 @@ class ServiceOrder extends Model
      * @var array
      */
     protected $fillable = ['date_order', 'ticket_id', 'type_maintenance_id','type_service_id','user_id'];
+    //protected $fillable = ['service_order_id','date_order','ticket_id','type_maintenance_id','type_service_id','status_order_id','user_id','date_registration'];
 
 
     /**

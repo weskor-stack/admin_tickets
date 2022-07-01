@@ -14,11 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property $status_ticket_id
  * @property $customer_id
  * @property $contact_id
+ * @property $priority_id
  * @property $user_id
  * @property $date_registration
  *
  * @property Contact $contact
  * @property Customer $customer
+ * @property Priority $priority
  * @property ServiceOrder[] $serviceOrders
  * @property TicketStatus $ticketStatus
  * @property TicketTracking[] $ticketTrackings
@@ -34,10 +36,11 @@ class Ticket extends Model
     static $rules = [
 		'subject' => 'required',
 		'problem' => 'required',
+		//'status_ticket_id' => 'required',
 		'customer_id' => 'required',
 		'contact_id' => 'required',
-		'user_id' => 'required',
-        'priority_id' => 'required',
+        'user_id' => 'required',
+		'priority_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -48,6 +51,7 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = ['subject', 'ticket_id','problem','customer_id','contact_id','user_id'];
+    //protected $fillable = ['subject','problem','date_ticket','customer_id','contact_id','priority_id','user_id'];
 
 
     /**
@@ -64,6 +68,14 @@ class Ticket extends Model
     public function customer()
     {
         return $this->hasOne('App\Models\Customer', 'customer_id', 'customer_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function priority()
+    {
+        return $this->hasOne('App\Models\Priority', 'priority_id', 'priority_id');
     }
     
     /**
@@ -88,14 +100,6 @@ class Ticket extends Model
     public function ticketTrackings()
     {
         return $this->hasMany('App\Models\TicketTracking', 'ticket_id', 'ticket_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function priority()
-    {
-        return $this->hasOne('App\Models\Priority', 'priority_id', 'priority_id');
     }
     
 

@@ -18,12 +18,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TypeMaintenance extends Model
 {
-    protected $table = 'type_maintenance';
+     protected $table = 'type_maintenance';
     protected $primaryKey = 'type_maintenance_id';
     public $incrementing = false;
-    public $timestamps = false;    
+    public $timestamps = false;
     static $rules = [
+		//'type_maintenance_id' => 'required',
 		'name' => 'required',
+		//'user_id' => 'required',
+		//'date_registration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -34,6 +37,7 @@ class TypeMaintenance extends Model
      * @var array
      */
     protected $fillable = ['name','user_id'];
+    //protected $fillable = ['type_maintenance_id','name','user_id','date_registration'];
 
 
     /**

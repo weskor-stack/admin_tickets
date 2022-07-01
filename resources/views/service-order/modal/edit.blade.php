@@ -11,8 +11,8 @@
                 <!-- cuerpo del diálogo -->
                     <div class="modal-body">
                         <div class="card-body">
-                            <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="{{$materialAssigned->material->stock + $materialAssigned->quantity}}" style="width:70px;" disabled> &nbsp;&nbsp; 
-                            <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="{{$materialAssigned->material->unit_measure}}" style="width:80px;" disabled><br> <br>
+                            <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="{{$materialAssigned->material->stock}}" style="width:70px;" disabled> &nbsp;&nbsp; 
+                            <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="{{$materialAssigned->material->unitMeasure->name}}" style="width:80px;" disabled><br> <br>
                             
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
@@ -36,19 +36,6 @@
                             <button type="submit" class="btn btn-primary btn-lg">{{ __('Edit') }}</button>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                            <div class="form-group">
-                                <strong>{{ __('Unit measure') }}:</strong>
-                                {{ Form::text('unit_measure', " ", ['class' => 'form-control' . ($errors->has('unit_measure') ? ' is-invalid' : ''), 'placeholder' => 'Unit Measure']) }}
-                                {!! $errors->first('unit_measure', '<div class="invalid-feedback">:message</div>') !!}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                            <div class="form-group">
-                                <strong>{{ __('Usage') }}:</strong>
-                                {{ Form::text('usage', " ", ['class' => 'form-control' . ($errors->has('usage') ? ' is-invalid' : ''), 'placeholder' => 'Usage']) }}
-                                {!! $errors->first('usage', '<div class="invalid-feedback">:message</div>') !!}
-                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                             <div class="form-group">
                                 <strong>{{ __('Service order') }}:</strong>

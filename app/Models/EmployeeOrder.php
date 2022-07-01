@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $service_order_id
  * @property $employee_id
+ * @property $status_id
  * @property $user_id
  * @property $date_registration
  *
  * @property Employee $employee
  * @property ServiceOrder $serviceOrder
+ * @property Status $status
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -53,6 +55,14 @@ class EmployeeOrder extends Model
     public function serviceOrder()
     {
         return $this->hasOne('App\Models\ServiceOrder', 'service_order_id', 'service_order_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function status()
+    {
+        return $this->hasOne('App\Models\Status', 'status_id', 'status_id');
     }
     
 

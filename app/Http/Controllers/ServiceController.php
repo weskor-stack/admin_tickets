@@ -12,7 +12,9 @@ use App\Models\Employee;
 use App\Models\EmployeeOrder;
 use App\Models\MaterialAssigned;
 use App\Models\ToolAssigned;
-use App\Models\Activity;
+//use App\Models\Activity;
+use App\Models\ServiceTaskSpecific;
+use DB;
 use Illuminate\Http\Request;
 
 /**
@@ -45,10 +47,10 @@ class ServiceController extends Controller
 
         $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
 
-        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'unit_measure', 'usage', 'service_order_id', 'user_id', 'date_registration')
+        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder[0])->get();
 
-        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'unit_measure', 'usage', 'service_order_id', 'user_id', 'date_registration')
+        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder[0])->get();
 
         $serviceReports = ServiceReport::select('service_report_id','time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id')
@@ -65,9 +67,9 @@ class ServiceController extends Controller
 
         $employee = Employee::pluck('name','employee_id');
 
-        $activity = new Activity();
+        $serviceTaskSpecific = new ServiceTaskSpecific();
         
-        $activity2 = Activity::select('service_id', 'description_activity', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'executor', 'customer','user_id', 'date_registration')
+        $activity2 = ServiceTaskSpecific::select('service_id', 'description_task', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'employee_id', 'contact_id','user_id', 'date_registration')
         ->where('service_id', '=', $datas)->get();
 
         $employeeOrders = EmployeeOrder::all();
@@ -76,7 +78,7 @@ class ServiceController extends Controller
         //return response()->json($activity);
 
         return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds',
-        'serviceReports','activity','activity2','employeeOrders'))
+        'serviceReports','serviceTaskSpecific','activity2','employeeOrders'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
     }
 
@@ -106,6 +108,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(Service::$rules);
         $dataService = request()->except('_token');
 
@@ -179,6 +182,7 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(Service::$rules);
 
         $service->update($request->all());
@@ -194,6 +198,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         $service = Service::find($id)->delete();
 
         return redirect()->route('services.index')

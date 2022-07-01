@@ -18,12 +18,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TicketStatus extends Model
 {
-    protected $table = 'ticket_status';
-    protected $primaryKey = 'status_ticket_id';
-    public $incrementing = false;
-    public $timestamps = false;
+  protected $table = 'ticket_status';
+  protected $primaryKey = 'status_ticket_id';
+  public $incrementing = false;
+  public $timestamps = false;
     static $rules = [
+		//'status_ticket_id' => 'required',
 		'name' => 'required',
+		/*'user_id' => 'required',
+		'date_registration' => 'required',*/
     ];
 
     protected $perPage = 20;
@@ -34,6 +37,7 @@ class TicketStatus extends Model
      * @var array
      */
     protected $fillable = ['name','user_id'];
+    //protected $fillable = ['status_ticket_id','name','user_id','date_registration'];
 
 
     /**

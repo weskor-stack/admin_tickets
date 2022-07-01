@@ -22,7 +22,7 @@
         
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 0) }}
+            {{ Form::text('user_id', 9999) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
