@@ -53,7 +53,7 @@ class ServiceReport extends Model
      *
      * @var array
      */
-    protected $fillable = ['time_entry','time_completion','lunchtime','service_hours','service_extras','duration_travel','date_service','employee_id','user_id'];
+    protected $fillable = ['time_entry','time_completion','lunchtime','service_extras','duration_travel','date_service','employee_id','user_id'];
     //protected $fillable = ['service_report_id','time_entry','time_completion','lunchtime','service_hours','service_extras','duration_travel','date_service','service_id','employee_id','user_id','date_registration'];
 
 

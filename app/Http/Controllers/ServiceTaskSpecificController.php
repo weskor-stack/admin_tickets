@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\ServiceOrder;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use DB;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -57,9 +58,10 @@ class ServiceTaskSpecificController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(ServiceTaskSpecific::$rules);
 
-        $dataActivity = request()->except('_token','signed');
+        $dataActivity = request()->except('_token','signed','contact');
 
         if ($request->hasFile('previous_evidence')) {
             $dataActivity['previous_evidence']=$request->file('previous_evidence')->store('previous_evidence','public');
@@ -71,12 +73,12 @@ class ServiceTaskSpecificController extends Controller
             # code...
         }
 
-        $image = explode(";base64,", $request->signed);
+        $image = explode(";base64,", $request->signature_evidence);
         $image_type = explode("image/", $image[0]);
         $image_type_png = $image_type[1];
         $image_base64 = base64_decode($image[1]);
 
-        $image_file = $request->signed;
+        $image_file = $request->signature_evidence;
         
         $form_data = array (
             'signature_evidence'=>$image_file
@@ -86,9 +88,11 @@ class ServiceTaskSpecificController extends Controller
         $components = parse_url($url);
         parse_str($components['query'], $results);
 
-        $dataActivity['service_id']=$results['id'];
+        //$dataActivity['service_id']=$results['id_ticket'];
 
         $dataActivity['signature_evidence']=$image_file;
+
+        //return response()->json($dataActivity['service_id']);
 
         ServiceTaskSpecific::insert($dataActivity);
 
@@ -96,11 +100,25 @@ class ServiceTaskSpecificController extends Controller
         $data->status_report_id='3';
         $data->save();
 
-        $data2 = ServiceOrder::find($dataActivity['service_id']);
-        $data2->service_order_id='3';
+        $data2 = ServiceOrder::find($results['id_ticket']);
+        $data2->status_order_id='3';
         $data2->save();
 
-        return redirect()->route('services.index')
+        $serviceOrder2 = ServiceOrder::select('ticket_id')
+        ->where('service_order_id', '=', $service2)->get();
+
+        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+
+        $data3 = Ticket::find($serviceOrder2);
+        $data3->status_ticket_id='4';
+        $data3->save();
+
+        $serviceId = Service::select('service_order_id')
+        ->where('service_id', '=', $dataActivity['service_id'])->get();
+
+        $serviceId = preg_replace('/[^0-9]/', '', $serviceId);
+
+        return redirect()->route('services.index','id_ticket='.$serviceId)
         ->with('success', 'Activity created successfully.');
         /*$serviceTaskSpecific = ServiceTaskSpecific::create($request->all());
 

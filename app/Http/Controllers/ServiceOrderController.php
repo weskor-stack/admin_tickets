@@ -182,6 +182,7 @@ class ServiceOrderController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(ServiceOrder::$rules);
 
         $serviceOrder = request()->except('_token');
@@ -288,7 +289,7 @@ class ServiceOrderController extends Controller
         $serviceOrders = ServiceOrder::select('service_order_id')
         ->where('service_order_id', '=', $serviceOrder->ticket_id)->get();
         
-        //return response()->json($serviceOrders);
+        //return response()->json($request);
 
         //$reports2 = preg_replace('/[^0-9]/', '', $serviceOrders);
 

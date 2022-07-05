@@ -11,7 +11,11 @@ use App\Models\Priority;
 use App\Models\Employee;
 use App\Models\EmployeeOrder;
 use App\Models\MaterialAssigned;
+use App\Models\MaterialUsed;
+use App\Models\Material;
 use App\Models\ToolAssigned;
+use App\Models\ToolUsed;
+use App\Models\Tool;
 //use App\Models\Activity;
 use App\Models\ServiceTaskSpecific;
 use DB;
@@ -38,47 +42,81 @@ class ServiceController extends Controller
 
 
         $service2 = Service::select('service_order_id')
-        ->where('service_id', '=', $datas)->get();
+        ->where('service_order_id', '=', $datas)->get();
 
         $service2 = preg_replace('/[^0-9]/', '', $service2);
 
         $serviceOrder = ServiceOrder::select('service_order_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $service2)->get();
 
+        $serviceOrder = explode('"',$serviceOrder);
         $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
 
         $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
-        ->where('service_order_id', '=', $serviceOrder[0])->get();
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
 
         $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
-        ->where('service_order_id', '=', $serviceOrder[0])->get();
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $service3 = Service::select('service_id')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $service3 = preg_replace('/[^0-9]/', '', $service3);
 
         $serviceReports = ServiceReport::select('service_report_id','time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id')
-        ->where('service_id', '=', $datas)->get();
+        ->where('service_id', '=', $service3)->get();
 
-        $service = Service::find($datas);
+        $service = Service::find($service3);
         
-        //return response()->json($service);
-
         /*$serviceOrder = ServiceOrder::select('service_order_id', 'date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $datas)->get();*/
         //$serviceOrder = ServiceOrder::pluck('service_order_id','service_order_id');
+
+        $materialUseds = MaterialUsed::select('material_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $toolUseds = ToolUsed::select('tool_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $materialUsed = new MaterialUsed();
+
+        $toolUsed =new ToolUsed();
+
         $serviceReport = new ServiceReport();
 
         $employee = Employee::pluck('name','employee_id');
 
         $serviceTaskSpecific = new ServiceTaskSpecific();
         
-        $activity2 = ServiceTaskSpecific::select('service_id', 'description_task', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'employee_id', 'contact_id','user_id', 'date_registration')
-        ->where('service_id', '=', $datas)->get();
+        $activity2 = ServiceTaskSpecific::select('service_id', 'description_task', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'employee_id', 
+        'contact_id','user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
 
         $employeeOrders = EmployeeOrder::all();
 
-        //$activity = Activity::find($activity['service_id']);
-        //return response()->json($activity);
+        /*$activities = explode('"',$activity2);
+        $activities = preg_replace('/[^0-9]/', '', $activities);
+        
+        $activity = ServiceTaskSpecific::find($activity2);
+
+        $serviceOrder2 = ServiceOrder::select('ticket_id')
+        ->where('service_order_id', '=', $activities[2])->get();
+
+        $serviceOrder2 = explode('"',$serviceOrder2);
+        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+
+        $serviceOrder2 = $serviceOrder2[2];*/
+        $materials2 = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $material = MaterialAssigned::find($serviceOrder[2]);
+
+        $tools2 = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+        //return response()->json($tools2);
 
         return view('service.index', compact('services','service','serviceOrder','serviceReport','employee','service2','serviceOrder','materialAssigneds','toolAssigneds',
-        'serviceReports','serviceTaskSpecific','activity2','employeeOrders'))
+        'serviceReports','serviceTaskSpecific', 'activity2','employeeOrders', 'materialUseds', 'materialUsed','materials2','tools2','toolUsed','toolUseds'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
     }
 
@@ -127,7 +165,7 @@ class ServiceController extends Controller
 
         Service::insert($dataService);
 
-        $serviceId = Service::select('service_id')
+        $serviceId = Service::select('service_order_id')
         ->where('service_order_id', '=', $dataService['service_order_id'])->get();
 
         $serviceId = preg_replace('/[^0-9]/', '', $serviceId);

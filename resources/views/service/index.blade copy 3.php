@@ -206,41 +206,19 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                     
-                        <div class="modal fade" id="dialogo2" data-backdrop="static">
-                            <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal fade" id="dialogo2">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
                                 <div class="modal-content">
                                                         
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">{{ __('Add material')}}</h4>
+                                            <h4 class="modal-title">Edit</h4>
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
                                         <div class="modal-body">
                                             <div class="card-body">
-                                                <b>{{ __('Stock') }}: </b><input type="text" id="text10" name="text10" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
-                                                <b>{{ __('unit_measure') }}: </b><input type="text" id="text12" name="text12" value="" style="width:80px;" disabled><br>
-                                                <form method="POST" action="{{ route('material-useds.store') }}"  role="form" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @include('material-used.form')
-                                                </form>
-                                                <script>
-                                                    var value_input;
-                                                    $('select').on('change', function() {
-                                                        var data = this.value;
-                                                        /*document.getElementById("text1").value = data;
-                                                        const contenido = document.getElementById("text1").value;
-                                                        //alert(contenido);*/
-                                                        var countryId = $(this).find(':selected').data('stock');
-                                                        var unity = $(this).find(':selected').data('unity');
-                                                        $("#text10").val(data);
-                                                        $("#text12").val(unity);
-                                                        document.getElementById("text10").value = countryId;
-                                                        document.getElementById("text12").value = unity;
-                                                        //alert( "{{ __('unit_measure')}}: " + unity + "\n" + "{{ __('Stock')}}: " + countryId );                        
-                                                        //alert(quantity);
-                                                    });
-                                                </script>
+                                                Materials
                                             </div>                                                                                            
                                         </div>
                                                         
@@ -256,41 +234,19 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-                        <div class="modal fade" id="dialogo3" data-backdrop="static">
-                            <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal fade" id="dialogo3">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
                                 <div class="modal-content">
                                                         
                                     <!-- cabecera del diálogo -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">{{ __('Add tool')}}</h4>
+                                            <h4 class="modal-title">Edit</h4>
                                         </div>
                                                         
                                     <!-- cuerpo del diálogo -->
                                         <div class="modal-body">
                                             <div class="card-body">
-                                                <b>{{ __('Stock') }}: </b><input type="text" id="text13" name="text13" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
-                                                <b>{{ __('unit_measure') }}: </b><input type="text" id="text14" name="text14" value="" style="width:80px;" disabled><br>
-                                                <form method="POST" action="{{ route('tool-useds.store') }}"  role="form" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @include('tool-used.form')
-                                                </form>
-                                                <script>
-                                                    var value_input;
-                                                    $('select').on('change', function() {
-                                                        var data = this.value;
-                                                        /*document.getElementById("text1").value = data;
-                                                        const contenido = document.getElementById("text1").value;
-                                                        //alert(contenido);*/
-                                                        var countryId = $(this).find(':selected').data('stock');
-                                                        var unity = $(this).find(':selected').data('unity');
-                                                        $("#text13").val(data);
-                                                        $("#text14").val(unity);
-                                                        document.getElementById("text13").value = countryId;
-                                                        document.getElementById("text14").value = unity;
-                                                        //alert( "{{ __('unit_measure')}}: " + unity + "\n" + "{{ __('Stock')}}: " + countryId );                        
-                                                        //alert(quantity);
-                                                    });
-                                                </script>
+                                                Tools
                                             </div>                                                                                            
                                         </div>
                                                         
@@ -476,143 +432,8 @@
                             </table>
                         </div>
                         <!----------------------->
-                        <br>
-                        <h1 style="text-align:center;">{{ __('Elements used') }}</h1>
+                        <h1 style="text-align:center;">{{ __('Add items') }}</h1>
 
-                        <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr style="text-align: left">
-                                        <td><legend>{{ __('Materials')}}</legend></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td hidden></td>
-                                        <td></td>
-                                        <td style="text-align: center; width:15%">
-                                        @if($service->status_report_id=='3')    
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
-                                        @else
-                                            @method('GET')
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
-                                        @endif    
-                                        
-                                        </td>
-                                    </tr>                                
-                                    <tr style="text-align: center">
-                                        <th hidden>No</th>
-                                        
-                                        <th style="width:20%">{{ __('Key')}}</th>
-                                        <th style="width:20%">{{ __('Name')}}</th>
-										<th style="width:20%">{{ __('Quantity')}}</th>
-                                        <th style="width:20%" hidden>{{ __('Stock')}}</th>
-										<th style="width:20%">{{ __('Unit of measure')}}</th>
-										
-
-                                        <th style="width:20%"></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @foreach ($materialUseds as $materialUsed)
-                                        
-                                        <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td hidden>{{ ++$i }}</td>
-                                            
-                                            <td style="width:20%">{{ $materialUsed->material->key }}</td>
-                                            <td style="width:20%">{{ $materialUsed->material->name }}</td>											
-											<td style="width:20%">{{ $materialUsed->quantity }}</td>
-                                            <td style="width:20%" hidden>{{ $materialUsed->material->stock }}</td>
-											<td style="width:20%">{{ $materialUsed->material->unitMeasure->name }}</td>
-											
-
-                                            <td style="width:20%">
-                                                @if($service->status_report_id=='3')
-                                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')" hidden><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                @else    
-                                                    <form action="{{ route('material-useds.destroy',$materialUsed->material_id) }}" method="POST">
-                                                        <!--<a class="btn btn-outline-primary" href="{{ route('material-assigneds.show',$materialAssigned->material_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                        <a class="btn btn-outline-success"><i class="fa fa-fw fa-edit"></i> Edit</a>-->
-                                                        @method('GET')
-                                                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" href="{{ route('material-useds.edit',$materialUsed->material_id) }}" hidden>Edit</button>
-                                                        
-                                                       
-                                                        <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
-                                                        
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"> {{ __('Edit') }}</button>
-                                                        
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                            @include('service.modal.material')
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">      
-                                    <tr style="text-align: left">
-                                        <td><legend>{{ __('Tools')}}</legend></td>
-                                        <td hidden></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td style="text-align: center; width:15%">
-                                            @if($service->status_report_id=='3')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
-                                            @else
-                                                @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
-                                            @endif
-                                            
-                                        </td>
-                                    </tr>                          
-                                    <tr style="text-align: center">
-                                        <th hidden>No</th>
-                                        
-										<th style="width:20%">{{ __('Name')}}</th>
-										<th style="width:20%">{{ __('Key')}}</th>
-										<th style="width:20%">{{ __('Quantity')}}</th>
-                                        <th style="width:20%" hidden>{{ __('Stock')}}</th>
-										<th style="width:20%">{{ __('Unit of measure')}}</th>
-
-                                        <th style="width:20%"></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @foreach ($toolUseds as $toolUsed)
-                                        
-                                        <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
-                                            <td hidden>{{ ++$i }}</td>
-
-                                            <td style="width:20%">{{ $toolUsed->tool->name }}</td>
-											<td style="width:20%">{{ $toolUsed->tool->key }}</td>
-											<td style="width:20%">{{ $toolUsed->quantity }}</td>
-											<td style="width:20%" hidden>{{ $toolUsed->tool->stock }}</td>
-											<td style="width:20%">{{ $toolUsed->tool->unitMeasure->name }}</td>
-
-                                            <td style="width:20%">
-                                                @if($service->status_report_id=='3')
-                                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')" hidden><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                @else
-                                                    <form action="{{ route('tool-useds.destroy',$toolUsed->tool_id) }}" method="POST">
-                                                        <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
-                                                        <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"> {{ __('Edit') }}</button>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                            @include('service.modal.tool_edit')
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
                         <!----------------------->
                         <div>
                             <div class="card-body">

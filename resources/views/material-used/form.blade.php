@@ -8,39 +8,42 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
             <strong>{{__('Key')}}</strong>
-            <!--{{ Form::select('material_id', $material, $materialAssigned->material_id, ['class' => 'form-select' . ($errors->has('material_id') ? ' is-invalid' : ''), 'placeholder' => 'Material Id']) }}
-            {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
-            
+                        
             <select class="form-select select2" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
-                @foreach ($materials as $item)
-                    <option value="{{$item->material_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
+                @foreach ($materials2 as $item)
+                    <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
                 @endforeach
             </select>
 
             <script>
                 $(document).ready(function() {
-                    $('.select2').select2({
-                        closeOnSelect: false
-                    });
+                    $('.select2').select2();
                 });
+            </script>
+
+            <script>
+                var value_input;
+                $('select').on('change', function() {
+                    var data = this.value;
+                    var quantity = $(this).find(':selected').data('quantity');
+                    $("#quantity").val(quantity);
+                    document.getElementById("quantity").value = quantity;
+                });                           
             </script>
 
             <br>
         </div>
         <div class="form-group">
             <strong>{{ __('Quantity')}}</strong> <br>
-            <!--{{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'id'=>'quantity', 'name'=>'quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.1', 'min'=>'0', 'required']) }}
-            {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
-            <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="2" step="0.1" min="0" onkeydown="elementoCantidad(this)" value=" " required>-->
 
             <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="2" step="0.1" min="0" required>            
         </div>
         
         <div class="form-group" hidden>
-            {{ Form::label('service order') }}
-            {{ Form::text('service_order_id', $serviceOrder->service_order_id, ['class' => 'form-control' . ($errors->has('usage') ? ' is-invalid' : ''), 'placeholder' => 'service_order_id']) }}
-            {!! $errors->first('usage', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('service id') }}
+            {{ Form::text('service_id', $service->service_id, ['class' => 'form-control' . ($errors->has('service_id') ? ' is-invalid' : ''), 'placeholder' => 'service_order_id']) }}
+            {!! $errors->first('service_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
         <div class="form-group" hidden>

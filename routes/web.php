@@ -44,6 +44,8 @@ Route::resource('materials', App\Http\Controllers\MaterialController::class);
 
 Route::resource('material-assigneds', App\Http\Controllers\MaterialAssignedController::class);
 
+Route::resource('material-useds', App\Http\Controllers\MaterialUsedController::class);
+
 Route::resource('order-statuses', App\Http\Controllers\OrderStatusController::class);
 
 Route::resource('priorities', App\Http\Controllers\PriorityController::class);
@@ -69,6 +71,8 @@ Route::resource('ticket-statuses', App\Http\Controllers\TicketStatusController::
 Route::resource('tools', App\Http\Controllers\ToolController::class);
 
 Route::resource('tool-assigneds', App\Http\Controllers\ToolAssignedController::class);
+
+Route::resource('tool-useds', App\Http\Controllers\ToolUsedController::class);
 
 Route::resource('type-maintenances', App\Http\Controllers\TypeMaintenanceController::class);
 

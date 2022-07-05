@@ -77,7 +77,7 @@
                                                         <legend style="text-align:center">{{ __('Executor')}}</legend>
                                                         <!--{{ Form::text('executor', $serviceTaskSpecific->executor, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50]) }}
                                                         {!! $errors->first('executor', '<div class="invalid-feedback">:message</div>') !!}-->
-                                                        <select class="form-select" id="employee_id" name="employee_id" style="width:600px; height:38px;" required>
+                                                        <select class="form-select" id="employee_id" name="employee_id" style="width:600px; height:38px; text-align:center;" required>
                                                             @foreach ($employeeOrders as $item)
                                                                 @if($item->service_order_id == $service->service_order_id)
                                                                 <option value="{{$item->employee_id}}">{{$item->employee->name}} {{$item->employee->last_name}}</option>
@@ -90,7 +90,8 @@
                                                     <div class="form-group">
                                                         <legend style="text-align:center">{{ __('Contact')}}</legend>
                                                         <!--{{ Form::text('contact_id', $service->serviceOrder->ticket->contact->name, ['class' => 'form-control' . ($errors->has('description_activity') ? ' is-invalid' : ''), 'placeholder' => 'Descripción del servicio', 'maxlength' => 50, 'style'=>'width:600px; height:38px;']) }}-->
-                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$service->serviceOrder->ticket->contact->name}} {{$service->serviceOrder->ticket->contact->last_name}}" maxlength="50" style="width:600px; height:38px;" require>
+                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact_id" id="contact_id" value="{{$service->serviceOrder->ticket->contact->contact_id}}" maxlength="50" style="width:600px; height:38px;text-align:center;" require hidden>
+                                                        <input class="form-control.<?php echo($errors->has('description_activity') ? ' is-invalid' : ''); ?>" type="text" name="contact" id="contact" value="{{$service->serviceOrder->ticket->contact->name}} {{$service->serviceOrder->ticket->contact->last_name}}" maxlength="50" style="width:600px; height:38px;text-align:center;" disabled require>
                                                         {!! $errors->first('contact_id', '<div class="invalid-feedback">:message</div>') !!}
                                                     </div>
                                                 </td>
@@ -124,7 +125,7 @@
 
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 0) }}
+            {{ Form::text('user_id', 9999) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>

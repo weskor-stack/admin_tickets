@@ -25,7 +25,7 @@
                     <td style="width:5%">
                         <div class="form-group">
                             
-                            <input type="time" class="form-control" name="time_entry2" id="time_entry2" required>
+                            <input type="time" class="form-control" name="time_entry" id="time_entry" required>
                             
                         </div>
                     </td>

@@ -12,6 +12,7 @@ use App\Models\Customer;
 use App\Models\MaterialAssigned;
 use App\Models\ToolAssigned;
 use App\Models\ServiceOrder;
+use DB;
 use Illuminate\Http\Request;
 
 /**
@@ -106,6 +107,7 @@ class ServiceReportController extends Controller
      */
     public function store(Request $request)
     {
+        $statement = DB::statement("SET @user_id = 9999");
         request()->validate(ServiceReport::$rules);
 
         $dataServiceReport = request()->except('_token');
@@ -136,15 +138,21 @@ class ServiceReportController extends Controller
 
         //$dataServiceReport['service_hours'] = double($dataServiceReport['time_completion']) - double($dataServiceReport['time_entry']);*/
         //return response()->json($dataServiceReport['service_hours']);
+
+        $service = Service::find($dataServiceReport['service_id']);
+
+        //return response()->json($service['service_order_id']);
+
         ServiceReport::insert($dataServiceReport);
         
         $data = Service::find($dataServiceReport['service_id']);
         $data->status_report_id='2';
         $data->save();
 
+        
         //$serviceReport = ServiceReport::create($request->all());
         
-        return redirect()->route('services.index','id_ticket='.$dataServiceReport['service_id'])
+        return redirect()->route('services.index','id_ticket='.$service['service_order_id'])
             ->with('success', __('created successfully'));
     }
 
