@@ -93,9 +93,11 @@ class TicketController extends Controller
 
         //return response()->json($data['ticket_id']);
         //$ticket = Ticket::create($request->all());
-
-        return redirect()->route('tickets.index')
-            ->with('success', 'Ticket '.$data['ticket_id'].' '.__('created successfully'));
+        $url = route('notify-ticket','id_ticket='.$data['ticket_id']);
+        
+        return redirect($url);
+        /*return redirect()->route('tickets.index')
+            ->with('success', 'Ticket '.$data['ticket_id'].' '.__('created successfully'));*/
     }
 
     /**

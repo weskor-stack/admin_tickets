@@ -99,7 +99,7 @@
                                         </table>
                                         <button id="clear" class="btn btn-warning btn-sm">{{ __('Clear')}}</button>
                                         
-                                        <textarea id="signature" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>"></textarea>
+                                        <textarea id="signature" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                         {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
                                     </div>
                                 </form>

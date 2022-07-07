@@ -6,6 +6,14 @@ use App\Http\Livewire\Customercontactdropdown;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\DropdownController;
 
+use App\Mail\TicketsMailable;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\NotifyTicketController;
+
+use App\Models\Employee;
+use App\Notifications\NotifyTicket;
+use Illuminate\Support\Facades\Notification;
+
 Route::get('dropdown', [DropdownController::class, 'view'])->name('dropdownView');
 Route::get('get-states', [DropdownController::class, 'getStates'])->name('getStates');
 Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getStockes');
@@ -79,3 +87,29 @@ Route::resource('type-maintenances', App\Http\Controllers\TypeMaintenanceControl
 Route::resource('type-services', App\Http\Controllers\TypeServiceController::class);
 
 Route::resource('unit-measures', App\Http\Controllers\UnitMeasureController::class);
+
+//////////////////////////////////////// RUTAS PARA ENVÍO DE EMAIL ////////////////////////////////////////////////////
+Route::get('/tickets_mail', function () {
+    $correo = new TicketsMailable;
+    Mail::to('ifaustino@automatyco.comn')->send($correo);
+
+    redirect()->route('tickets.index')
+    ->with('success', 'Ticket '.$data['ticket_id'].' '.__('created successfully'));
+});
+
+Route::get('notify-ticket', [NotifyTicketController::class, 'email'])->name('notify-ticket');
+
+//////////////////////////////////////// ///////////////////////// ////////////////////////////////////////////////////
+
+//////////////////////////////////////// RUTAS PARA ENVÍO DE NO ////////////////////////////////////////////////////////
+
+Route::get('notifications', function () {
+
+    $employee = Employee::find(2270);    
+    $employees = $employee['email'];
+    //return response()->json($employees);
+    Notification::route('mail', $employees)->notify(new NotifyTicket());
+    //Notification::route('mail', 'taylor@example.com')->notify(new NotifyTicket());
+    return view('welcome');
+});
+//////////////////////////////////////// ///////////////////////// ////////////////////////////////////////////////////

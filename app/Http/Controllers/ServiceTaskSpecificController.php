@@ -92,7 +92,7 @@ class ServiceTaskSpecificController extends Controller
 
         $dataActivity['signature_evidence']=$image_file;
 
-        //return response()->json($dataActivity['service_id']);
+        
 
         ServiceTaskSpecific::insert($dataActivity);
 
@@ -104,10 +104,17 @@ class ServiceTaskSpecificController extends Controller
         $data2->status_order_id='3';
         $data2->save();
 
+        $service2 = Service::select('service_id')
+        ->where('service_id', '=', $dataActivity['service_id'])->get();
+
+        $service2 = preg_replace('/[^0-9]/', '', $service2);
+
         $serviceOrder2 = ServiceOrder::select('ticket_id')
         ->where('service_order_id', '=', $service2)->get();
 
         $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+
+        //return response()->json($serviceOrder2);
 
         $data3 = Ticket::find($serviceOrder2);
         $data3->status_ticket_id='4';

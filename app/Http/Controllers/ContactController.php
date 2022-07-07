@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Customer;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use DB;
 
 /**
  * Class ContactController
@@ -71,6 +72,9 @@ class ContactController extends Controller
         //$contact = Contact::create($request->all());
 
         //return redirect()->route('tickets.create')
+        return '<script>
+                    javascript:history.go(-1); 
+                </script>';
         return redirect()->back()
             ->with('success', __('Contact created successfully'));
     }
