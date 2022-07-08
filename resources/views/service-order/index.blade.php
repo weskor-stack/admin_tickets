@@ -73,10 +73,10 @@
                                             @if($serviceOrder->status_order_id=='1')
                                                 <!--<a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left">{{ __('Create report') }}</a>-->
                                                 @method('GET')
-                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
                                             @else
                                                 <a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left" hidden>{{ __('Create report') }}</a>
-                                                <a type="submit" class="btn btn-outline-info" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Show reports')}}</a>
+                                                <a type="submit" class="btn btn-warning" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Reports')}}</a>
                                             @endif                    
                                                                             
                                             <div>                                                                                
@@ -265,8 +265,8 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                                 </div>
                                                     
-                                                <div class="modal fade" id="dialogo4">
-                                                    <div class="modal-dialog modal-lg">
+                                                <div class="modal fade" id="dialogo4" data-backdrop="static">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                                         <div class="modal-content">
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
@@ -385,8 +385,8 @@
                                                                                     
                                                                                     <br>
                                                                                 </div>
-                                                                                <div class="box-footer mt20">
-                                                                                    <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
+                                                                                <div class="box-footer mt20" style="text-align:center">
+                                                                                    <button type="submit" class="btn btn-success btn-lg">{{ __('Accept')}}</button>
                                                                                     <!--<a class="btn btn-danger btn-lg" href="{{ route('service-orders.index') }}"> Cancel</a>-->
                                                                                 </div>
                                                                             </div>
@@ -476,8 +476,32 @@
                             </span>
 
                             <div class="float-right">
-                                
-                                <a href="{{ route('tickets.index') }}" class="btn btn-primary btn-lg"  data-placement="left">
+                                <style>
+                                    .myButton {
+                                        box-shadow: 3px 4px 0px 0px #899599;
+                                        background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+                                        background-color:#ededed;
+                                        border-radius:15px;
+                                        border:1px solid #d6bcd6;
+                                        display:inline-block;
+                                        cursor:pointer;
+                                        color:#000000;
+                                        font-family:Arial;
+                                        font-size:17px;
+                                        padding:10px 16px;
+                                        text-decoration:none;
+                                        text-shadow:0px 1px 0px #e1e2ed;
+                                    }
+                                    .myButton:hover {
+                                        background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+                                        background-color:#bab1ba;
+                                    }
+                                    .myButton:active {
+                                        position:relative;
+                                        top:1px;
+                                    }
+                                </style>
+                                <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left">
                                   {{ __('Back') }}
                                 </a>
                               </div>
@@ -563,7 +587,7 @@
 
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -585,7 +609,7 @@
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
+                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
                                         @endif    
                                         
                                         </td>
@@ -630,11 +654,11 @@
                                                        
                                                         <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
                                                         
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
                                                         
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -658,7 +682,7 @@
                                                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
                                             @endif
                                             
                                         </td>
@@ -695,10 +719,10 @@
                                                     <form action="{{ route('tool-assigneds.destroy',$toolAssigned->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -721,7 +745,7 @@
                                                 
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
                                             @endif
                                         </td>
                                     </tr>
@@ -759,7 +783,7 @@
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> {{ __('Edit')}}</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete employee?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete employee?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>

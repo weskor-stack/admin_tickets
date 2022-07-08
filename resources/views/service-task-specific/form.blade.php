@@ -8,6 +8,7 @@
         </div>
         
         <div class="form-group">
+        <h1 style="text-align:center;">{{ __('Activities implemented')}}</h1>
             <legend>{{ __('Activities implemented')}}</legend>
             {{ Form::textarea('description_task', $serviceTaskSpecific->description_task, ['class' => 'form-control' . ($errors->has('description_task') ? ' is-invalid' : ''), 'placeholder' => 'Description Task']) }}
             {!! $errors->first('description_task', '<div class="invalid-feedback">:message</div>') !!}
@@ -132,8 +133,8 @@
 
     </div>
     <br>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg" id="btnEnviar">{{ __('Accept')}}</button>
+    <div class="box-footer mt20" style="text-align:center;">
+        <button type="submit" class="btn btn-success btn-lg" id="btnEnviar">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
     </div>
 </div>

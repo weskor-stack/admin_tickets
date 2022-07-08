@@ -1,7 +1,7 @@
 <form action="{{ route('tool-assigneds.update', $toolAssigned->tool_id) }}" method="post" enctype="multipart/form-data">
     {{ method_field('patch') }}
     {{ csrf_field() }}
-    <div class="modal fade" id="dialogo8{{ $toolAssigned->tool_id }}">
+    <div class="modal fade" id="dialogo8{{ $toolAssigned->tool_id }}" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- cabecera del diálogo -->
@@ -32,7 +32,7 @@
                         <br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-                            <button type="submit" class="btn btn-primary btn-lg">{{ __('Edit') }}</button>
+                            <button type="submit" class="btn btn-success btn-lg">{{ __('Edit') }}</button>
                         </div>
 
                         

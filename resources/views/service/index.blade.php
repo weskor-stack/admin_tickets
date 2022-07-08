@@ -57,7 +57,32 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="btn btn-primary btn-lg"  data-placement="left">
+                                <style>
+                                        .myButton {
+                                            box-shadow: 3px 4px 0px 0px #899599;
+                                            background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+                                            background-color:#ededed;
+                                            border-radius:15px;
+                                            border:1px solid #d6bcd6;
+                                            display:inline-block;
+                                            cursor:pointer;
+                                            color:#000000;
+                                            font-family:Arial;
+                                            font-size:17px;
+                                            padding:10px 16px;
+                                            text-decoration:none;
+                                            text-shadow:0px 1px 0px #e1e2ed;
+                                        }
+                                        .myButton:hover {
+                                            background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+                                            background-color:#bab1ba;
+                                        }
+                                        .myButton:active {
+                                            position:relative;
+                                            top:1px;
+                                        }
+                                    </style>
+                                <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left">
                                   {{ __('Back') }}
                                 </a>
                               </div>
@@ -336,7 +361,7 @@
                                             @method('GET')
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
                                         @endif
                                     </td>
                                 </tr>
@@ -426,7 +451,7 @@
                                             @if($service->status_report_id=='3')
 
                                             @else
-                                                <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
+                                                <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
                                             @endif
                                             </td>
                                             @include('service-order.modal.edit')
@@ -466,7 +491,7 @@
                                             @if($service->status_report_id=='3')
 
                                             @else
-                                                <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
+                                                <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
                                             @endif
                                             </td>
                                             @include('service-order.modal.tool_edit')
@@ -489,10 +514,10 @@
                                         <td></td>
                                         <td style="text-align: center; width:15%">
                                         @if($service->status_report_id=='3')    
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
+                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
+                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
                                         @endif    
                                         
                                         </td>
@@ -537,11 +562,11 @@
                                                        
                                                         <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
                                                         
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"> {{ __('Edit') }}</button>
                                                         
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -561,10 +586,10 @@
                                         <td></td>
                                         <td style="text-align: center; width:15%">
                                             @if($service->status_report_id=='3')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
+                                                <button type="button" class="btn btn-black" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
+                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
                                             @endif
                                             
                                         </td>
@@ -601,10 +626,10 @@
                                                     <form action="{{ route('tool-useds.destroy',$toolUsed->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-outline-success" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"> {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -629,6 +654,7 @@
                                 <div class="box box-info padding-1">
                                     <div class="box-body">
                                         <div class="form-group">
+                                            <h1 style="text-align:center;">{{ __('Activities implemented')}}</h1>
                                             <legend>{{ __('Activities implemented')}}</legend>
                                            
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled>{{ $activity->description_task }}</textarea>

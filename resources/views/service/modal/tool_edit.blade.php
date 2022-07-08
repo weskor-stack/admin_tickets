@@ -32,7 +32,7 @@
                         <br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-                            <button type="submit" class="btn btn-primary btn-lg">{{ __('Edit') }}</button>
+                            <button type="submit" class="btn btn-success btn-lg">{{ __('Edit') }}</button>
                         </div>
 
                         

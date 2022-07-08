@@ -9,6 +9,7 @@ use App\Http\Controllers\DropdownController;
 use App\Mail\TicketsMailable;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\NotifyTicketController;
+use App\Http\Controllers\NotifyTicketEndController;
 
 use App\Models\Employee;
 use App\Notifications\NotifyTicket;
@@ -98,6 +99,8 @@ Route::get('/tickets_mail', function () {
 });
 
 Route::get('notify-ticket', [NotifyTicketController::class, 'email'])->name('notify-ticket');
+
+Route::get('notify-final', [NotifyTicketEndController::class, 'email'])->name('notify-final');
 
 //////////////////////////////////////// ///////////////////////// ////////////////////////////////////////////////////
 

@@ -30,7 +30,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center">
-        <button type="submit" class="btn btn-primary">{{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success">{{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index','id='.$service->service_id) }}"> Cancel</a>-->
     </div>
 </div>

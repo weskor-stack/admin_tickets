@@ -1,7 +1,7 @@
 <form action="{{ route('material-assigneds.update', $materialAssigned->material_id) }}" method="post" enctype="multipart/form-data">
     {{ method_field('patch') }}
     {{ csrf_field() }}
-    <div class="modal fade" id="dialogo7{{ $materialAssigned->material_id }}">
+    <div class="modal fade" id="dialogo7{{ $materialAssigned->material_id }}" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- cabecera del diálogo -->
@@ -33,7 +33,7 @@
                         <br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-                            <button type="submit" class="btn btn-primary btn-lg">{{ __('Edit') }}</button>
+                            <button type="submit" class="btn btn-success btn-lg">{{ __('Edit') }}</button>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" hidden>

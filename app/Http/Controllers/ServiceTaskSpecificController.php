@@ -120,10 +120,25 @@ class ServiceTaskSpecificController extends Controller
         $data3->status_ticket_id='4';
         $data3->save();
 
+        
+        $data = ServiceTaskSpecific::latest('service_id')->first();
+               
+
         $serviceId = Service::select('service_order_id')
         ->where('service_id', '=', $dataActivity['service_id'])->get();
 
         $serviceId = preg_replace('/[^0-9]/', '', $serviceId);
+
+        $serviceOrderId = ServiceOrder::select('ticket_id')
+        ->where('service_order_id', '=', $serviceId)->get();
+
+        $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
+
+        $url = route('notify-final','id_ticket='.$serviceOrderId);
+
+        return redirect($url);
+
+        return response()->json($url);
 
         return redirect()->route('services.index','id_ticket='.$serviceId)
         ->with('success', 'Activity created successfully.');

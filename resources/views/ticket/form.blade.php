@@ -101,7 +101,7 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary btn-lg">{{ __('Accept')}}</button>
-        <a class="btn btn-danger btn-lg" href="{{ route('tickets.index') }}"> {{ __('Cancel')}}</a>
+        <button type="submit" class="btn btn-success btn-lg">{{ __('Accept')}}</button>
+        <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"> {{ __('Cancel')}}</a>
     </div>
 </div>

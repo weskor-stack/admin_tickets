@@ -77,9 +77,9 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
-                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
                                                     @else
-                                                        <a class="btn btn-outline-primary" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show order') }}</a>
+                                                        <a class="btn btn-warning" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Order') }}</a>
                                                     @endif
                                                    
 
