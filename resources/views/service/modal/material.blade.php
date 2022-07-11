@@ -1,7 +1,7 @@
 <form action="{{ route('material-useds.update', $materialUsed->material_id) }}" method="post" enctype="multipart/form-data">
     {{ method_field('patch') }}
     {{ csrf_field() }}
-    <div class="modal fade" id="dialogo9{{ $materialUsed->material_id }}">
+    <div class="modal fade" id="dialogo9{{ $materialUsed->material_id }}" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- cabecera del diálogo -->

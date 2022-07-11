@@ -197,7 +197,7 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-                        <div class="modal fade" id="dialogo1">
+                        <div class="modal fade" id="dialogo1" data-backdrop="static">
                             <div class="modal-dialog modal-xl modal-dialog-centered">
                                 <div class="modal-content">
                                                         
@@ -210,11 +210,31 @@
                                         <div class="modal-body">
                                             
                                             <div class="card-body">
+                                            
+                                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                                            
+                                            <!-- Include Moment.js CDN -->
+                                            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+                                            
+                                            <!-- Include Bootstrap DateTimePicker CDN -->
+                                            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+                                            
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
                                                 <form method="POST" action="{{ route('service-reports.store') }}"  role="form" enctype="multipart/form-data">
                                                     @csrf
 
                                                     @include('service-report.form2')
 
+                                                    <script>
+                                                        $('#time_entry').datetimepicker({
+                                                            format: 'HH:mm'
+                                                        });
+
+                                                        $('#time_completion').datetimepicker({
+                                                            format: 'HH:mm'
+                                                        });
+                                                    </script>
                                                 </form>
                                             </div>                                                                                            
                                         </div>

@@ -67,16 +67,30 @@ class ContactController extends Controller
 
         $contact['user_id'] = $contacts['user_id'];
 
-        //return response()->json( $contacts);
-        Contact::insert($contact);
-        //$contact = Contact::create($request->all());
+        $contacto = Contact::select('name','last_name')
+        ->where('name', '=', $contact['name'])->get();
 
-        //return redirect()->route('tickets.create')
-        return '<script>
-                    javascript:history.go(-1); 
-                </script>';
-        return redirect()->back()
-            ->with('success', __('Contact created successfully'));
+        $contacto = explode('"',$contacto);
+
+        if($contacto[0]== "[]"){
+            //return response()->json( $contacto);
+            Contact::insert($contact);
+            //$contact = Contact::create($request->all());
+    
+            //return redirect()->route('tickets.create')
+            return '<script>
+                        alert("'.__('Contact created successfully').'"); 
+                        javascript:history.go(-1); 
+                    </script>';
+            return redirect()->back()
+                ->with('success', __('Contact created successfully'));
+        }else{
+            return '<script>
+            alert("'.__('Duplicate contact, please perform the process again.').'"); 
+            javascript:history.go(-1); 
+            </script>'; 
+        }
+                
     }
 
     /**

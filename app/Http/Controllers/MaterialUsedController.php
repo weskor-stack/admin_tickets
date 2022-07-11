@@ -74,8 +74,12 @@ class MaterialUsedController extends Controller
         //return response()->json($materialUsed);
 
         if ($result2 < 0) {
-            return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');            
+            return '<script>
+                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
+            /*return redirect()->back()
+            ->with('success', __('Insufficient').' '.'material.');    */        
             
         }else {
             $data = Material::find($materialUsed['material_id']);
@@ -159,8 +163,12 @@ class MaterialUsedController extends Controller
         //return response()->json($result2);
 
         if ($result2 < 0) {
-            return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');            
+            return '<script>
+                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
+            /*return redirect()->back()
+            ->with('success', __('Insufficient').' '.'material.');*/            
             
         }else {
             $data = Material::find($materialUsed['material_id']);

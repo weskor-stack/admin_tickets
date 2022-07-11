@@ -104,6 +104,10 @@ class ToolAssignedController extends Controller
             ->with('success', __('Tool created successfully'));
             
         }else {
+            return '<script>
+                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);
         }
@@ -186,6 +190,10 @@ class ToolAssignedController extends Controller
             $data->save();*/
 
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return '<script>
+                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
             return redirect()->back()
             ->with('success', __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);            
             

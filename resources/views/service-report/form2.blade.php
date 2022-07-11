@@ -5,9 +5,9 @@
                 <tr style="text-align: center; font-size: 15px;  font-weight: bold; text-align: center; vertical-align: center;">
                     <td align="center" hidden><b>Día</b></td>
                     
-                    <td style="width:5%"><b>{{ __('Entry')}}</b></td>
-                    <td style="width:5%"><b>{{ __('Completion')}}</b></td>
-                    <td style="width:5%"><b>{{ __('Lunchtime')}}</b></td>
+                    <td style="width:8%"><b>{{ __('Entry')}}</b></td>
+                    <td style="width:8%"><b>{{ __('Completion')}}</b></td>
+                    <td style="width:8%"><b>{{ __('Lunchtime')}}</b></td>
                     <td hidden><b>{{ __('Service hour')}}</b></td>
                     <td style="width:5%"><b>{{ __('Service extra')}}</b></td>
                     <td style="width:5%"><b>{{ __('Duration travel')}}</b></td>
@@ -25,20 +25,22 @@
                     <td style="width:5%">
                         <div class="form-group">
                             
-                            <input type="time" class="form-control" name="time_entry" id="time_entry" required>
+                            <input type="text" class="form-control" name="time_entry" id="time_entry" required>
                             
                         </div>
                     </td>
                     <td style="width:5%">
                         <div class="form-group">
-                            {{ Form::time('time_completion', $serviceReport->time_completion, ['class' => 'form-control' . ($errors->has('time_completion') ? ' is-invalid' : ''), 'placeholder' => 'Time Completion', 'min'=>'07:00', 'max'=>'23:00','requiered']) }}
-                            {!! $errors->first('time_completion', '<div class="invalid-feedback">:message</div>') !!}
+                            <!--{{ Form::text('time_completion', $serviceReport->time_completion, ['class' => 'form-control' . ($errors->has('time_completion') ? ' is-invalid' : ''), 'placeholder' => 'Time Completion', 'min'=>'07:00', 'max'=>'23:00','requiered']) }}
+                            {!! $errors->first('time_completion', '<div class="invalid-feedback">:message</div>') !!}-->
+                            <input type="text" class="form-control" name="time_completion" id="time_completion" required>
                         </div>
                     </td>
                     <td style="width:5%">
                         <div class="form-group">
                             {{ Form::time('lunchtime', $serviceReport->lunchtime, ['class' => 'form-control' . ($errors->has('lunchtime') ? ' is-invalid' : ''), 'placeholder' => 'Lunchtime', 'required']) }}
                             {!! $errors->first('lunchtime', '<div class="invalid-feedback">:message</div>') !!}
+                            <!--<input type="text" class="form-control" name="time_completion" id="time_completion" required>-->
                         </div>
                     </td>
                     <td hidden>
@@ -57,6 +59,8 @@
                                 <option value="1">1 hr.</option>
                                 <option value="2">2 hrs.</option>
                                 <option value="3">3 hrs.</option>
+                                <option value="4">4 hrs.</option>
+                                <option value="5">5 hrs.</option>
                             </select>
                         </div>
                     </td>
@@ -70,6 +74,8 @@
                                 <option value="1">1 hr.</option>
                                 <option value="2">2 hrs.</option>
                                 <option value="3">3 hrs.</option>
+                                <option value="4">4 hrs.</option>
+                                <option value="5">5 hrs.</option>
                             </select>
                         </div>
                     </td>
@@ -100,7 +106,7 @@
         
         <div class="form-group" hidden>
             {{ Form::label('user_id') }}
-            {{ Form::text('user_id', 0) }}
+            {{ Form::text('user_id', 9999) }}
             {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>

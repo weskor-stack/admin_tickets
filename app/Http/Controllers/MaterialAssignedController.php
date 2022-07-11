@@ -110,7 +110,10 @@ class MaterialAssignedController extends Controller
             
         }else {
 
-            
+            return '<script>
+                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
             return redirect()->route('service-orders.index','id_ticket='.$reports2)
             ->with('success', __('Insufficient').' '.'material.');
         }
@@ -199,6 +202,10 @@ class MaterialAssignedController extends Controller
             $data->save();*/
 
             //return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            return '<script>
+                    alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
             return redirect()->back()
             ->with('success', __('Insufficient').' '.'material.');            
             

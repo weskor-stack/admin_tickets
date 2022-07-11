@@ -72,8 +72,12 @@ class ToolUsedController extends Controller
         //return response()->json($toolUseds['tool_id']);
 
         if ($result2 < 0) {
-            return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');            
+            return '<script>
+                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
+            /*return redirect()->back()
+            ->with('success', __('Insufficient').' '.'material.');      */      
             
         }else {
             $data = Tool::find($toolUseds['tool_id']);
@@ -153,8 +157,12 @@ class ToolUsedController extends Controller
         //return response()->json($result);
 
         if ($result2 < 0) {
-            return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');            
+            return '<script>
+                    alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
+                    javascript:history.go(-1); 
+                </script>';
+            /*return redirect()->back()
+            ->with('success', __('Insufficient').' '.'material.');    */        
             
         }else {
             $data = Tool::find($toolUseds['tool_id']);

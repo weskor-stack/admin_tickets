@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use DB;
 
 /**
  * Class CustomerController
@@ -60,6 +61,10 @@ class CustomerController extends Controller
 
         //return response()->json( $customers['name']);
         if ($customer[3] == $customers['name']) {
+            return '<script>
+                    alert("'.__('Duplicate customer, please perform the process again.').'"); 
+                    javascript:history.go(-1); 
+                </script>';
             return redirect()->back()
             ->with('success', __('Duplicate customer, please perform the process again.'));
         }else{

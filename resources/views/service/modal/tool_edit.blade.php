@@ -1,7 +1,7 @@
 <form action="{{ route('tool-useds.update', $toolUsed->tool_id) }}" method="post" enctype="multipart/form-data">
     {{ method_field('patch') }}
     {{ csrf_field() }}
-    <div class="modal fade" id="dialogo10{{ $toolUsed->tool_id }}">
+    <div class="modal fade" id="dialogo10{{ $toolUsed->tool_id }}" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- cabecera del diálogo -->

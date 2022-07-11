@@ -39,7 +39,7 @@ class NotifyTicketEndController extends Controller
         $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
 
         return redirect()->route('services.index','id_ticket='.$serviceOrderId)
-        ->with('success', 'Activity created successfully.');
+        ->with('success', __('Report completed successfully'));
 
         return redirect('tickets')
         ->with('success', 'Ticket '.$datas.' '.__('created successfully'));
