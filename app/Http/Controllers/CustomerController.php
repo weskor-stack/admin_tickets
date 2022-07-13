@@ -60,7 +60,19 @@ class CustomerController extends Controller
         //return response()->json( $customer[3]);
 
         //return response()->json( $customers['name']);
-        if ($customer[3] == $customers['name']) {
+        if($customer[0]== "[]"){
+            Customer::insert($customers);
+            return '<script>
+                        alert("'.__('Customer created successfully').'"); 
+                        javascript:history.go(-1); 
+                    </script>';
+        }else{
+            return '<script>
+                    alert("'.__('Duplicate customer, please perform the process again.').'"); 
+                    javascript:history.go(-1); 
+                </script>';
+        }
+        /*if ($customer[3] == $customers['name']) {
             return '<script>
                     alert("'.__('Duplicate customer, please perform the process again.').'"); 
                     javascript:history.go(-1); 
@@ -77,7 +89,7 @@ class CustomerController extends Controller
             //return redirect()->route('tickets.create')
             return redirect()->back()
                 ->with('success', __('Customer created successfully'));
-            }
+            }*/
     }
 
     /**

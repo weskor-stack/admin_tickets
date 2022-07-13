@@ -152,7 +152,8 @@ class ServiceReportController extends Controller
         
         //$serviceReport = ServiceReport::create($request->all());
         
-        return redirect()->route('services.index','id_ticket='.$service['service_order_id'])
+        //return redirect()->route('services.index','id_ticket='.$service['service_order_id'])
+        return redirect()->back()
             ->with('success', __('created successfully'));
     }
 
@@ -209,13 +210,21 @@ class ServiceReportController extends Controller
      */
     public function destroy($id)
     {
+        $statement = DB::statement("SET @user_id = 9999");
+
+        $serviceReports = ServiceReport::find($id);
+
+        $service = $serviceReports['service_id'];
+
+        //return response()->json($service);
+
         $serviceReport = ServiceReport::find($id)->delete();
 
         $serviceOrder = ServiceOrder::select('service_order_id')->get();
 
         $reports2 = preg_replace('/[^0-9]/', '', $serviceOrder);
 
-        return redirect()->route('services.index', 'id_ticket='.$ServiceReport['service_id'])
+        return redirect()->route('services.index', 'id_ticket='.$service)
             ->with('success', __('ServiceReport deleted successfully'));
     }
 }

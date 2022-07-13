@@ -866,5 +866,11 @@
     "Items to use": "Elementos a utilizar",
     "Elements used" : "Elementos utilizados",
     "Description task" : "Descripción de la tarea",
-    "Duplicate contact, please perform the process again": "Contacto duplicado, favor de realizar nuevamente el proceso"
+    "Duplicate contact, please perform the process again": "Contacto duplicado, favor de realizar nuevamente el proceso",
+    "Warning": "Advertencia",
+    "Service not uploaded": "Falta cargar el servicio",
+    "And you will have to upload the activities again" : "Y deberás cargar las actividades nuevamente",
+    "If you have unsaved information": "Si tienes información sin guardar",
+    "you will lose the information": "perderás la información",
+    "and you will have to enter the information again": "y deberás capturar nuevamente."
 }

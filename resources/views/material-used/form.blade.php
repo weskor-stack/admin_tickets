@@ -11,7 +11,7 @@
                         
             <select class="form-select select2" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
-                @foreach ($materials2 as $item)
+                @foreach ($material2 as $item)
                     <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
                 @endforeach
             </select>

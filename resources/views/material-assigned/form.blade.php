@@ -11,11 +11,17 @@
             <!--{{ Form::select('material_id', $material, $materialAssigned->material_id, ['class' => 'form-select' . ($errors->has('material_id') ? ' is-invalid' : ''), 'placeholder' => 'Material Id']) }}
             {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
             
-            <select class="form-select select2" id="material_id" name="material_id" required>
+            <select class="form-select" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
-                @foreach ($materials as $item)
-                    <option value="{{$item->material_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
-                @endforeach
+                @if($materialAssigneds->isEmpty())
+                    @foreach ($materials as $item)
+                        <option value="{{$item->material_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
+                    @endforeach
+                @else
+                    @foreach ($material2 as $item)
+                        <option value="{{$item->material_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
+                    @endforeach
+                @endif
             </select>
 
             <script>

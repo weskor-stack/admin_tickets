@@ -10,7 +10,7 @@
         <div class="form-group">
         <h1 style="text-align:center;">{{ __('Activities implemented')}}</h1>
             <legend>{{ __('Activities implemented')}}</legend>
-            {{ Form::textarea('description_task', $serviceTaskSpecific->description_task, ['class' => 'form-control' . ($errors->has('description_task') ? ' is-invalid' : ''), 'placeholder' => 'Description Task']) }}
+            {{ Form::textarea('description_task', $serviceTaskSpecific->description_task, ['class' => 'form-control' . ($errors->has('description_task') ? ' is-invalid' : ''), 'placeholder' => __('Description task'), 'required']) }}
             {!! $errors->first('description_task', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$serviceTaskSpecific->previous_evidence }}" id="blah" width="100" height="100" alt="">
-                            <input type="file" id="previous_evidence" class="form-control.<?php echo ($errors->has('previous_evidence') ? ' is-invalid' : ''); ?>" name="previous_evidence" multiple><br><br>
+                            <input type="file" id="previous_evidence" class="form-control.<?php echo ($errors->has('previous_evidence') ? ' is-invalid' : ''); ?>" name="previous_evidence" multiple required><br><br>
                             
                             {!! $errors->first('previous_evidence', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
@@ -34,7 +34,7 @@
                         <h5>{{ __('After') }}:</h5>
                         <div class="form-group">
                             <img src="{{ asset('storage').'/'.$serviceTaskSpecific->subsequent_evidence }}" id="blah2" width="100" height="100" alt="">
-                            <input type="file" id="subsequent_evidence" class="form-control.<?php echo ($errors->has('subsequent_evidence') ? ' is-invalid' : ''); ?>" name="subsequent_evidence" multiple><br><br>
+                            <input type="file" id="subsequent_evidence" class="form-control.<?php echo ($errors->has('subsequent_evidence') ? ' is-invalid' : ''); ?>" name="subsequent_evidence" multiple required><br><br>
                             {!! $errors->first('subsequent_evidence', '<div class="invalid-feedback">:message</div>') !!}
                         </div>
                     </td>
@@ -100,7 +100,7 @@
                                         </table>
                                         <button id="clear" class="btn btn-warning btn-sm">{{ __('Clear')}}</button>
                                         
-                                        <textarea id="signature" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
+                                        <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                         {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
                                     </div>
                                 </form>
@@ -113,11 +113,11 @@
             <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
             <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
             <script type="text/javascript">
-                var sig = $('#sig').signature({syncField: '#signature', syncFormat: 'PNG'});
+                var sig = $('#sig').signature({syncField: '#signature_evidence', syncFormat: 'PNG'});
                 $('#clear').click(function(e) {
                     e.preventDefault();
                     sig.signature('clear');
-                    $("#signature").val('');
+                    $("#signature_evidence").val('');
                 });
             </script>
         </div>
@@ -134,7 +134,46 @@
     </div>
     <br>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg" id="btnEnviar">{{ __('Accept')}}</button>
-        <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
+        @if($service_report->isEmpty())
+            @method('GET')
+            <a type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#dialogo10">{{ __('Accept')}}</a>
+        @else
+            <button type="submit" class="btn btn-success btn-lg" id="btnEnviar">{{ __('Accept')}}</button>
+            <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
+        @endif
+        
+        <div>
+            <div class="modal fade" id="dialogo10" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                                                        
+                        <!-- cabecera del diálogo -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{ __('Warning')}}</h4>
+                                <img src="{!! asset('images/warning.png')!!}" width="10%">
+                        </div>
+                                                            
+                        <!-- cuerpo del diálogo -->
+                        <div class="modal-body">
+                            <p style="text-align:ceter;">{{ __('Service not uploaded')}}, {{__('you will lose the information')}}.</p>
+                            <p style="text-align:ceter;">{{__('And you will have to upload the activities again')}}</p>
+
+                            <br>
+                                                                               
+                        </div>
+                                                            
+                        <!-- pie del diálogo -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">{{ __('Accept')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                        </div>
+                                                        
+                                </div>
+                            </div>
+                        </div> 
+                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        </div>
     </div>
 </div>

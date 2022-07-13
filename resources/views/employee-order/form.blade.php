@@ -13,7 +13,7 @@
             {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}-->
             <select class="form-select" id="employee_id" name="employee_id" required>
                 <option value="">--{{ __('Select employee')}}--</option>
-                @foreach ($employee2 as $item)
+                @foreach ($employee_assigned as $item)
                     <option value="{{$item->employee_id}}">{{$item->name}} {{$item->last_name}}</option>
                 @endforeach
             </select>

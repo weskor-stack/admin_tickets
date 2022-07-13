@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\EmployeeOrder;
 use App\Models\Service;
 use App\Models\ServiceOrder;
+use App\Models\ServiceReport;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use DB;
@@ -46,8 +47,9 @@ class ServiceTaskSpecificController extends Controller
     {
         $serviceTaskSpecific = new ServiceTaskSpecific();
         $service = Service::pluck('service_id','service_id');
+        $service_report = ServiceReport::all();
         $employeeOrders = EmployeeOrder::all();
-        return view('service-task-specific.create', compact('serviceTaskSpecific','service','employeeOrders'));
+        return view('service-task-specific.create', compact('serviceTaskSpecific','service','employeeOrders','service_report'));
     }
 
     /**
@@ -93,52 +95,66 @@ class ServiceTaskSpecificController extends Controller
         $dataActivity['signature_evidence']=$image_file;
 
         
-
-        ServiceTaskSpecific::insert($dataActivity);
-
-        $data = Service::find($dataActivity['service_id']);
-        $data->status_report_id='3';
-        $data->save();
-
-        $data2 = ServiceOrder::find($results['id_ticket']);
-        $data2->status_order_id='3';
-        $data2->save();
-
-        $service2 = Service::select('service_id')
+        $service_report = ServiceReport::select('service_report_id', 'time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id', 'user_id', 'date_registration')
         ->where('service_id', '=', $dataActivity['service_id'])->get();
 
-        $service2 = preg_replace('/[^0-9]/', '', $service2);
+        //return response()->json($service_report);
 
-        $serviceOrder2 = ServiceOrder::select('ticket_id')
-        ->where('service_order_id', '=', $service2)->get();
 
-        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+        if ($service_report=="[]") {
+            return '<script>
+                        alert("'.__('Warning').'\n'.__('Service not uploaded').'\n'.__('And you will have to upload the activities again').'"); 
+                        javascript:history.go(-1); 
+                    </script>';
+        }else{
+            //return response()->json("tabla de service_report no esta vacia");
+            ServiceTaskSpecific::insert($dataActivity);
 
-        //return response()->json($serviceOrder2);
+            $data = Service::find($dataActivity['service_id']);
+            $data->status_report_id='3';
+            $data->save();
 
-        $data3 = Ticket::find($serviceOrder2);
-        $data3->status_ticket_id='4';
-        $data3->save();
+            $data2 = ServiceOrder::find($results['id_ticket']);
+            $data2->status_order_id='3';
+            $data2->save();
 
+            $service2 = Service::select('service_id')
+            ->where('service_id', '=', $dataActivity['service_id'])->get();
+
+            $service2 = preg_replace('/[^0-9]/', '', $service2);
+
+            $serviceOrder2 = ServiceOrder::select('ticket_id')
+            ->where('service_order_id', '=', $service2)->get();
+
+            $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+
+            //return response()->json($serviceOrder2);
+
+            $data3 = Ticket::find($serviceOrder2);
+            $data3->status_ticket_id='5';
+            $data3->save();
+
+            
+            $data = ServiceTaskSpecific::latest('service_id')->first();
+                
+
+            $serviceId = Service::select('service_order_id')
+            ->where('service_id', '=', $dataActivity['service_id'])->get();
+
+            $serviceId = preg_replace('/[^0-9]/', '', $serviceId);
+
+            $serviceOrderId = ServiceOrder::select('ticket_id')
+            ->where('service_order_id', '=', $serviceId)->get();
+
+            $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
+
+            $url = route('notify-final','id_ticket='.$serviceOrderId);
+
+            return redirect($url);
+        }
         
-        $data = ServiceTaskSpecific::latest('service_id')->first();
-               
 
-        $serviceId = Service::select('service_order_id')
-        ->where('service_id', '=', $dataActivity['service_id'])->get();
-
-        $serviceId = preg_replace('/[^0-9]/', '', $serviceId);
-
-        $serviceOrderId = ServiceOrder::select('ticket_id')
-        ->where('service_order_id', '=', $serviceId)->get();
-
-        $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
-
-        $url = route('notify-final','id_ticket='.$serviceOrderId);
-
-        return redirect($url);
-
-        return response()->json($url);
+        //return response()->json($url);
 
         return redirect()->route('services.index','id_ticket='.$serviceId)
         ->with('success', 'Activity created successfully.');

@@ -128,24 +128,47 @@ class ServiceOrderController extends Controller
 
         $serviceOrder3 = preg_replace('/[^0-9]/', '', $serviceOrder3);
 
-        $materialAssigneds_2 = MaterialAssigned::select('material_assigned_id')
+        $materialAssigneds_2 = MaterialAssigned::select('material_id')
         ->where('service_order_id', '=', $serviceOrder3)->get();
 
-        $materialAssigneds_2 = preg_replace('/[^0-9]/', '', $materialAssigneds_2);
+        //$materialAssigneds_2 = preg_replace('/[^0-9]/', '', $materialAssigneds_2);
 
         $materialAssigneds_3 = MaterialAssigned::all();
         //return response()->json($materialAssigneds);
         
-
+        $toolAssigneds_2 = ToolAssigned::select('tool_id')
+        ->where('service_order_id', '=', $serviceOrder3)->get();
         //return response()->json($employeeOrders2);
 
         $supervisors = SupervisorEmployee::all();
         //$supervisors = SupervisorEmployee::pluck('supervisor_employee_id','department_id');
 
-        //return response()->json($supervisors);
+        /*$material2 = Material::whereNotIn('material_id', function($q){
+            $q->select('material_id')->from('material_assigned');
+        })->get();*/
+
+        $material2 = Material::whereNotIn('material_id', MaterialAssigned::select('material_id')
+        ->where('service_order_id', '=', $serviceOrder3))->get();
+
+        //$serviceOrder3 = (int)$serviceOrder3;
+
+        /*$tool2 = Tool::whereNotIn('tool_id', function($q){
+            $q->select('tool_id')->from('tool_assigned')->where('service_order_id', '=', '2');
+        })->get();*/
+
+        $tool2 = Tool::select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', ToolAssigned::select('tool_id')
+        ->where('service_order_id', '=', $serviceOrder3))
+        ->get();
+        /*$tool2 = DB::table('tool')->select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', DB::table('tool_assigned')->select('tool_id')
+        ->where('service_order_id', '=', $serviceOrder3))->get();*/
+
+        $employee_assigned = Employee::whereNotIn('employee_id', EmployeeOrder::select('employee_id')
+        ->where('service_order_id', '=', $serviceOrder3))->get();
+
+        //return response()->json($employee_assigned);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
-        'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure'))
+        'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
     }
 

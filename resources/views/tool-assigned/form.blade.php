@@ -8,9 +8,15 @@
 
             <select class="form-select" id="tool_id" name="tool_id" required>
                 <option value="">--{{ __('Select tool')}}--</option>
-                @foreach ($tools as $item)
-                    <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
-                @endforeach
+                @if($materialAssigneds->isEmpty())
+                    @foreach ($tools as $item)
+                        <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
+                    @endforeach
+                @else
+                    @foreach ($tool2 as $item)
+                        <option value="{{$item->tool_id}}" data-stock="{{$item->stock}}" data-unity="{{$item->unitMeasure->name}}">{{$item->key}} - {{$item->name}}</option>
+                    @endforeach
+                @endif
             </select>
         </div>
         

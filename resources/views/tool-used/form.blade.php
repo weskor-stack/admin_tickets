@@ -6,7 +6,7 @@
 
             <select class="form-select" id="tool_id" name="tool_id" required>
                 <option value="">--{{ __('Select tool')}}--</option>
-                @foreach ($tools2 as $item)
+                @foreach ($tool2 as $item)
                     <option value="{{$item->tool_id}}" data-stock="{{$item->tool->stock}}" data-unity="{{$item->tool->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->tool->key}} - {{$item->tool->name}}</option>
                 @endforeach
             </select>

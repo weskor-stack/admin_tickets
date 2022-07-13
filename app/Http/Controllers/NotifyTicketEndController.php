@@ -40,11 +40,6 @@ class NotifyTicketEndController extends Controller
 
         return redirect()->route('services.index','id_ticket='.$serviceOrderId)
         ->with('success', __('Report completed successfully'));
-
-        return redirect('tickets')
-        ->with('success', 'Ticket '.$datas.' '.__('created successfully'));
-            //->with('message', 'Notificación de ticket realizada');
-
     }
     
     public function client($ticket)
