@@ -73,10 +73,12 @@
                                             @if($serviceOrder->status_order_id=='1')
                                                 <!--<a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left">{{ __('Create report') }}</a>-->
                                                 @method('GET')
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
+                                                <button title="{{ __('Create report') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_crear_reporte"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @else
                                                 <a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left" hidden>{{ __('Create report') }}</a>
-                                                <a type="submit" class="btn btn-warning" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Reports')}}</a>
+                                                <a title="{{ __('Reports')}}" type="submit" class="btn btn-warning" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Reports')}}</a>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif                    
                                                                             
                                             <div>                                                                                
@@ -460,6 +462,190 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
                                                 </div>
 
+                                                <div class="modal modal-fullscreen fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/user_guide3.png')!!}" width="100%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo 
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div>-->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                                                    <div class="modal modal-fullscreen fade" id="help_crear_reporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                    <!--<img src="{!! asset('images/user_guide/user_guide1.png')!!}" width="100%">-->
+                                                                   
+                                                                    <img src="{!! asset('images/user_guide/crear_reporte.png')!!}" width="100%" style="text-align:center;">
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div> -->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                                                    
+                                                    <div class="modal modal-fullscreen fade" id="help_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/editar.png')!!}" width="100%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div> -->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                                                    <div class="modal modal-fullscreen fade" id="help_material" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/agregar_material.png')!!}" width="100%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div> -->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                                                    <div class="modal modal-fullscreen fade" id="help_tool" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/agregar_herramienta.png')!!}" width="100%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div> -->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                                                    <div class="modal modal-fullscreen fade" id="help_employee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-gl modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/agregar_empleado.png')!!}" width="100%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div> -->
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
                                             </form>
                                             <br>                                                                                                
                                         </td>
@@ -587,7 +773,8 @@
 
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
+                                            <button title="{{ __('Edit')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_edit"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -609,7 +796,8 @@
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
+                                            <button title="{{ __('Add material')}}"  type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif    
                                         
                                         </td>
@@ -682,7 +870,8 @@
                                                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
+                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                             
                                         </td>
@@ -745,7 +934,8 @@
                                                 
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
+                                                <button title="{{ __('Add employee')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_employee"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                         </td>
                                     </tr>

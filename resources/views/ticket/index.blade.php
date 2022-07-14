@@ -16,17 +16,18 @@
                                 {{ __('Ticket') }}
                             </span>
 
-                            <div class="float-right">
-                                <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-lg"  data-placement="left">
-                                  {{ __('New Ticket') }}
-                                </a>
+                            <div class="float-right" style="text-align:right">
+                                <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('New Ticket') }}">{{ __('New Ticket') }}</a>
+                                <button class="btn" width="5%" data-toggle="modal" data-target="#dialogo2" title="{{ __('Help') }}">
+                                    <img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20">
+                                </button>
                                 <!--@method('GET')
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo0" hidden>{{ __('Create report') }}</button>
                                 @method('GET')
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#dialogo1">{{ __('New ticket') }}</button>-->
                             </div>
-
                             
+                                                   
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -77,9 +78,9 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
+                                                        <button title="{{ __('Create order') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
                                                     @else
-                                                        <a class="btn btn-warning" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Order') }}</a>
+                                                        <a title="{{ __('Order') }}" class="btn btn-warning" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Order') }}</a>
                                                     @endif
                                                    
 
@@ -151,6 +152,37 @@
                                                     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
                                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                                                    
+                                                    <div class="modal modal-fullscreen fade" id="dialogo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                        
+                                                            <!-- cabecera del diálogo 
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title">{{ __('Help')}}</h1>
+                                                                <img src="{!! asset('images/question.png')!!}" width="5%">
+                                                            </div>-->
+                                                        
+                                                            <!-- cuerpo del diálogo -->
+                                                            <div class="modal-body" style="background-color: #d6dbdf;">
+                                                                
+                                                                <div class="card-body">
+                                                                    <img src="{!! asset('images/user_guide/user_guide1.png')!!}" width="88%">
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- pie del diálogo -->
+                                                            <div class="modal-footer" style="background-color: #d6dbdf;">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                            </div>
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                                                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                                                    
                                                     @csrf
                                                     @method('DELETE')
                                                     

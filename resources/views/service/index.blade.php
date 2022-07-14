@@ -83,7 +83,7 @@
                                         }
                                     </style>
                                     @if($service->status_report_id=='3')
-                                        <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left">
+                                        <a title="{{ __('Back') }}" href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left">
                                             {{ __('Back') }}
                                         </a>
                                     @else
@@ -381,10 +381,88 @@
                                 <!-- pie del diálogo -->
                                     <div class="modal-footer">
                                         <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="btn btn-success">
-                                            {{ __('Back') }}
+                                            {{ __('Accept') }}
                                         </a>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
+                                                        
+                                </div>
+                            </div>
+                        </div> 
+                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                        <div class="modal fade" id="help_add">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                <div class="modal-content">
+                                                        
+                                <!-- cabecera del diálogo 
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ __('Generate Order')}}</h4>
+                                    </div>-->
+                                                            
+                                <!-- cuerpo del diálogo -->
+                                    <div class="modal-body">
+                                        <img src="{!! asset('images/user_guide/help_add.png')!!}" width="100%">
+                                    </div>
+                                                            
+                                <!-- pie del diálogo
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>-->
+                                                        
+                                </div>
+                            </div>
+                        </div> 
+                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                        <div class="modal fade" id="help_material">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                <div class="modal-content">
+                                                        
+                                <!-- cabecera del diálogo 
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ __('Generate Order')}}</h4>
+                                    </div>-->
+                                                            
+                                <!-- cuerpo del diálogo -->
+                                    <div class="modal-body">
+                                        <img src="{!! asset('images/user_guide/agregar_material.png')!!}" width="100%">
+                                    </div>
+                                                            
+                                <!-- pie del diálogo
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>-->
+                                                        
+                                </div>
+                            </div>
+                        </div> 
+                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+                        <div class="modal fade" id="help_tool">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                <div class="modal-content">
+                                                        
+                                <!-- cabecera del diálogo 
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{ __('Generate Order')}}</h4>
+                                    </div>-->
+                                                            
+                                <!-- cuerpo del diálogo -->
+                                    <div class="modal-body">
+                                        <img src="{!! asset('images/user_guide/agregar_herramienta.png')!!}" width="100%">
+                                    </div>
+                                                            
+                                <!-- pie del diálogo
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>-->
                                                         
                                 </div>
                             </div>
@@ -423,7 +501,8 @@
                                             @method('GET')
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                             @method('GET')
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
+                                            <button title="{{ __('Add')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_add"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -579,7 +658,8 @@
                                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
+                                            <button title="{{ __('Add material')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif    
                                         
                                         </td>
@@ -651,7 +731,8 @@
                                                 <button type="button" class="btn btn-black" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
+                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                             
                                         </td>
