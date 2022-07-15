@@ -165,7 +165,9 @@ class ServiceOrderController extends Controller
         $employee_assigned = Employee::whereNotIn('employee_id', EmployeeOrder::select('employee_id')
         ->where('service_order_id', '=', $serviceOrder3))->get();
 
-        //return response()->json($employee_assigned);
+        $materialAssigneds4 = Material::whereIn('material_id', MaterialAssigned::select('material_id')
+        ->where('service_order_id', '=', $serviceOrder3))->get();
+        //return response()->json($materialAssigneds4);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned'))

@@ -42,7 +42,7 @@
                                         <th>Key</th>
 										<th>Quantity</th>
 										<th>Unit measure</th>
-										<th>Usage</th>
+										<th hidden>Usage</th>
 										<th>Service order</th>
 										<th>Action</th>
 
@@ -56,9 +56,9 @@
                                             
                                             <td>{{ $materialAssigned->material->key }}</td>
 											<td>{{ $materialAssigned->quantity }}</td>
-											<td>{{ $materialAssigned->unit_measure }}</td>
-											<td>{{ $materialAssigned->usage }}</td>
-											<td>{{ $materialAssigned->serviceOrder->ticket->customer->name }}</td>
+											<td>{{ $materialAssigned->material->unitMeasure->name }}</td>
+											<td hidden>{{ $materialAssigned->usage }}</td>
+											<td>{{ $materialAssigned->serviceOrder->service_order_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('material-assigneds.destroy',$materialAssigned->material_id) }}" method="POST">
