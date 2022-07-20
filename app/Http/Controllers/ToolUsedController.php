@@ -173,8 +173,8 @@ class ToolUsedController extends Controller
             ->with('success', __('The material') .' '.__('updated successfully'));
         }
 
-        return redirect()->route('tool-useds.index')
-            ->with('success', 'ToolUsed updated successfully');
+        /*return redirect()->route('tool-useds.index')
+            ->with('success', 'ToolUsed updated successfully');*/
     }
 
     /**

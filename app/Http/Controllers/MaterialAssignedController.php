@@ -114,8 +114,8 @@ class MaterialAssignedController extends Controller
                     alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
                     javascript:history.go(-1); 
                 </script>';
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', __('Insufficient').' '.'material.');
+            /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', __('Insufficient').' '.'material.');*/
         }
 
         //return response()->json("No entra al if");
@@ -123,8 +123,8 @@ class MaterialAssignedController extends Controller
 
         //$materialAssigned = MaterialAssigned::create($request->all());
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'Material'.' '.__('created successfully'));
+        /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'Material'.' '.__('created successfully'));*/
     }
 
     /**
@@ -206,8 +206,8 @@ class MaterialAssignedController extends Controller
                     alert("No hay suficiente material, hay en exixstencia: '.$material_stock.' "); 
                     javascript:history.go(-1); 
                 </script>';
-            return redirect()->back()
-            ->with('success', __('Insufficient').' '.'material.');            
+            /*return redirect()->back()
+            ->with('success', __('Insufficient').' '.'material.'); */           
             
         }else {
             //$materialAssigned->quantity=$data_materialAssigned;
@@ -220,8 +220,8 @@ class MaterialAssignedController extends Controller
             ->with('success', __('The material') .' '.__('updated successfully'));
         }
 
-        return redirect()->route('service-orders.index','id_ticket='.$materialAssigneds->service_order_id)
-            ->with('success', 'MaterialAssigned updated successfully');
+        /*return redirect()->route('service-orders.index','id_ticket='.$materialAssigneds->service_order_id)
+            ->with('success', 'MaterialAssigned updated successfully');*/
     }
 
     /**
