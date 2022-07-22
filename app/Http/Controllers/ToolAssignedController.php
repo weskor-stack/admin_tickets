@@ -108,14 +108,14 @@ class ToolAssignedController extends Controller
                     alert("No hay suficiente herramienta, hay en exixstencia: '.$tool_stock.' "); 
                     javascript:history.go(-1); 
                 </script>';
-            return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);
+            /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success',  __('Insufficient').' '.__('tool').' '. __('Stock').' '.$tool_stock);*/
         }
 
         //return response()->json($result);
 
-        return redirect()->route('service-orders.index','id_ticket='.$reports2)
-            ->with('success', 'ToolAssigned created successfully.');
+       /* return redirect()->route('service-orders.index','id_ticket='.$reports2)
+            ->with('success', 'ToolAssigned created successfully.');*/
     }
 
     /**
@@ -208,8 +208,8 @@ class ToolAssignedController extends Controller
             ->with('success', __('The tool').' '.__('updated successfully'));
         }
 
-        return redirect()->route('tool-assigneds.index')
-            ->with('success', 'ToolAssigned updated successfully');
+        /*return redirect()->route('tool-assigneds.index')
+            ->with('success', 'ToolAssigned updated successfully');*/
     }
 
     /**

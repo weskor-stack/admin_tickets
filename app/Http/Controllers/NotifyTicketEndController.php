@@ -13,7 +13,13 @@ use Illuminate\Http\Request;
  
 use Mail;
  
-use App\Mail\NotifyMail;
+use App\Models\Service;
+use App\Models\ServiceReport;
+use App\Models\MaterialUsed;
+use App\Models\ToolUsed;
+use PDF;
+
+use App\Mail\NotifyMail2;
  
  
 class NotifyTicketEndController extends Controller
@@ -26,17 +32,55 @@ class NotifyTicketEndController extends Controller
         $ticket = Ticket::find($datas);
 ;
 
-        $this->client($ticket);
+        //$this->client($ticket);
         
-        $this->supervisor($ticket);
+        //$this->supervisor($ticket);
        
 
         $serviceOrderId = ServiceOrder::select('service_order_id')
         ->where('ticket_id', '=', $ticket['ticket_id'])->get();
 
-        //return response()->json('service_order '.$serviceOrderId);
-
         $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
+
+        $services = Service::find($serviceOrderId);
+
+        $serviceOrder = ServiceOrder::select('service_order_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $services['service_order_id'])->get();
+
+        $serviceOrder = explode('"',$serviceOrder);
+        $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
+
+        $service3 = Service::select('service_id')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $service3 = preg_replace('/[^0-9]/', '', $service3);
+
+        $serviceReports = ServiceReport::select('service_report_id','time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id')
+        ->where('service_id', '=', $service3)->get();
+        $service = Service::find($service3);
+
+        $materialUseds = MaterialUsed::select('material_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $toolUseds = ToolUsed::select('tool_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $activity2 = ServiceTaskSpecific::select('service_id', 'description_task', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'employee_id', 
+        'contact_id','user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $serviceTaskSpecific = new ServiceTaskSpecific();
+
+        $customer = Customer::find($ticket['customer_id']);
+
+        $pdf = PDF::loadView('service.pdf',['services' => $services], compact('services','service','serviceReports','materialUseds','toolUseds','activity2','serviceTaskSpecific'));
+        $pdf->save(public_path('pdf/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf');
+
+        $this->client($ticket);
+
+        $this->supervisor($ticket);
+
+        //return response()->json($service);
 
         return redirect()->route('services.index','id_ticket='.$serviceOrderId)
         ->with('success', __('Report completed successfully'));
@@ -73,6 +117,7 @@ class NotifyTicketEndController extends Controller
         $dataEmail->subject = $ticket['subject'].' '.'Ticket No:'.' '.$ticket['ticket_id'];
         $dataEmail->paragraph1 = 'Por medio de la presente le comunicamos que el ticket no. '.$ticket['ticket_id'].'; ha sido atendido del siguiente problema:';
         $dataEmail->paragraph2 = '* '.$ticket['problem'];
+        $dataEmail->attach = public_path('pdf/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf';
         
         $this->send_email($dataEmail);
         
@@ -115,6 +160,8 @@ class NotifyTicketEndController extends Controller
         $dataEmail->paragraph4 = '  - '.$contact['name'].' '. $contact['last_name'];
         $dataEmail->email = __('E-mail').':';
         $dataEmail->paragraph5 = '  - '.$contact['email'];
+        $dataEmail->attach = public_path('pdf/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf';
+
         $this->send_email($dataEmail);
         
         //return response()->success('Great! Successfully send in your mail');

@@ -82,8 +82,8 @@ class ContactController extends Controller
                         alert("'.__('Contact created successfully').'"); 
                         javascript:history.go(-1); 
                     </script>';
-            return redirect()->back()
-                ->with('success', __('Contact created successfully'));
+            /*return redirect()->back()
+                ->with('success', __('Contact created successfully'));*/
         }else{
             return '<script>
             alert("'.__('Duplicate contact, please perform the process again.').'"); 

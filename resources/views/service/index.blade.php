@@ -83,14 +83,18 @@
                                         }
                                     </style>
                                     @if($service->status_report_id=='3')
-                                        <a title="{{ __('Back') }}" href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left">
+                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+&nbsp;
+                                        <a title="{{ __('Back') }}" href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left"><i class="fas fa-angle-double-left"></i>&nbsp;
                                             {{ __('Back') }}
                                         </a>
                                     @else
                                         @method('GET')
                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
+                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+&nbsp;
                                         @method('GET')
-                                        <button type="button" class="myButton" data-toggle="modal" data-target="#dialogo4">{{ __('Back')}}</button>
+                                        <button title="{{ __('Back') }}" type="button" class="myButton" data-toggle="modal" data-target="#dialogo4"><i class="fas fa-angle-double-left"></i>&nbsp; {{ __('Back')}}</button>
                                     @endif
                                 
                               </div>
@@ -249,7 +253,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -299,7 +303,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -381,9 +385,9 @@
                                 <!-- pie del diálogo -->
                                     <div class="modal-footer">
                                         <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="btn btn-success">
-                                            {{ __('Accept') }}
+                                        <i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept') }}
                                         </a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
                                     </div>
                                                         
                                 </div>
@@ -481,7 +485,7 @@
                         <!----------------------->
                         <table class="table table-striped table-hover">
                                 
-                                <tr style="text-align: center">
+                                <thead style="text-align: center">
                                 <tr>
                                     <td>
                                     <legend>{{ __('Schedule')}}</legend>
@@ -501,8 +505,8 @@
                                             @method('GET')
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                             @method('GET')
-                                            <button title="{{ __('Add')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Add')}}</button>
-                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_add"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                            <button title="{{ __('Add')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1"><i class="fas fa-plus"></i>&nbsp; {{ __('Add')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_add"><i class="material-icons">&#xe887;</i></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -658,7 +662,7 @@
                                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button title="{{ __('Add material')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add material')}}</button>
+                                            <button title="{{ __('Add material')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2"><i class="fas fa-plus"></i>&nbsp; {{ __('Add material')}}</button>
                                             <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif    
                                         
@@ -704,7 +708,7 @@
                                                        
                                                         <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
                                                         
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"><i class="fas fa-edit"></i>&nbsp; {{ __('Edit') }}</button>
                                                         
                                                         @csrf
                                                         @method('DELETE')
@@ -731,7 +735,7 @@
                                                 <button type="button" class="btn btn-black" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add tool')}}</button>
+                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3"><i class="fas fa-plus"></i>&nbsp; {{ __('Add tool')}}</button>
                                                 <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                             
@@ -769,7 +773,7 @@
                                                     <form action="{{ route('tool-useds.destroy',$toolUsed->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"><i class="fas fa-edit"></i>&nbsp; {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>

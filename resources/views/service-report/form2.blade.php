@@ -112,7 +112,7 @@
         <br>
     </div>
     <div class="box-footer mt20" style="text-align:center">
-        <button type="submit" class="btn btn-success btn-lg" href="{{ route('services.index') }}">{{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg" href="{{ route('services.index') }}"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
     </div>
 </div>

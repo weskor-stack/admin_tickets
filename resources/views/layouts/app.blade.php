@@ -8,30 +8,30 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Automatyco</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/custom.js') }}" defer></script>
-    
+
+    <!-- icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
 </head>
 <body onload="nobackbutton();">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand">
-                    <!--{{ config('app.name', 'Laravel') }}-->
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{!! asset('images/logoAutomatyco3.png')!!}" width="350">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -53,17 +53,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Menu') }}</a>
                         </li>
-                        
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <!--<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>-->
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <!--<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>-->
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -84,20 +83,6 @@
                                     </form>
                                 </div>
                             </li>
-<!-------------------------------------------------------------------------------------------------------------------------------------------------->
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-                                    {{ __("Choose a language") }}
-
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('set_language', ['es'])}}">{{ __("Spanish") }}</a>
-                                    <a class="dropdown-item" href="{{route('set_language', ['en'])}}">{{ __("English") }}</a>
-                                </div>
-                            </li>
-<!-------------------------------------------------------------------------------------------------------------------------------------------------->
                         @endguest
                     </ul>
                 </div>

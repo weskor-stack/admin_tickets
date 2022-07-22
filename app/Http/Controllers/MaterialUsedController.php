@@ -181,8 +181,8 @@ class MaterialUsedController extends Controller
 
         //$materialUsed->update($request->all());
 
-        return redirect()->route('material-useds.index')
-            ->with('success', 'MaterialUsed updated successfully');
+        /*return redirect()->route('material-useds.index')
+            ->with('success', 'MaterialUsed updated successfully');*/
     }
 
     /**

@@ -23,6 +23,7 @@ use App\Models\Department;
 use App\Models\SupervisorEmployee;
 use DB;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class ServiceOrderController
@@ -165,11 +166,45 @@ class ServiceOrderController extends Controller
         $employee_assigned = Employee::whereNotIn('employee_id', EmployeeOrder::select('employee_id')
         ->where('service_order_id', '=', $serviceOrder3))->get();
 
-        //return response()->json($employee_assigned);
+        $materialAssigneds4 = Material::whereIn('material_id', MaterialAssigned::select('material_id')
+        ->where('service_order_id', '=', $serviceOrder3))->get();
+        //return response()->json($materialAssigneds4);
         
         return view('service-order.index', compact('serviceOrders','serviceOrder','serviceOrder_all','service','materialAssigned','material','toolAssigned','tool','materialAssigneds','toolAssigneds','employeeOrder','employee','employeeOrders','reports2','status','serviceReport',
         'tickets','materialAssigneds_2','materials','tools','supervisors','employees','employee2','unit_measure','material2','tool2','employee_assigned'))
             ->with('i', (request()->input('page', 1) - 1) * $serviceOrders->perPage());
+    }
+
+    public function pdf()
+    {
+        $datas = $_GET['id_ticket'];
+        $serviceOrders = ServiceOrder::paginate();
+        $serviceOrder2 = ServiceOrder::select('service_order_id')
+        ->where('ticket_id', '=', $datas)->get();
+        $serviceOrder2 = preg_replace('/[^0-9]/', '', $serviceOrder2);
+        $serviceOrder = ServiceOrder::find($serviceOrder2);
+
+        $serviceOrder_all = ServiceOrder::select('service_order_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
+        ->where('ticket_id', '=', $datas)->get();
+        $serviceOrder_all = preg_replace('/[^0-9]/', '', $serviceOrder_all);
+
+        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder_all[0])->get();
+        
+        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder_all[0])->get();
+
+        $employeeOrders = EmployeeOrder::select('service_order_id', 'employee_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder_all[0])->get();
+
+        $supervisors = SupervisorEmployee::all();
+        
+        //return response()->json($toolAssigneds);
+
+        //return view('service-order.pdf', compact('serviceOrders','serviceOrder'));
+        $pdf = PDF::loadView('service-order.pdf',['service-orders' => $serviceOrders], compact('serviceOrders','serviceOrder','materialAssigneds','toolAssigneds','employeeOrders','supervisors'));
+        //return $pdf->stream();
+        return $pdf->download('order.pdf');
     }
 
     /**

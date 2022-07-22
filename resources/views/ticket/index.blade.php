@@ -17,9 +17,12 @@
                             </span>
 
                             <div class="float-right" style="text-align:right">
-                                <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('New Ticket') }}">{{ __('New Ticket') }}</a>
+                                <a href="{{ route('ticket.pdf') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+&nbsp;
+                                <a href="{{ route('tickets.create') }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('New Ticket') }}"><i class="far fa-clone"></i>&nbsp; {{ __('New Ticket') }}</a>
                                 <button class="btn" width="5%" data-toggle="modal" data-target="#dialogo2" title="{{ __('Help') }}">
-                                    <img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20">
+                                    <!--<img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20">-->
+                                    <i class="material-icons">&#xe887;</i>
                                 </button>
                                 <!--@method('GET')
                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#dialogo0" hidden>{{ __('Create report') }}</button>
@@ -78,7 +81,7 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
-                                                        <button title="{{ __('Create order') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1">{{ __('Create order') }}</button>
+                                                        <button title="{{ __('Create order') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1"><i class="far fa-clone"></i>&nbsp; {{ __('Create order') }}</button>
                                                     @else
                                                         <a title="{{ __('Order') }}" class="btn btn-warning" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Order') }}</a>
                                                     @endif
@@ -143,7 +146,7 @@
                                                         
                                                             <!-- pie del diálogo -->
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;{{ __('Close')}}</button>
                                                             </div>
                                                         
                                                             </div>

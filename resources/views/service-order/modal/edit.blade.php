@@ -33,7 +33,7 @@
                         <br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-                            <button type="submit" class="btn btn-success btn-lg">{{ __('Edit') }}</button>
+                            <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Edit') }}</button>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -57,7 +57,7 @@
                                                                 
                 <!-- pie del diálogo -->
                     <div class="modal-footer" style="text-align:center;">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close') }}</button>
                     </div>
                     
             </div>

@@ -30,10 +30,11 @@ Route::get('get-stock', [DropdownController::class, 'getStockes'])->name('getSto
 */
 
 Route::get('/', function () {
+    //return view('auth.login');
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -73,7 +74,7 @@ Route::resource('statuses', App\Http\Controllers\StatusController::class);
 
 Route::resource('supervisor-employees', App\Http\Controllers\SupervisorEmployeeController::class);
 
-Route::resource('tickets', App\Http\Controllers\TicketController::class);
+Route::resource('tickets', App\Http\Controllers\TicketController::class);//->middleware('auth');
 
 Route::resource('ticket-statuses', App\Http\Controllers\TicketStatusController::class);
 
@@ -116,3 +117,23 @@ Route::get('notifications', function () {
     return view('welcome');
 });
 //////////////////////////////////////// ///////////////////////// ////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////// AUTENTICATION  ////////////////////////////////////////////////////
+/*Auth::routes(['register'=>false, 'reset'=>false]);
+
+Route::get('/home', [App\Http\Controllers\TicketController::class, 'index'])->name('home');
+
+Route::prefix(['middleware'=>'auth'], function () {
+    Route::get('/', [TicketController::class, 'index'])->name('home');
+});*/
+///////////////////////////////////////////////////// ///////////////////////// ////////////////////////////////////////
+
+/////////////////////////////////////////////////// PDF  //////////////////////////////////////////////////////////////
+
+Route::get('tickets-pdf', [App\Http\Controllers\TicketController::class, 'pdf'])->name('ticket.pdf');
+
+Route::get('orders-pdf', [App\Http\Controllers\ServiceOrderController::class, 'pdf'])->name('service-order.pdf');
+
+Route::get('services-pdf', [App\Http\Controllers\ServiceController::class, 'pdf'])->name('service.pdf');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

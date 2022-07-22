@@ -9,9 +9,9 @@
 
             <strong>{{__('Key')}}</strong>
                         
-            <select class="form-select select2" id="material_id" name="material_id" required>
+            <select class="form-select" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
-                @foreach ($material2 as $item)
+                @foreach ($materials2 as $item)
                     <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
                 @endforeach
             </select>
@@ -56,7 +56,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg">{{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('material-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

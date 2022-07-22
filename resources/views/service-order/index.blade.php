@@ -73,12 +73,12 @@
                                             @if($serviceOrder->status_order_id=='1')
                                                 <!--<a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left">{{ __('Create report') }}</a>-->
                                                 @method('GET')
-                                                <button title="{{ __('Create report') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo5">{{ __('Create report') }}</button>
-                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_crear_reporte"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                                <button title="{{ __('Create report') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo5"><i class="far fa-clone"></i>&nbsp;{{ __('Create report') }}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_crear_reporte"><i class="material-icons">&#xe887;</i></button>
                                             @else
                                                 <a href="{{ route('services.create','id='.$serviceOrder->service_order_id) }}" class="btn btn-outline-warning"  data-placement="left" hidden>{{ __('Create report') }}</a>
-                                                <a title="{{ __('Reports')}}" type="submit" class="btn btn-warning" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-trash"></i> {{ __('Reports')}}</a>
-                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                                <a title="{{ __('Reports')}}" type="submit" class="btn btn-warning" href="{{ route('services.index','id_ticket='.$serviceOrder->service_order_id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Reports')}}</a>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help"><i class="material-icons">&#xe887;</i></button>
                                             @endif                    
                                                                             
                                             <div>                                                                                
@@ -129,7 +129,7 @@
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
                                                                         <!--<input type="number" name="message" id="message"> <br>-->
-                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp;;&nbsp;; 
                                                                         <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="" style="width:80px;" disabled><br>
                                                                         <form method="POST" action="{{ route('material-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
@@ -182,7 +182,7 @@
 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -204,7 +204,7 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">                    
                                                                     <div class="card-body">
-                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text3" name="text3" value="" style="width:70px;" disabled> &nbsp;&nbsp; 
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text3" name="text3" value="" style="width:70px;" disabled> &nbsp;;&nbsp;; 
                                                                         <b>{{ __('unit_measure') }}: </b><input type="text" id="text4" name="text4" value="" style="width:80px;" disabled><br>
                                                                         <form method="POST" action="{{ route('tool-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
@@ -230,7 +230,7 @@
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -258,7 +258,7 @@
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -388,7 +388,7 @@
                                                                                     <br>
                                                                                 </div>
                                                                                 <div class="box-footer mt20" style="text-align:center">
-                                                                                    <button type="submit" class="btn btn-success btn-lg">{{ __('Accept')}}</button>
+                                                                                    <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
                                                                                     <!--<a class="btn btn-danger btn-lg" href="{{ route('service-orders.index') }}"> Cancel</a>-->
                                                                                 </div>
                                                                             </div>
@@ -398,7 +398,7 @@
                                                                 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close') }}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -408,7 +408,7 @@
                                                 </div>
                                                     
                                                 <div class="modal fade" id="dialogo5">
-                                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
                                                         <div class="modal-content">
                                                             <!-- cabecera del diálogo -->
                                                                 <div class="modal-header">
@@ -428,7 +428,7 @@
                                                             
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;{{ __('Close')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -493,7 +493,7 @@
                                                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
                                                     <div class="modal modal-fullscreen fade" id="help_crear_reporte" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                                                        <div class="modal-dialog modal-lg modal-dialog-centered">
                                                             <div class="modal-content">
                                                         
                                                             <!-- cabecera del diálogo 
@@ -503,12 +503,12 @@
                                                             </div>-->
                                                         
                                                             <!-- cuerpo del diálogo -->
-                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                            <div class="modal-body" style="background-color: #d6dbdf; text-align:center;">
                                                                 
-                                                                <div class="card-body" style="background-color: #d6dbdf; text-align:centered;">
+                                                                <div class="card-body" style="background-color: #d6dbdf; text-align:center;">
                                                                     <!--<img src="{!! asset('images/user_guide/user_guide1.png')!!}" width="100%">-->
                                                                    
-                                                                    <img src="{!! asset('images/user_guide/crear_reporte.png')!!}" width="100%" style="text-align:center;">
+                                                                    <img src="{!! asset('images/user_guide/crear_reporte.png')!!}" width="80%" style="text-align:center;">
                                                                     
                                                                 </div>
                                                             </div>
@@ -687,7 +687,9 @@
                                         top:1px;
                                     }
                                 </style>
-                                <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left">
+                                <a href="{{ route('service-order.pdf','id_ticket='.$serviceOrder->ticket_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+                                &nbsp;
+                                <a href="{{ route('tickets.index') }}" class="myButton"  data-placement="left"><i class="fas fa-angle-double-left"></i>&nbsp;
                                   {{ __('Back') }}
                                 </a>
                               </div>
@@ -773,8 +775,8 @@
 
                                         @else
                                             @method('GET')
-                                            <button title="{{ __('Edit')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" >{{ __('Edit')}}</button>
-                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_edit"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                            <button title="{{ __('Edit')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo4" ><i class="fa fa-fw fa-edit"></i> {{ __('Edit')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_edit"><i class="material-icons">&#xe887;</i></button>
                                         @endif
                                     </td>
                                 </tr>
@@ -796,7 +798,7 @@
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo1" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button title="{{ __('Add material')}}"  type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo1">{{ __('Add material')}}</button>
+                                            <button title="{{ __('Add material')}}"  type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo1"><i class="fas fa-plus"></i>&nbsp; {{ __('Add material')}}</button>
                                             <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                         @endif    
                                         
@@ -842,7 +844,7 @@
                                                        
                                                         <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
                                                         
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo7{{ $materialAssigned->material_id }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</button>
                                                         
                                                         @csrf
                                                         @method('DELETE')
@@ -870,7 +872,7 @@
                                                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo2" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2">{{ __('Add tool')}}</button>
+                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2"><i class="fas fa-plus"></i>&nbsp;{{ __('Add tool')}}</button>
                                                 <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                             
@@ -908,7 +910,7 @@
                                                     <form action="{{ route('tool-assigneds.destroy',$toolAssigned->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"> {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo8{{ $toolAssigned->tool_id }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
@@ -934,7 +936,7 @@
                                                 
                                             @else
                                                 @method('GET')
-                                                <button title="{{ __('Add employee')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3">{{ __('Add employee')}}</button>
+                                                <button title="{{ __('Add employee')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3"><i class="fas fa-plus"></i>&nbsp;{{ __('Add employee')}}</button>
                                                 <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_employee"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
                                             @endif
                                         </td>

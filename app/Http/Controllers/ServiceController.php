@@ -20,6 +20,7 @@ use App\Models\Tool;
 use App\Models\ServiceTaskSpecific;
 use DB;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class ServiceController
@@ -131,6 +132,56 @@ class ServiceController extends Controller
         'serviceReports','serviceTaskSpecific', 'activity2','employeeOrders', 'materialUseds', 'materialUsed','materials2','tools2','toolUsed','toolUseds','tool2','material2',
         'service_report'))
             ->with('i', (request()->input('page', 1) - 1) * $services->perPage());
+    }
+
+    public function pdf()
+    {
+        $datas = $_GET['id_ticket'];
+
+        $services = Service::paginate();
+
+        $service2 = Service::select('service_order_id')
+        ->where('service_order_id', '=', $datas)->get();
+
+        $service2 = preg_replace('/[^0-9]/', '', $service2);
+
+        $serviceOrder = ServiceOrder::select('service_order_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $service2)->get();
+
+        $serviceOrder = explode('"',$serviceOrder);
+        $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
+
+        $materialAssigneds = MaterialAssigned::select('material_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $toolAssigneds = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $service3 = Service::select('service_id')
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
+
+        $service3 = preg_replace('/[^0-9]/', '', $service3);
+
+        $serviceReports = ServiceReport::select('service_report_id','time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id')
+        ->where('service_id', '=', $service3)->get();
+
+        $service = Service::find($service3);
+
+        $materialUseds = MaterialUsed::select('material_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $toolUseds = ToolUsed::select('tool_id', 'quantity', 'service_id', 'user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $activity2 = ServiceTaskSpecific::select('service_id', 'description_task', 'previous_evidence', 'subsequent_evidence', 'signature_evidence', 'employee_id', 
+        'contact_id','user_id', 'date_registration')
+        ->where('service_id', '=', $service3)->get();
+
+        $serviceTaskSpecific = new ServiceTaskSpecific();
+        
+        $pdf = PDF::loadView('service.pdf',['services' => $services], compact('services','service','serviceReports','materialUseds','toolUseds','activity2','serviceTaskSpecific'));
+        return $pdf->stream();
+        //return $pdf->download('order.pdf');
     }
 
     /**

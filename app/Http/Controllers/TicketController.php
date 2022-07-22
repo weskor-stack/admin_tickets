@@ -13,6 +13,7 @@ use App\Models\Priority;
 use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class TicketController
@@ -39,6 +40,13 @@ class TicketController extends Controller
 
         return view('ticket.index', compact('tickets','serviceOrder','service','maintenance','priority'))
             ->with('i', (request()->input('page', 1) - 1) * $tickets->perPage());
+    }
+
+    public function pdf()
+    {
+        $tickets = Ticket::paginate();
+        $pdf = PDF::loadView('ticket.pdf',['tickets' => $tickets]);
+        return $pdf->stream();
     }
 
     /**

@@ -156,7 +156,7 @@ class ServiceTaskSpecificController extends Controller
 
         //return response()->json($url);
 
-        return redirect()->route('services.index','id_ticket='.$serviceId)
+        /*return redirect()->route('services.index','id_ticket='.$serviceId)
         ->with('success', 'Activity created successfully.');
         /*$serviceTaskSpecific = ServiceTaskSpecific::create($request->all());
 
