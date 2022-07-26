@@ -114,11 +114,7 @@ class ToolAssignedController extends Controller
 
         //return response()->json($result);
 
-<<<<<<< HEAD
        /* return redirect()->route('service-orders.index','id_ticket='.$reports2)
-=======
-        /*return redirect()->route('service-orders.index','id_ticket='.$reports2)
->>>>>>> e86f77591a596737378415d72013feab3b6b6e5c
             ->with('success', 'ToolAssigned created successfully.');*/
     }
 
@@ -162,6 +158,12 @@ class ToolAssignedController extends Controller
         $statement = DB::statement("SET @user_id = 9999");
         $toolAssigneds = request()->validate(ToolAssigned::$rules);
 
+        if($toolAssigneds['quantity']==0){
+            return '<script>
+                    alert("Valor no valido"); 
+                    javascript:history.go(-1); 
+                </script>';
+        }
         $tool_stock = Tool::select('stock')
         ->where('tool_id', '=', $toolAssigned['tool_id'])->get();
 

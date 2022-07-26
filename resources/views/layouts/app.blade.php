@@ -16,7 +16,7 @@
 
     <!-- icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://fonts.googleapis.com/icon?family=Material+Icons" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -51,7 +51,7 @@
                             <a class="nav-link" href="{{ url('/') }}" hidden>{{ __('Menu') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Menu') }}</a>
+                            <a title="{{ __('Menu') }}" class="nav-link" href="{{ url('/') }}"><i class="material-icons" style="font-size:40px">menu_book</i></a>
                         </li>
                         @guest
                             @if (Route::has('login'))

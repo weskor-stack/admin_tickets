@@ -154,6 +154,14 @@ class MaterialUsedController extends Controller
         
         $material_stock = (int)$material_stock;
 
+        if($materialUseds['quantity']==0){
+            return '<script>
+                    alert("Valor no valido"); 
+                    javascript:history.go(-1); 
+                </script>';
+        }
+        //return response()->json($materialUseds[]);
+
         $result = $material_stock + $material_Used['quantity'];
 
         $materialUseds['quantity'] = (int)$materialUseds['quantity'];

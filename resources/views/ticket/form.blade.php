@@ -33,7 +33,7 @@
                 <option value="{{ $country->customer_id }}">{{ $country->name }}</option>
                 @endforeach
             </select>
-            <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1"><i class="fas fa-plus"></i></a> <br>
+            <a type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#dialogo1">+</a> <br>
         </div>
         <script>
                 $('.select2').select2();
@@ -52,7 +52,7 @@
                 $('.select2').select2();
             </script>
             <select class="form-select," data-control="select2" id="contact" style="width:600px; height:38px;" required></select>            
-            <a type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2"><i class="fas fa-plus"></i></a> <br>
+            <a type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
 
             <script>
                 $('.select2').select2();
@@ -101,7 +101,7 @@
     </div>
     <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
-        <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="fas fa-ban"></i>&nbsp; {{ __('Cancel')}}</a>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
+        <a class="btn btn-secondary btn-lg" href="{{ route('tickets.index') }}"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</a>
     </div>
 </div>

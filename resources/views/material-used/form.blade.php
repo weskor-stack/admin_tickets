@@ -11,9 +11,15 @@
                         
             <select class="form-select" id="material_id" name="material_id" required>
                 <option value="">--{{ __('Select material')}}--</option>
-                @foreach ($materials2 as $item)
-                    <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
-                @endforeach
+                @if($materialUseds->isEmpty())
+                    @foreach ($materials2 as $item)
+                        <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
+                    @endforeach
+                @else
+                    @foreach ($material2 as $item)
+                        <option value="{{$item->material_id}}" data-stock="{{$item->material->stock}}" data-unity="{{$item->material->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->material->key}} - {{$item->material->name}}</option>
+                    @endforeach
+                @endif
             </select>
 
             <script>
@@ -37,7 +43,7 @@
         <div class="form-group">
             <strong>{{ __('Quantity')}}</strong> <br>
 
-            <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="2" step="0.1" min="0" required>            
+            <input class="form-control" type="number" name="quantity" id="quantity" data-decimals="1" step="0.1" min="0" required>            
         </div>
         
         <div class="form-group" hidden>
@@ -56,7 +62,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('material-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

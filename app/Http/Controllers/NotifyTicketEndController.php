@@ -30,7 +30,6 @@ class NotifyTicketEndController extends Controller
         $datas = $_GET['id_ticket'];
 
         $ticket = Ticket::find($datas);
-;
 
         //$this->client($ticket);
         
@@ -42,10 +41,15 @@ class NotifyTicketEndController extends Controller
 
         $serviceOrderId = preg_replace('/[^0-9]/', '', $serviceOrderId);
 
-        $services = Service::find($serviceOrderId);
+        $services = Service::select('service_order_id')
+        ->where('service_order_id','=',$serviceOrderId)->get();
+
+        $services = $services[0]['service_order_id'];
+
+        //return response()->json($services);
 
         $serviceOrder = ServiceOrder::select('service_order_id','date_order', 'ticket_id', 'type_maintenance_id', 'type_service_id', 'status_order_id', 'user_id', 'date_registration')
-        ->where('service_order_id', '=', $services['service_order_id'])->get();
+        ->where('service_order_id', '=', $services)->get();
 
         $serviceOrder = explode('"',$serviceOrder);
         $serviceOrder = preg_replace('/[^0-9]/', '', $serviceOrder);
@@ -117,6 +121,7 @@ class NotifyTicketEndController extends Controller
         $dataEmail->subject = $ticket['subject'].' '.'Ticket No:'.' '.$ticket['ticket_id'];
         $dataEmail->paragraph1 = 'Por medio de la presente le comunicamos que el ticket no. '.$ticket['ticket_id'].'; ha sido atendido del siguiente problema:';
         $dataEmail->paragraph2 = '* '.$ticket['problem'];
+        $dataEmail->paragraph3 = 'Por lo tanto, el departamento de ventas, se contactará, para dar cierre al servicio, de antemano, gracias.';
         $dataEmail->attach = public_path('pdf/') . 'reporte-'.$customer['name'].'-'.$ticket['ticket_id'].'.pdf';
         
         $this->send_email($dataEmail);
@@ -173,7 +178,7 @@ class NotifyTicketEndController extends Controller
         foreach ($dataEmail->receiver as $i => $value){
             $dataEmail->salute = 'Estimado '.$value->name.':';
             
-            Mail::to($value->email)->send(new NotifyMail($dataEmail));
+            Mail::to($value->email)->send(new NotifyMail2($dataEmail));
             
             //actualizar que se envió un email en la base de datos
             

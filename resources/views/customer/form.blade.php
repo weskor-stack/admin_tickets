@@ -7,6 +7,13 @@
             <!--<input type="text" name="customer_id" id="customer_id" class="form-control" maxlength="10" minlength="10" placeholder="{{ __('customer_id') }}" required>-->
             {!! $errors->first('customer_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
+        <div class="form-group" hidden>
+            {{ Form::label( __('Key')) }}
+            {{ Form::text('key', '0', ['class' => 'form-control' . ($errors->has('key') ? ' is-invalid' : ''), 'placeholder' => __('customer_id'), 'maxlength' => 10, 'minlength'=>10, 'hidden']) }}
+            <!--<input type="text" name="customer_id" id="customer_id" class="form-control" maxlength="10" minlength="10" placeholder="{{ __('customer_id') }}" required>-->
+            {!! $errors->first('key', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
         
         <div class="form-group">
             {{ Form::label( __('Name')) }}
@@ -66,7 +73,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('tickets.create') }}"> {{ __('Cancel')}}</a>-->
     </div>
 </div>

@@ -148,6 +148,14 @@ class ToolUsedController extends Controller
         
         $tool_stock = (int)$tool_stock;
 
+        //return response()->json($toolUseds['quantity']);
+        if($toolUseds['quantity']==0){
+            return '<script>
+                    alert("Valor no valido"); 
+                    javascript:history.go(-1); 
+                </script>';
+        }
+
         $result = $tool_Used['quantity'] + $tool_stock;
 
         $toolUseds['quantity'] = (int)$toolUseds['quantity'];
@@ -170,7 +178,7 @@ class ToolUsedController extends Controller
             $data->save();
             $toolUsed->update($request->all());            
             return redirect()->back()
-            ->with('success', __('The material') .' '.__('updated successfully'));
+            ->with('success', __('The tool') .' '.__('updated successfully'));
         }
 
         /*return redirect()->route('tool-useds.index')

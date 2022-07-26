@@ -105,7 +105,7 @@
         <br>
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp{{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('service-orders.index') }}"> Cancel</a>-->
     </div>
 </div>

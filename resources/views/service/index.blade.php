@@ -58,43 +58,43 @@
 
                              <div class="float-right">
                                 <style>
-                                        .myButton {
-                                            box-shadow: 3px 4px 0px 0px #899599;
-                                            background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
-                                            background-color:#ededed;
-                                            border-radius:15px;
-                                            border:1px solid #d6bcd6;
-                                            display:inline-block;
-                                            cursor:pointer;
-                                            color:#000000;
-                                            font-family:Arial;
-                                            font-size:17px;
-                                            padding:10px 16px;
-                                            text-decoration:none;
-                                            text-shadow:0px 1px 0px #e1e2ed;
-                                        }
-                                        .myButton:hover {
-                                            background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
-                                            background-color:#bab1ba;
-                                        }
-                                        .myButton:active {
-                                            position:relative;
-                                            top:1px;
-                                        }
-                                    </style>
+                                    .myButton {
+                                        box-shadow: 3px 4px 0px 0px #899599;
+                                        background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+                                        background-color:#ededed;
+                                        border-radius:15px;
+                                        border:1px solid #d6bcd6;
+                                        display:inline-block;
+                                        cursor:pointer;
+                                        color:#000000;
+                                        font-family:Arial;
+                                        font-size:17px;
+                                        padding:10px 16px;
+                                        text-decoration:none;
+                                        text-shadow:0px 1px 0px #e1e2ed;
+                                    }
+                                    .myButton:hover {
+                                        background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+                                        background-color:#bab1ba;
+                                    }
+                                    .myButton:active {
+                                        position:relative;
+                                        top:1px;
+                                    }
+                                </style>
                                     @if($service->status_report_id=='3')
-                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>
 &nbsp;
-                                        <a title="{{ __('Back') }}" href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left"><i class="fas fa-angle-double-left"></i>&nbsp;
+                                        <a title="{{ __('Back') }}" href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="myButton"  data-placement="left"><i class="material-icons" style="font-size:20px">keyboard_double_arrow_left</i>&nbsp;
                                             {{ __('Back') }}
                                         </a>
                                     @else
                                         @method('GET')
                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
-                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="fa fa-fw fa-book"></i>&nbsp; {{ __('PDF') }}</a>
+                                        <a href="{{ route('service.pdf','id_ticket='.$service->service_order_id) }}" class="btn btn-primary btn-lg"  data-placement="left" title="{{ __('PDF') }}"><i class="material-icons">book</i>&nbsp; {{ __('PDF') }}</a>
 &nbsp;
                                         @method('GET')
-                                        <button title="{{ __('Back') }}" type="button" class="myButton" data-toggle="modal" data-target="#dialogo4"><i class="fas fa-angle-double-left"></i>&nbsp; {{ __('Back')}}</button>
+                                        <a title="{{ __('Back') }}" type="button" class="myButton" data-toggle="modal" data-target="#dialogo4"><i class="material-icons" style="font-size:20px">keyboard_double_arrow_left</i>&nbsp; {{ __('Back')}}</a>
                                     @endif
                                 
                               </div>
@@ -253,7 +253,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -303,7 +303,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -353,7 +353,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -385,9 +385,9 @@
                                 <!-- pie del diálogo -->
                                     <div class="modal-footer">
                                         <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="btn btn-success">
-                                        <i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept') }}
+                                        <i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept') }}
                                         </a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close')}}</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
                                     </div>
                                                         
                                 </div>
@@ -488,7 +488,7 @@
                                 <thead style="text-align: center">
                                 <tr>
                                     <td>
-                                    <legend>{{ __('Schedule')}}</legend>
+                                    <b><legend>{{ __('Schedule')}}</legend></b>
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -497,15 +497,15 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td>
+                                    
+                                    <td style="text-align:right;" colspan="2">
                                         @if($service->status_report_id=='3')
 
                                         @else
                                             @method('GET')
                                             <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                             @method('GET')
-                                            <button title="{{ __('Add')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1"><i class="fas fa-plus"></i>&nbsp; {{ __('Add')}}</button>
+                                            <button title="{{ __('Add')}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1"><i class="material-icons" style="font-size:20px">add</i>&nbsp; {{ __('Add')}}</button>
                                             <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_add"><i class="material-icons">&#xe887;</i></button>
                                         @endif
                                     </td>
@@ -514,7 +514,7 @@
                                         <th>No</th>
                                         
 										<th>{{ __('Time entry')}}</th>
-										<th>{{ __('Completion')}}</th>
+										<th>{{ __('Exit')}}</th>
 										<th>{{ __('Lunchtime')}}</th>
 										<th>{{ __('Service hour')}}</th>
 										<th>{{ __('Service extra')}}</th>
@@ -552,7 +552,7 @@
                                                     <a class="btn btn-sm btn-outline-success" href="{{ route('service-reports.edit',$serviceReport->service_report_id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>-->
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Do you want to delete service?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete service?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>
                                                 </form>
                                             @endif
                                             </td>
@@ -565,7 +565,7 @@
                         <!----------------------->
                         <h1 style="text-align:center;">{{ __('Items to use') }}</h1>
                         <div>
-                        <legend>{{ __('Materials')}}</legend>
+                        <b><legend>{{ __('Materials')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
@@ -605,7 +605,7 @@
                                 </tbody>
                             </table>
 
-                            <legend>{{ __('Tools')}}</legend>
+                            <b><legend>{{ __('Tools')}}</legend></b>
                             <table class="table table-striped table-hover">
                                 <thead class="thead">                                
                                     <tr style="text-align: center">
@@ -652,18 +652,18 @@
                         <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr style="text-align: left">
-                                        <td><legend>{{ __('Materials')}}</legend></td>
+                                        <td><b><legend>{{ __('Materials')}}</legend></b></td>
                                         <td></td>
                                         <td></td>
                                         <td hidden></td>
-                                        <td></td>
-                                        <td style="text-align: center; width:15%">
+                                        
+                                        <td style="text-align:right;" colspan="2">
                                         @if($service->status_report_id=='3')    
                                             <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2" hidden>{{ __('Add material')}}</button>
                                         @else
                                             @method('GET')
-                                            <button title="{{ __('Add material')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2"><i class="fas fa-plus"></i>&nbsp; {{ __('Add material')}}</button>
-                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                            <button title="{{ __('Add material')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo2"><i class="material-icons" style="font-size:20px">add</i>&nbsp; {{ __('Add material')}}</button>
+                                            <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_material"><i class="material-icons">&#xe887;</i></button>
                                         @endif    
                                         
                                         </td>
@@ -697,7 +697,7 @@
 
                                             <td style="width:20%">
                                                 @if($service->status_report_id=='3')
-                                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')" hidden><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Do you want to delete material?')" hidden><i class="material-icons" style="font-size:20px">delete</i>&nbsp; Delete</button>
                                                 @else    
                                                     <form action="{{ route('material-useds.destroy',$materialUsed->material_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('material-assigneds.show',$materialAssigned->material_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
@@ -708,11 +708,11 @@
                                                        
                                                         <!--<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#dialogo6" >Edit</button>-->
                                                         
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"><i class="fas fa-edit"></i>&nbsp; {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo9{{ $materialUsed->material_id }}"><i class="material-icons" style="font-size:20px">edit</i>&nbsp; {{ __('Edit') }}</button>
                                                         
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete material?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete material?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete') }}</button>
                                                     </form>
                                                 @endif
                                             </td>
@@ -725,18 +725,18 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">      
                                     <tr style="text-align: left">
-                                        <td><legend>{{ __('Tools')}}</legend></td>
+                                        <td><b><legend>{{ __('Tools')}}</legend></b></td>
                                         <td hidden></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
-                                        <td style="text-align: center; width:15%">
+                                        
+                                        <td style="text-align:right;" colspan="2">
                                             @if($service->status_report_id=='3')
                                                 <button type="button" class="btn btn-black" data-toggle="modal" data-target="#dialogo3" hidden>Add tool</button>
                                             @else
                                                 @method('GET')
-                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3"><i class="fas fa-plus"></i>&nbsp; {{ __('Add tool')}}</button>
-                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><img src="{!! asset('images/user_guide/ayuda.png')!!}" width="20"></button>
+                                                <button title="{{ __('Add tool')}}" type="button" class="btn btn-dark" data-toggle="modal" data-target="#dialogo3"><i class="material-icons" style="font-size:20px">add</i>&nbsp; {{ __('Add tool')}}</button>
+                                                <button title="{{__('Help')}}" class="btn" width="5%" data-toggle="modal" data-target="#help_tool"><i class="material-icons">&#xe887;</i></button>
                                             @endif
                                             
                                         </td>
@@ -773,10 +773,10 @@
                                                     <form action="{{ route('tool-useds.destroy',$toolUsed->tool_id) }}" method="POST">
                                                         <!--<a class="btn btn-outline-primary" href="{{ route('tool-assigneds.show',$toolAssigned->tool_id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>-->
                                                         <a class="btn btn-outline-success" hidden><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"><i class="fas fa-edit"></i>&nbsp; {{ __('Edit') }}</button>
+                                                        <button type="button" class="btn btn-info" href="#" data-toggle="modal" data-target="#dialogo10{{ $toolUsed->tool_id }}"><i class="material-icons" style="font-size:20px">edit</i>&nbsp; {{ __('Edit') }}</button>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="fa fa-fw fa-trash"></i> {{ __('Delete')}}</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Do you want to delete tool?')"><i class="material-icons" style="font-size:20px">delete</i>&nbsp; {{ __('Delete')}}</button>
                                                     </form>
                                                 @endif
                                             </td>

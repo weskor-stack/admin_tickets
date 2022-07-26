@@ -25,7 +25,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>{{ __('Quantity') }}:</strong>
-                                {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.01', 'min'=>'0', 'required']) }}
+                                {{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => 'Quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.1', 'min'=>'0', 'required']) }}
                                 {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                         <br>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
-                            <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Edit') }}</button>
+                            <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Edit') }}</button>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -57,7 +57,7 @@
                                                                 
                 <!-- pie del diálogo -->
                     <div class="modal-footer" style="text-align:center;">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close') }}</button>
                     </div>
                     
             </div>

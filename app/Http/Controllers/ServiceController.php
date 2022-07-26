@@ -115,13 +115,16 @@ class ServiceController extends Controller
         $material2 = MaterialAssigned::whereNotIn('material_id', MaterialUsed::select('material_id')
         ->where('service_order_id', '=', $serviceOrder[2]))->get();
 
-        $tool2 = ToolAssigned::select('tool_id')->whereNotIn('tool_id', ToolUsed::select('tool_id')
-        ->where('service_order_id', '=', $serviceOrder[2]))
-        ->get();
+        $tool2 = ToolAssigned::select('*')->whereNotIn('tool_id', ToolUsed::select('tool_id'))
+        ->where('service_order_id', '=', '5')->get();
+
+        /*$tool2 = ToolAssigned::whereNotIn('tool_id', ToolUsed::select('tool_id')
+        ->where('service_order_id', '=', $serviceOrder[2])) ->get();*/
 
         $tools2 = ToolAssigned::select('tool_id', 'quantity', 'service_order_id', 'user_id', 'date_registration')
         ->where('service_order_id', '=', $serviceOrder[2])->get();
-        //return response()->json($tools2);
+        
+        //return response()->json($tool2);
 
         $service_report = ServiceReport::select('service_report_id', 'time_entry', 'time_completion', 'lunchtime', 'service_hours', 'service_extras', 'duration_travel', 'date_service', 'service_id', 'employee_id', 'user_id', 'date_registration')
         ->where('service_id', '=', $service3)->get();

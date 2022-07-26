@@ -47,6 +47,7 @@ div.WordSection1
 		<p class=MsoNormal><o:p>&nbsp;</o:p></p>
 		<p class=MsoNormal><span lang=ES-MX>{{ $dataMail->paragraph1 }}<o:p></o:p></span></p>
 		<p class=MsoNormal ><span lang=ES-MX>{{ $dataMail->paragraph2 }}<o:p></o:p></span></p>
+		<p class=MsoNormal ><span lang=ES-MX>{{ $dataMail->paragraph3 }}<o:p></o:p></span></p>
 		<p class=MsoNormal><span lang=ES-MX><o:p>&nbsp;</o:p></span></p>
 		<p class=MsoNormal><span lang=ES-MX><o:p>&nbsp;</o:p></span></p>
 		<p class=MsoNormal><span lang=ES-MX><o:p>&nbsp;</o:p></span></p>

@@ -6,7 +6,7 @@
                     <td align="center" hidden><b>Día</b></td>
                     
                     <td style="width:8%"><b>{{ __('Entry')}}</b></td>
-                    <td style="width:8%"><b>{{ __('Completion')}}</b></td>
+                    <td style="width:8%"><b>{{ __('Exit')}}</b></td>
                     <td style="width:8%"><b>{{ __('Lunchtime')}}</b></td>
                     <td hidden><b>{{ __('Service hour')}}</b></td>
                     <td style="width:5%"><b>{{ __('Service extra')}}</b></td>
@@ -38,9 +38,17 @@
                     </td>
                     <td style="width:5%">
                         <div class="form-group">
-                            {{ Form::time('lunchtime', $serviceReport->lunchtime, ['class' => 'form-control' . ($errors->has('lunchtime') ? ' is-invalid' : ''), 'placeholder' => 'Lunchtime', 'required']) }}
+                            <select class="form-select" id="lunchtime" name="lunchtime" requiered>
+                                <option value="00:00:00">0 hr.</option>
+                                <option value="01:00:00">1 hr.</option>
+                                <option value="02:00:00">2 hrs.</option>
+                                <option value="03:00:00">3 hrs.</option>
+                                <option value="04:00:00">4 hrs.</option>
+                                <option value="05:00:00">5 hrs.</option>
+                            </select>
+                            <!--{{ Form::time('lunchtime', $serviceReport->lunchtime, ['class' => 'form-control' . ($errors->has('lunchtime') ? ' is-invalid' : ''), 'placeholder' => 'Lunchtime', 'required']) }}
                             {!! $errors->first('lunchtime', '<div class="invalid-feedback">:message</div>') !!}
-                            <!--<input type="text" class="form-control" name="time_completion" id="time_completion" required>-->
+                            <input type="text" class="form-control" name="time_completion" id="time_completion" required>-->
                         </div>
                     </td>
                     <td hidden>
@@ -112,7 +120,7 @@
         <br>
     </div>
     <div class="box-footer mt20" style="text-align:center">
-        <button type="submit" class="btn btn-success btn-lg" href="{{ route('services.index') }}"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg" href="{{ route('services.index') }}"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
     </div>
 </div>

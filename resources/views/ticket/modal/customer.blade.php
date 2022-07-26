@@ -19,7 +19,7 @@
 
                 <!-- pie del diálogo -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;{{ __('Close')}}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="history.go(0)"><i class="material-icons" style="font-size:20px">block</i>&nbsp;{{ __('Cancel')}}</button>
                     </div>
             </div>
         </div>

@@ -774,7 +774,7 @@
     "Materials": "Materiales",
     "Material": "Material",
     "Back" : "Regresar",
-    "Order of service": "Orden del servicio",
+    "Order of service": "Orden de servicio",
     "Type of maintenance": "Tipo de mantenimiento",
     "Type of service": "Tipo de servicio",
     "Preventive": "Preventivo",
@@ -805,7 +805,7 @@
     "Service hour": "Horas del servicio",
     "Service extra": "Tiempo extra",
     "Duration travel" : "Duración de viaje",
-    "Date service" : "Fecha del servicio",
+    "Date service" : "Fecha",
     "Service report": "Reporte del servicio",
     "Entry": "Entrada",
     "Activities implemented": "Actividades implementadas",
@@ -874,5 +874,6 @@
     "you will lose the information": "perderás la información",
     "and you will have to enter the information again": "y deberás capturar nuevamente.",
     "Help": "Ayuda",
-    "Edit Material": "Editar material"
+    "Edit Material": "Editar material",
+    "Exit":"Salida"
 }

@@ -22,7 +22,7 @@
         
         <div class="form-group">
             <strong>{{ Form::label( __('Quantity')) }}</strong>
-            {{ Form::number('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'step'=>'0.01', 'min'=>'0','required']) }}
+            {{ Form::number('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'step'=>'0.1', 'min'=>'0','required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         
@@ -41,7 +41,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg"> <i class="far fa-thumbs-up"></i>&nbsp; {{__('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"> <i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{__('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('tool-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

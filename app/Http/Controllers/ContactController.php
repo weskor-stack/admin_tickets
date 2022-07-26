@@ -67,13 +67,14 @@ class ContactController extends Controller
 
         $contact['user_id'] = $contacts['user_id'];
 
-        $contacto = Contact::select('name','last_name')
-        ->where('name', '=', $contact['name'])->get();
+        $contacto = Contact::select('name','last_name','email')
+        ->where('name','=',$contact['name'])->get();
 
-        $contacto = explode('"',$contacto);
+        //$contacto = explode('"',$contacto);
+        //return response()->json( $contact['name']." ".$contact['last_name'] );
 
-        if($contacto[0]== "[]"){
-            //return response()->json( $contacto);
+        if(empty($contacto)){
+            return response()->json( $contacto);
             Contact::insert($contact);
             //$contact = Contact::create($request->all());
     
@@ -85,10 +86,25 @@ class ContactController extends Controller
             /*return redirect()->back()
                 ->with('success', __('Contact created successfully'));*/
         }else{
+            if( $contact['last_name'] == $contacto[0]['last_name'] and $contact['email'] == $contacto[0]['email']){
+                return '<script>
+                        alert("'.__('Duplicate contact, please perform the process again.').'"); 
+                        javascript:history.go(-1); 
+                    </script>'; 
+            }else{
+                //return response()->json("contacto nuevo");
+                Contact::insert($contact);
+            
+                return '<script>
+                        alert("'.__('Contact created successfully').'"); 
+                        javascript:history.go(-1); 
+                    </script>';
+            }
+            /*return response()->json( $contact['name']." ".$contact['last_name'] );
             return '<script>
             alert("'.__('Duplicate contact, please perform the process again.').'"); 
             javascript:history.go(-1); 
-            </script>'; 
+            </script>'; */
         }
                 
     }

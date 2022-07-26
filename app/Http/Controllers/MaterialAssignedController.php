@@ -171,6 +171,12 @@ class MaterialAssignedController extends Controller
         $materialAssigneds = request()->except('_token');
         //return response()->json($materialAssigneds);
 
+        if($materialAssigneds['quantity']==0){
+            return '<script>
+                    alert("Valor no valido"); 
+                    javascript:history.go(-1); 
+                </script>';
+        }
         $material_stock = Material::select('stock')
         ->where('material_id', '=', $materialAssigned['material_id'])->get();
 

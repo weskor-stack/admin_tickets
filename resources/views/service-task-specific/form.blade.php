@@ -98,7 +98,7 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <button id="clear" class="btn btn-warning btn-sm"><i class="fas fa-broom"></i>&nbsp; {{ __('Clear')}}</button>
+                                        <button id="clear" title="{{ __('Clear')}}" class="btn btn-warning btn-sm"><i class="material-icons" style="font-size:20px">cleaning_services</i>&nbsp; {{ __('Clear')}}</button>
                                         
                                         <textarea id="signature_evidence" name="signature_evidence" style="display: none" class="form-control.<?php echo ($errors->has('signature_evidence') ? ' is-invalid' : ''); ?>" required></textarea>
                                         {!! $errors->first('signature_evidence', '<div class="invalid-feedback">:message</div>') !!}
@@ -136,9 +136,9 @@
     <div class="box-footer mt20" style="text-align:center;">
         @if($service_report->isEmpty())
             @method('GET')
-            <a type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#dialogo10"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</a>
+            <a type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#dialogo10"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</a>
         @else
-            <button type="submit" class="btn btn-success btn-lg" id="btnEnviar"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
+            <button type="submit" class="btn btn-success btn-lg" id="btnEnviar"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
             <!--<a class="btn btn-danger btn-lg" href="{{ route('services.index') }}"> Cancel</a>-->
         @endif
         
@@ -164,8 +164,8 @@
                                                             
                         <!-- pie del diálogo -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">{{ __('Accept')}}</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal"><i class="material-icons" style="font-size:20px">thumb_up</i> {{ __('Accept')}}</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i> {{ __('Close')}}</button>
                         </div>
                                                         
                                 </div>

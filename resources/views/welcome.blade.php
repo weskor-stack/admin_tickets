@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link href="{{ asset('css/site.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/menu.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/menu2.css') }}" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 </head>
 <body>

@@ -6,9 +6,15 @@
 
             <select class="form-select" id="tool_id" name="tool_id" required>
                 <option value="">--{{ __('Select tool')}}--</option>
-                @foreach ($tools2 as $item)
-                    <option value="{{$item->tool_id}}" data-stock="{{$item->tool->stock}}" data-unity="{{$item->tool->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->tool->key}} - {{$item->tool->name}}</option>
-                @endforeach
+                @if($toolUseds->isEmpty())
+                    @foreach ($tools2 as $item)
+                        <option value="{{$item->tool_id}}" data-stock="{{$item->tool->stock}}" data-unity="{{$item->tool->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->tool->key}} - {{$item->tool->name}}</option>
+                    @endforeach
+                @else
+                    @foreach ($tool2 as $item)
+                        <option value="{{$item->tool_id}}" data-stock="{{$item->tool->stock}}" data-unity="{{$item->tool->unitMeasure->name}}" data-quantity="{{ $item->quantity }}">{{$item->tool->key}} - {{$item->tool->name}}</option>
+                    @endforeach
+                @endif
             </select>
 
             <script>
@@ -24,7 +30,7 @@
         
         <div class="form-group">
             <strong>{{ Form::label( __('Quantity')) }}</strong>
-            {{ Form::number('quantity', $toolUsed->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'id'=>'quantity2','step'=>'0.01', 'min'=>'0','required']) }}
+            {{ Form::number('quantity', $toolUsed->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'id'=>'quantity2','data-decimals'=>'1', 'step'=>'0.1', 'min'=>'0', 'required']) }}
             {!! $errors->first('quantity', '<div class="invalid-feedback">:message</div>') !!}
             
         </div>
@@ -44,7 +50,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg">{{__('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{__('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('tool-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

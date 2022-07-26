@@ -3,15 +3,16 @@
         
         <div class="form-group">
             
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />-->
+        
+        
             <strong>{{__('Key')}}</strong>
             <!--{{ Form::select('material_id', $material, $materialAssigned->material_id, ['class' => 'form-select' . ($errors->has('material_id') ? ' is-invalid' : ''), 'placeholder' => 'Material Id']) }}
             {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
             
-            <select class="form-select" id="material_id" name="material_id" required>
+            <select class="form-select" id="material_id" name="material_id" style="width:100%" required>
                 <option value="">--{{ __('Select material')}}--</option>
                 @if($materialAssigneds->isEmpty())
                     @foreach ($materials as $item)
@@ -24,13 +25,13 @@
                 @endif
             </select>
 
-            <script>
+            <!--<script>
                 $(document).ready(function() {
                     $('.select2').select2({
                         closeOnSelect: false
                     });
                 });
-            </script>
+            </script>-->
 
             <br>
         </div>
@@ -59,7 +60,7 @@
 
     </div>
     <div class="box-footer mt20" style="text-align:center;">
-        <button type="submit" class="btn btn-success btn-lg"><i class="far fa-thumbs-up"></i>&nbsp; {{ __('Accept')}}</button>
+        <button type="submit" class="btn btn-success btn-lg"><i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept')}}</button>
         <!--<a class="btn btn-danger btn-lg" href="{{ route('material-assigneds.index') }}"> Cancel</a>-->
     </div>
 </div>

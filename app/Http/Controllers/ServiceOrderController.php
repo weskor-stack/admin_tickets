@@ -148,8 +148,9 @@ class ServiceOrderController extends Controller
             $q->select('material_id')->from('material_assigned');
         })->get();*/
 
-        $material2 = Material::whereNotIn('material_id', MaterialAssigned::select('material_id')
-        ->where('service_order_id', '=', $serviceOrder3))->get();
+        $material2 = Material::where('stock', '!=', 0)->whereNotIn('material_id', MaterialAssigned::select('material_id')
+        ->where('service_order_id', '=', $serviceOrder3))
+        ->get();
 
         //$serviceOrder3 = (int)$serviceOrder3;
 
@@ -157,9 +158,11 @@ class ServiceOrderController extends Controller
             $q->select('tool_id')->from('tool_assigned')->where('service_order_id', '=', '2');
         })->get();*/
 
-        $tool2 = Tool::select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', ToolAssigned::select('tool_id')
+        $tool2 = Tool::where('stock', '!=', 0)->select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', ToolAssigned::select('tool_id')
         ->where('service_order_id', '=', $serviceOrder3))
         ->get();
+
+        //return response()->json($material2);
         /*$tool2 = DB::table('tool')->select('tool_id','key', 'name', 'stock', 'unit_measure_id', 'user_id', 'date_registration')->whereNotIn('tool_id', DB::table('tool_assigned')->select('tool_id')
         ->where('service_order_id', '=', $serviceOrder3))->get();*/
 
