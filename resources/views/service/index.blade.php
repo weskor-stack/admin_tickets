@@ -223,16 +223,19 @@
                                             
                                             <div class="card-body">
                                             
+                                            <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">-->
+
                                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+                                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
                                             
                                             <!-- Include Moment.js CDN -->
                                             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
                                             
                                             <!-- Include Bootstrap DateTimePicker CDN -->
-                                            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+                                            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
                                             
-                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+                                            <script src="https://cdn.jsdelivr.net/npm/pc-bootstrap4-datetimepicker@4.17.51/src/js/bootstrap-datetimepicker.min.js"></script>
+                                            
                                                 <form method="POST" action="{{ route('service-reports.store') }}"  role="form" enctype="multipart/form-data">
                                                     @csrf
 
@@ -253,7 +256,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -280,6 +283,12 @@
                                                 <form method="POST" action="{{ route('material-useds.store') }}"  role="form" enctype="multipart/form-data">
                                                     @csrf
                                                     @include('material-used.form')
+
+                                                    <script>
+                                                        $('.select2').select2({
+                                                            dropdownParent: $('#dialogo2 .modal-body')
+                                                        });
+                                                    </script>
                                                 </form>
                                                 <script>
                                                     var value_input;
@@ -303,7 +312,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -330,6 +339,12 @@
                                                 <form method="POST" action="{{ route('tool-useds.store') }}"  role="form" enctype="multipart/form-data">
                                                     @csrf
                                                     @include('tool-used.form')
+
+                                                    <script>
+                                                        $('#tool_id').select2({
+                                                            dropdownParent: $('#dialogo3 .modal-body')
+                                                        });
+                                                    </script>
                                                 </form>
                                                 <script>
                                                     var value_input;
@@ -353,7 +368,7 @@
                                                         
                                     <!-- pie del diálogo -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                         </div>
                                                         
                                 </div>
@@ -387,7 +402,7 @@
                                         <a href="{{ route('service-orders.index','id_ticket='.$service->serviceOrder->ticket_id) }}" class="btn btn-success">
                                         <i class="material-icons" style="font-size:20px">thumb_up</i>&nbsp; {{ __('Accept') }}
                                         </a>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                     </div>
                                                         
                                 </div>

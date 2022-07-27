@@ -2,9 +2,16 @@
     <div class="box-body">
         
         <div class="form-group">
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
             <strong>{{ Form::label( __('Key')) }}</strong>
 
-            <select class="form-select" id="tool_id" name="tool_id" required>
+            <br><br>
+            
+            <select class="form-select" id="tool_id" name="tool_id" style="width:100%" required>
                 <option value="">--{{ __('Select tool')}}--</option>
                 @if($toolUseds->isEmpty())
                     @foreach ($tools2 as $item)

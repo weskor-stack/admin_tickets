@@ -106,7 +106,7 @@
 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                                 </div>
 
                                                         </div>
@@ -129,12 +129,18 @@
                                                                 <div class="modal-body">
                                                                     <div class="card-body">
                                                                         <!--<input type="number" name="message" id="message"> <br>-->
-                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp;;&nbsp;; 
-                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="" style="width:80px;" disabled><br>
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text1" name="text1" value="" style="width:70px;" disabled> &nbsp; &nbsp; 
+                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text2" name="text2" value="" style="width:80px;" disabled><br><br>
                                                                         <form method="POST" action="{{ route('material-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
 
                                                                             @include('material-assigned.form')
+
+                                                                            <script>
+                                                                                 $('.select2').select2({
+                                                                                    dropdownParent: $('#dialogo1 .modal-body')
+                                                                                });
+                                                                            </script>
                                                                         </form>
                                                                         <br>
 
@@ -182,7 +188,7 @@
 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -204,11 +210,17 @@
                                                             <!-- cuerpo del diálogo -->
                                                                 <div class="modal-body">                    
                                                                     <div class="card-body">
-                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text3" name="text3" value="" style="width:70px;" disabled> &nbsp;;&nbsp;; 
-                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text4" name="text4" value="" style="width:80px;" disabled><br>
+                                                                        <b>{{ __('Stock') }}: </b><input type="text" id="text3" name="text3" value="" style="width:70px;" disabled> &nbsp; &nbsp;
+                                                                        <b>{{ __('unit_measure') }}: </b><input type="text" id="text4" name="text4" value="" style="width:80px;" disabled><br> <br>
                                                                         <form method="POST" action="{{ route('tool-assigneds.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
                                                                             @include('tool-assigned.form')
+
+                                                                            <script>
+                                                                                 $('#tool_id').select2({
+                                                                                    dropdownParent: $('#dialogo2 .modal-body')
+                                                                                });
+                                                                            </script>
                                                                         </form>
                                                                         <script>
                                                                             var value_input;
@@ -230,7 +242,7 @@
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -253,12 +265,18 @@
                                                                         <form method="POST" action="{{ route('employee-orders.store') }}"  role="form" enctype="multipart/form-data">
                                                                             @csrf
                                                                             @include('employee-order.form')
+
+                                                                            <script>
+                                                                                 $('#employee_id').select2({
+                                                                                    dropdownParent: $('#dialogo3 .modal-body')
+                                                                                });
+                                                                            </script>
                                                                         </form>
                                                                     </div>                                                            
                                                                 </div>
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i>&nbsp; {{ __('Cancel')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -398,7 +416,7 @@
                                                                 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Close') }}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp; {{ __('Cancel') }}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -428,7 +446,7 @@
                                                             
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;{{ __('Close')}}</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-ban"></i>&nbsp;{{ __('Cancel')}}</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -453,7 +471,7 @@
                                                                 
                                                             <!-- pie del diálogo -->
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                                 </div>
                                                         </div>
                                                     </div>
@@ -482,7 +500,7 @@
                                                         
                                                             <!-- pie del diálogo 
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div>-->
                                                         
                                                             </div>
@@ -515,7 +533,7 @@
                                                         
                                                             <!-- pie del diálogo
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div> -->
                                                         
                                                             </div>
@@ -546,7 +564,7 @@
                                                         
                                                             <!-- pie del diálogo
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div> -->
                                                         
                                                             </div>
@@ -576,7 +594,7 @@
                                                         
                                                             <!-- pie del diálogo
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div> -->
                                                         
                                                             </div>
@@ -606,7 +624,7 @@
                                                         
                                                             <!-- pie del diálogo
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div> -->
                                                         
                                                             </div>
@@ -636,7 +654,7 @@
                                                         
                                                             <!-- pie del diálogo
                                                             <div class="modal-footer" style="background-color: #d6dbdf;">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close')}}</button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel')}}</button>
                                                             </div> -->
                                                         
                                                             </div>

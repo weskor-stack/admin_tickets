@@ -8,8 +8,10 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
             <strong>{{__('Key')}}</strong>
-                        
-            <select class="form-select" id="material_id" name="material_id" required>
+            
+            <br><br>
+
+            <select class="form-select select2" id="material_id" name="material_id" style="width:100%" required>
                 <option value="">--{{ __('Select material')}}--</option>
                 @if($materialUseds->isEmpty())
                     @foreach ($materials2 as $item)
@@ -22,11 +24,7 @@
                 @endif
             </select>
 
-            <script>
-                $(document).ready(function() {
-                    $('.select2').select2();
-                });
-            </script>
+            
 
             <script>
                 var value_input;

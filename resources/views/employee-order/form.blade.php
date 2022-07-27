@@ -1,5 +1,9 @@
 <div class="box box-info padding-1">
     <div class="box-body">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         
         <div class="form-group" hidden>
             {{ Form::label('service_order_id') }}
@@ -11,7 +15,8 @@
             {{ Form::label( __('Employee')) }}
             <!--{{ Form::select('employee_id', $employee, $employeeOrder->employee_id, ['class' => 'form-select' . ($errors->has('employee_id') ? ' is-invalid' : ''), 'placeholder' => __('Employee')]) }}
             {!! $errors->first('employee_id', '<div class="invalid-feedback">:message</div>') !!}-->
-            <select class="form-select" id="employee_id" name="employee_id" required>
+            <br>
+            <select class="form-select" id="employee_id" name="employee_id" style="width:100%" required>
                 <option value="">--{{ __('Select employee')}}--</option>
                 @foreach ($employee_assigned as $item)
                     <option value="{{$item->employee_id}}">{{$item->name}} {{$item->last_name}}</option>

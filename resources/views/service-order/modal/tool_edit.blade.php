@@ -59,7 +59,7 @@
                                                                 
                 <!-- pie del diálogo -->
                     <div class="modal-footer" style="text-align:center;">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i> {{ __('Close') }}</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="material-icons" style="font-size:20px">block</i> {{ __('Cancel') }}</button>
                     </div>
                     
             </div>

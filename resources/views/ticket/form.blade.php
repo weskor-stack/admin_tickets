@@ -51,7 +51,7 @@
             <script>
                 $('.select2').select2();
             </script>
-            <select class="form-select," data-control="select2" id="contact" style="width:600px; height:38px;" required></select>            
+            <select class="form-select select2" data-control="select2" id="contact" style="width:600px; height:38px;" required></select>            
             <a type="button" class="btn btn-outline-dark" id="add" data-toggle="modal" data-target="#dialogo2">+</a> <br>
 
             <script>

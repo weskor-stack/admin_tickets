@@ -3,16 +3,16 @@
         
         <div class="form-group">
             
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         
         
-            <strong>{{__('Key')}}</strong>
+            <strong>{{__('Key')}}</strong> <br>
             <!--{{ Form::select('material_id', $material, $materialAssigned->material_id, ['class' => 'form-select' . ($errors->has('material_id') ? ' is-invalid' : ''), 'placeholder' => 'Material Id']) }}
             {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
             
-            <select class="form-select" id="material_id" name="material_id" style="width:100%" required>
+            <select class="form-select select2" id="material_id" name="material_id" style="width:100%" required>
                 <option value="">--{{ __('Select material')}}--</option>
                 @if($materialAssigneds->isEmpty())
                     @foreach ($materials as $item)
@@ -35,6 +35,7 @@
 
             <br>
         </div>
+        <br>
         <div class="form-group">
             <strong>{{ __('Quantity')}}</strong> <br>
             <!--{{ Form::number('quantity', $materialAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'id'=>'quantity', 'name'=>'quantity', 'placeholder' => __('Quantity'), 'data-decimals'=>'2', 'step'=>'0.1', 'min'=>'0', 'required']) }}

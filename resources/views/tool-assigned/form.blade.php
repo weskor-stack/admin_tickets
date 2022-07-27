@@ -2,11 +2,18 @@
     <div class="box-body">
         
         <div class="form-group">
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
             <strong>{{ Form::label( __('Key')) }}</strong>
             <!--{{ Form::select('tool_id', $tool, $toolAssigned->tool_id, ['class' => 'form-select' . ($errors->has('tool_id') ? ' is-invalid' : ''), 'placeholder' => 'Tool']) }}
             {!! $errors->first('material_id', '<div class="invalid-feedback">:message</div>') !!}-->
 
-            <select class="form-select" id="tool_id" name="tool_id" required>
+            <br>
+
+            <select class="form-select" id="tool_id" name="tool_id" style="width:100%" required>
                 <option value="">--{{ __('Select tool')}}--</option>
                 @if($materialAssigneds->isEmpty())
                     @foreach ($tools as $item)
@@ -19,7 +26,7 @@
                 @endif
             </select>
         </div>
-        
+        <br>
         <div class="form-group">
             <strong>{{ Form::label( __('Quantity')) }}</strong>
             {{ Form::number('quantity', $toolAssigned->quantity, ['class' => 'form-control' . ($errors->has('quantity') ? ' is-invalid' : ''), 'placeholder' => __('Quantity'), 'step'=>'0.1', 'min'=>'0','required']) }}
