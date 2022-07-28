@@ -89,7 +89,7 @@ class TicketController extends Controller
         request()->validate(Ticket::$rules);
         $statement = DB::statement("SET @user_id = 9999");
 
-        $tickets = request()->except('_token');
+        $tickets = request()->except('_token','contact');
 
         $tickets ['status_ticket_id'] = 1;
 
