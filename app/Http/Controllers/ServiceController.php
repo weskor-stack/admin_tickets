@@ -112,11 +112,11 @@ class ServiceController extends Controller
 
         $material = MaterialAssigned::find($serviceOrder[2]);
 
-        $material2 = MaterialAssigned::whereNotIn('material_id', MaterialUsed::select('material_id')
-        ->where('service_order_id', '=', $serviceOrder[2]))->get();
+        $material2 = MaterialAssigned::whereNotIn('material_id', MaterialUsed::select('material_id'))
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
 
         $tool2 = ToolAssigned::select('*')->whereNotIn('tool_id', ToolUsed::select('tool_id'))
-        ->where('service_order_id', '=', '5')->get();
+        ->where('service_order_id', '=', $serviceOrder[2])->get();
 
         /*$tool2 = ToolAssigned::whereNotIn('tool_id', ToolUsed::select('tool_id')
         ->where('service_order_id', '=', $serviceOrder[2])) ->get();*/
