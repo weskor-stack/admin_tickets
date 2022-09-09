@@ -74,7 +74,7 @@ class ContactController extends Controller
         //return response()->json( $contact['name']." ".$contact['last_name'] );
 
         if(empty($contacto)){
-            return response()->json( $contacto);
+            //return response()->json( $contacto);
             Contact::insert($contact);
             //$contact = Contact::create($request->all());
     
