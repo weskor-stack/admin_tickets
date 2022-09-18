@@ -81,7 +81,8 @@
                                                         @method('GET')
                                                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#dialogo0" hidden>Show</button>
                                                         @method('GET')
-                                                        <button title="{{ __('Create order') }}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#dialogo1"><i class="material-icons" style="font-size:20px">bookmarks</i>&nbsp; {{ __('Create order') }}</button>
+                                                        <button title="{{ __('Create order') }}" type="button" class="open-AddDialog btn btn-primary" data-toggle="modal" data-target="#dialogo1" data-id="{{$ticket->ticket_id}}"><i class="material-icons" style="font-size:20px">bookmarks</i>&nbsp; {{ __('Create order') }}</button>
+                                                        
                                                     @else
                                                         <a title="{{ __('Order') }}" class="btn btn-warning" href="{{ route('service-orders.index','id_ticket='.$ticket->ticket_id) }}"><i class="material-icons" style="font-size:20px">visibility</i>&nbsp; {{ __('Order') }}</a>
                                                     @endif
@@ -133,7 +134,6 @@
                                                         
                                                             <!-- cuerpo del diálogo -->
                                                             <div class="modal-body">
-                                                                
                                                                 <div class="card-body">
                                                                     <form method="POST" action="{{ route('service-orders.store') }}"  role="form" enctype="multipart/form-data">
                                                                         @csrf
@@ -202,4 +202,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).on("click", ".open-AddDialog", function () {
+            var ticketId = $(this).data('id'); 
+            $(".modal-body #ticket_id").val( ticketId );
+        });
+    </script>
 @endsection

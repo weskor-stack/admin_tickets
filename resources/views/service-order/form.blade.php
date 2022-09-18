@@ -4,10 +4,9 @@
 
         <div class="form-group" hidden>
             {{ Form::label('ticket_id:') }}
-            @foreach ($tickets as $ticket)
-            {{ Form::text('ticket_id', $ticket->ticket_id, ['class' => 'md-form md-outline input-with-post-icon datepicker' . ($errors->has('date_order') ? ' is-invalid' : ''), 'placeholder' => 'Date Order']) }}
-            {!! $errors->first('date_order', '<div class="invalid-feedback">:message</div>') !!}
-            @endforeach
+
+            <input type="text" name="ticket_id" id="ticket_id" value=""/>
+            
         </div>
                 
         <div class="form-group" style="text-align:center">
